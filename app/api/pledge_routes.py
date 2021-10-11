@@ -15,7 +15,7 @@ def get_pledges():
 
 @pledge_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
-def delete_project(id):
+def delete_pledge(id):
     # deleted_project = Project.query.filter(Project.id == id).first()
     Pledge.query.filter(Pledge.id == id).delete()
     db.session.commit()
