@@ -1,4 +1,3 @@
-from sqlalchemy.orm import relationship
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -13,7 +12,9 @@ class User(db.Model, UserMixin):
     money = db.Column(db.Integer)
     hashed_password = db.Column(db.String(255), nullable=False)
 
-    projects = relationship("Project", back_populates="users")
+    projects = db.relationship("Project", back_populates="users", cascade="all, delete")
+    pledges = db.relationship("Pledge", back_populates="users", cascade="all, delete")
+
 
     @property
     def password(self):
