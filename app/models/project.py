@@ -17,3 +17,14 @@ class Project(db.Model):
     users = db.relationship("User", back_populates="projects")
     pledges = db.relationship("Pledge", back_populates="projects", cascade="all, delete")
 
+    def to_dict(self):
+      return {
+          'id': self.id,
+          'title': self.title,
+          'description': self.description,
+          'goal': self.goal,
+          'current_amount': self.current_amount,
+          'categories_id': self.categories_id,
+          'user_id': self.user_id,
+          'image_url': self.image_url
+      }

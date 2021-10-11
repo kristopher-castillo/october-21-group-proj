@@ -1,4 +1,3 @@
-from enum import unique
 from .db import db
 
 
@@ -13,4 +12,12 @@ class Pledge(db.Model):
 
     users = db.relationship("User", back_populates="pledges")
     projects = db.relationship("Project", back_populates="pledges")
-    
+
+    def to_dict(self):
+      return {
+          'id': self.id,
+          'amount': self.amount,
+          'user_id': self.user_id,
+          'project_id': self.project_id
+      }
+  
