@@ -13,8 +13,10 @@ def get_pledges():
     pledges = Pledge.query.all()
     return pledges.to_dict()
 
-
-
-# @pledge_routes.route('/', methods=["PATCH"])
-# @login_required
-# # def update_pledge():
+@pledge_routes.route('/<int:id>', methods=["DELETE"])
+@login_required
+def delete_project(id):
+    # deleted_project = Project.query.filter(Project.id == id).first()
+    Pledge.query.filter(Pledge.id == id).delete()
+    db.session.commit()
+    return redirect('/')
