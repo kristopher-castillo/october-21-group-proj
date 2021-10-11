@@ -36,7 +36,7 @@ def new_project():
 
 @project_routes.route('/projects/<int:id>', methods=["PUT"])
 @login_required
-def update_project():
+def update_project(id):
     project = Project.query.filter(Project.id == id)
     if current_user.id == project.user_id:
         form = ProjectForm()
@@ -63,5 +63,5 @@ def delete_project(id):
 
 
 
-    
+
 
