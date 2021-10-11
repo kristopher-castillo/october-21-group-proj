@@ -34,5 +34,11 @@ def new_project():
     else:
         return form.errors
 
+@project_routes.route('/projects', methods=["PATCH"])
+@login_required
+def update_project():
+    
+
+
     
 
