@@ -1,7 +1,6 @@
 from flask import Blueprint, jsonify, session, request, redirect
 from app.models import User, Project, db, Pledge
-from app.forms import ProjectForm
-from app.forms.pledge_form import PledgeForm
+from app.forms import ProjectForm, PledgeForm
 from flask_login import current_user, login_user, logout_user, login_required
 
 project_routes = Blueprint('project', __name__)
