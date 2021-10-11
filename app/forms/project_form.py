@@ -1,7 +1,12 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SubmitField, IntegerField
+from wtforms import StringField, SelectField, SubmitField, IntegerField
 from wtforms.validators import DataRequired
 
 
 class ProjectForm(FlaskForm):
-    title = StringField('title', validators=[DataRequired()])
+    title = StringField('Project Title', validators=[DataRequired()])
+    description = StringField('Description', validators=[DataRequired()])
+    goal = IntegerField('Goal', validators=[DataRequired()])
+    category = SelectField('Category', choices=[(1,"Arts"), (2,"Technology"), (3,"Games"), (4,"Publishing")], validators=[DataRequired()])
+    image_url = StringField('Image Url', validators=[DataRequired()])
+    submit = SubmitField('Submit')
