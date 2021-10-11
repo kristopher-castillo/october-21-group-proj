@@ -63,8 +63,9 @@ def update_project(id):
 @project_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def delete_project(id):
-    deleted_project = Project.query.filter(Project.id == id).first()
-    Project.query.filter(Project.id == id).delete()
+    project = Project.query.filter(Project.id == id).first()
+    if current_user.id == project.user_id:
+        project.delete()
     db.session.commit()
     return redirect('/')
 
