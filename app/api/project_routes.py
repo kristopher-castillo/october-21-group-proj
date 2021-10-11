@@ -80,6 +80,3 @@ def new_pledge():
         return redirect('/project/<int:id>')
     else:
         return form.errors
-
-
-

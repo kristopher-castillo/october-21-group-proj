@@ -15,6 +15,3 @@ def get_pledges():
 
 
 
-@pledge_routes.route('/', methods=["PATCH"])
-@login_required
-# def update_pledge():
