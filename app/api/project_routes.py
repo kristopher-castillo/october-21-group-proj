@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, session, request, redirect
 from app.models import User, Project, db, Pledge
-from app.forms import ProjectForm,
+from app.forms import ProjectForm
 from app.forms.pledge_form import PledgeForm
 from flask_login import current_user, login_user, logout_user, login_required
 
@@ -53,7 +53,7 @@ def update_project(id):
         db.session.commit()
         return redirect('/')
 
-@project_routes('/project/<int:id>', methods=["DELETE"])
+@project_routes.route('/project/<int:id>', methods=["DELETE"])
 @login_required
 def delete_project(id):
     # deleted_project = Project.query.filter(Project.id == id)
