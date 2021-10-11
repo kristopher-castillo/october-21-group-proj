@@ -6,7 +6,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 
 project_routes = Blueprint('project', __name__)
 
-@project_routes.route('/projects')
+@project_routes.route('/')
 def get_projects():
     """
     Get all projects
@@ -14,7 +14,7 @@ def get_projects():
     projects = Project.query.all()
     return projects.to_dict()
 
-@project_routes.route('/projects', methods=["POST"])
+@project_routes.route('/', methods=["POST"])
 @login_required
 def new_project():
     """
@@ -35,7 +35,7 @@ def new_project():
     else:
         return form.errors
 
-@project_routes.route('/projects/<int:id>', methods=["PUT"])
+@project_routes.route('/<int:id>', methods=["PUT"])
 @login_required
 def update_project(id):
     project = Project.query.filter(Project.id == id)
@@ -53,10 +53,10 @@ def update_project(id):
         db.session.commit()
         return redirect('/')
 
-@project_routes.route('/project/<int:id>', methods=["DELETE"])
+@project_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def delete_project(id):
-    # deleted_project = Project.query.filter(Project.id == id)
+    deleted_project = Project.query.filter(Project.id == id).first()
     Project.query.filter(Project.id == id).delete()
     db.session.commit()
     return redirect('/')
