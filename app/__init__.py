@@ -35,16 +35,14 @@ app.cli.add_command(seed_commands)
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 app.register_blueprint(pledge_routes, url_prefix='/api/pledges')
-=======
+
 app.register_blueprint(project_routes, url_prefix='/api/projects')
->>>>>>> 9273357464e499bc3ec525661000ab7f26718410
-=======
+
 app.register_blueprint(project_routes, url_prefix='/api/projects')
 app.register_blueprint(pledge_routes, url_prefix='/api/pledges')
->>>>>>> 1277eea8f2094e2a9fc1ecd0acc3a969fc9f2d17
+
 db.init_app(app)
 Migrate(app, db)
 
