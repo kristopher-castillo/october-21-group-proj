@@ -4,7 +4,7 @@ from app.models import User, Project, db, Category
 category_routes = Blueprint('category', __name__)
 
 
-@category_routes.route('/categories')
+@category_routes.route('/')
 def get_all_categories():
     '''
     Gets all categories
@@ -12,6 +12,9 @@ def get_all_categories():
     category = Category.query.all()
     return category.to_dict()
 
-@category_routes.route('/')
-def something():
-    pass
+# @category_routes.route('/', methods=['POST'])
+# def create_categories():
+#     '''
+#     Create categories
+#     '''
+#     category = Category()
