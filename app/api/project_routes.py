@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request, redirect
-from app.models import User, Project, db
+from app.models import User, Project, Category, db
 from app.forms import ProjectForm
 from flask_login import current_user, login_user, logout_user, login_required
 
@@ -20,13 +20,15 @@ def new_project():
     Creates a new project if user is logged in
     """
     form = ProjectForm()
+    categories = Category.query.all()
+    form.category.choices = [(categories.id, categories.category_name) for categories in Category.query.all()]
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
         project = Project(title=data["title"],
                         description=data['description'],
                         goal=data['goal'],
-                        category=data['category'],
+                        categories_id=data['category'],
                         user_id=current_user.get_id(),
                         current_amount=0,
                         image_url=data['image_url'])
