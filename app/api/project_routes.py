@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request, redirect
-from app.models import User, Project, db, Pledge
+from app.models import User, Project, db, Pledge, Category
 from app.forms import ProjectForm, PledgeForm
 from flask_login import current_user, login_user, logout_user, login_required
 
