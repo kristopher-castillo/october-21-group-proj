@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request, redirect
-from app.models import User, db
+from app.models import User, Project, db
 from app.forms import ProjectForm
 from flask_login import current_user, login_user, logout_user, login_required
 
@@ -34,10 +34,33 @@ def new_project():
     else:
         return form.errors
 
-@project_routes.route('/projects', methods=["PATCH"])
+@project_routes.route('/projects/<int:id>', methods=["PUT"])
 @login_required
 def update_project():
-    
+    project = Project.query.filter(Project.id == id)
+    if current_user.id == project.user_id:
+        form = ProjectForm()
+        form['csrf_token'].data = request.cookies['csrf_token']
+        if form.validate_on_submit():
+            data = form.data
+            project = Project(title=data["title"],
+                        description=data['description'],
+                        goal=data['goal'],
+                        current_amount=0,
+                        image_url=data['image_url'])
+        db.session.add(project)
+        db.session.commit()
+        return redirect('/')
+
+@project_routes('/project/<int:id>', methods=["DELETE"])
+@login_required
+def delete_project(id):
+    # deleted_project = Project.query.filter(Project.id == id)
+    Project.query.filter(Project.id == id).delete()
+    db.session.commit()
+    return redirect('/')
+
+
 
 
     
