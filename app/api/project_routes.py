@@ -26,6 +26,8 @@ def new_project():
         project = Project(title=data["title"],
                         description=data['description'],
                         goal=data['goal'],
+                        category=data['category'],
+                        user_id=current_user.get_id(),
                         current_amount=0,
                         image_url=data['image_url'])
         db.session.add(project)
