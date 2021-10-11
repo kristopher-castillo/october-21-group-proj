@@ -13,3 +13,5 @@ def get_all_categories():
     return category.to_dict()
 
 @category_routes.route('/')
+def something():
+    pass
