@@ -13,25 +13,7 @@ def get_pledges():
     pledges = Pledge.query.all()
     return pledges.to_dict()
 
-@pledge_routes.route('/', methods=["POST"])
-@login_required
-def new_pledge():
-    """
-    Creates a new pledge if user is logged in
-    """
-    form = PledgeForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        data = form.data
-        new_pledge = Pledge(amount=data["amount"],
-                        user_id=current_user.get_id()
-                        project_id=
-        )
-        db.session.add(new_pledge)
-        db.session.commit()
-        return redirect('/')
-    else:
-        return form.errors
+
 
 @pledge_routes.route('/', methods=["PATCH"])
 @login_required

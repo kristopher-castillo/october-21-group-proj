@@ -4,4 +4,4 @@ from wtforms.validators import DataRequired
 
 
 class PledgeForm(FlaskForm):
-    amount = IntegerField('amount', validators=[DataRequired()])
+  amount = IntegerField('amount', validators=[DataRequired()])

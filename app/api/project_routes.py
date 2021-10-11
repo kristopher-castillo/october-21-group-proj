@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, session, request, redirect
-from app.models import User, Project, db
-from app.forms import ProjectForm
+from app.models import User, Project, db, Pledge
+from app.forms import ProjectForm,
+from app.forms.pledge_form import PledgeForm
 from flask_login import current_user, login_user, logout_user, login_required
 
 project_routes = Blueprint('project', __name__)
@@ -60,8 +61,25 @@ def delete_project(id):
     db.session.commit()
     return redirect('/')
 
-
-
+@project_routes.route('/project/<int:id>/pledge', methods=["POST"])
+@login_required
+def new_pledge():
+    """
+    Creates a new pledge if user is logged in
+    """
+    form = PledgeForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        data = form.data
+        new_pledge = Pledge(amount=data["amount"],
+                        user_id=current_user.get_id(),
+                        project_id=id
+        )
+        db.session.add(new_pledge)
+        db.session.commit()
+        return redirect('/project/<int:id>')
+    else:
+        return form.errors
 
 
 
