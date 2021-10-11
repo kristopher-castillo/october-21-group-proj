@@ -9,7 +9,12 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
+    money = db.Column(db.Integer)
     hashed_password = db.Column(db.String(255), nullable=False)
+
+    projects = db.relationship("Project", back_populates="users", cascade="all, delete")
+    pledges = db.relationship("Pledge", back_populates="users", cascade="all, delete")
+
 
     @property
     def password(self):
@@ -26,5 +31,6 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'money': self.money
         }
