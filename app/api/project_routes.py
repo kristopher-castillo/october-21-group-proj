@@ -10,7 +10,9 @@ def get_projects():
     """
     Get all projects
     """
+    
     projects = Project.query.all()
+    print(current_user.get_id())
     return projects.to_dict()
 
 @project_routes.route('/', methods=["POST"])
@@ -48,6 +50,8 @@ def update_project(id):
             project = Project(title=data["title"],
                         description=data['description'],
                         goal=data['goal'],
+                        category=data['category'],
+                        user_id=current_user.get_id(),
                         current_amount=0,
                         image_url=data['image_url'])
         db.session.add(project)
