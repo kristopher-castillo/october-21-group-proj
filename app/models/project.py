@@ -1,4 +1,3 @@
-from sqlalchemy.orm import relationship
 from .db import db
 
 
@@ -14,5 +13,5 @@ class Project(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     image_url = db.Column(db.Integer, nullable=False)
 
-    categories = relationship("Category", back_populates="project")
-    users = relationship("User", back_populates="project")
+    categories = db.relationship("Category", back_populates="project")
+    users = db.relationship("User", back_populates="project")
