@@ -37,8 +37,3 @@ def new_project():
 @project_routes.route('/projects', methods=["PATCH"])
 @login_required
 def update_project():
-    
-
-
-    
-
