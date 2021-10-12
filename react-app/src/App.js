@@ -9,7 +9,7 @@ import UsersList from './components/UsersList';
 import CategoryList from './components/CategoryList';
 import User from './components/User';
 import { authenticate } from './store/session';
-import SearchBar from './components/SearchBar';
+import SearchBar from './components/SearchBar/SearchBar';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
