@@ -9,8 +9,10 @@ def get_all_categories():
     '''
     Gets all categories
     '''
-    category = Category.query.all()
-    return category.to_dict()
+    categories = Category.query.all()
+    return {
+        'categories': [category.to_dict() for category in categories]
+    }
 
 # @category_routes.route('/', methods=['POST'])
 # def create_categories():
