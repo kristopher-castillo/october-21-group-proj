@@ -1,19 +1,22 @@
 const GET_CATEGORIES = 'categories/LOAD'
 
-const getCategoriesAction = (categories) => {
-    return {
+const getCategoriesAction = (categories) => ({
         type:GET_CATEGORIES,
         payload: categories
-    }
-}
+})
 
 export const getCategoriesThunk = () => async (dispatch) => {
-    const res = await fetch('/categories')
+    const res = await fetch('/api/categories/');
 
     if (res.ok) {
         let categories = await res.json()
         dispatch(getCategoriesAction(categories))
     }
+    else{
+        console.log("didn't make it here")
+    }
+
+    return res;
 }
 
 const initialState = {}

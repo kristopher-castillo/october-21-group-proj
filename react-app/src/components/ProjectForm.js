@@ -9,13 +9,14 @@ const ProjectForm = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [goal, setGoal] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState(null);
   const [image, setImage] = useState("")
   const user = useSelector((state) => state.session.user);
   const projects = useSelector(store => store.projects);
-  const categories = useSelector(store => store.categories)
+  const categories = useSelector(store => store.categories.categories)
   const dispatch = useDispatch();
 
+  console.log(categories)
   useEffect(() => {
       dispatch(getCategoriesThunk())
   }, [dispatch])
@@ -34,9 +35,7 @@ const ProjectForm = () => {
   //     setUsername(e.target.value);
   //   };
 
-  //   const updateEmail = (e) => {
-  //     setEmail(e.target.value);
-  //   };
+ 
 
   //   const updatePassword = (e) => {
   //     setPassword(e.target.value);
@@ -46,9 +45,9 @@ const ProjectForm = () => {
   //     setRepeatPassword(e.target.value);
   //   };
 
-  if (user) {
-    return <Redirect to="/" />;
-  }
+//   if (user) {
+//     return <Redirect to="/" />;
+//   }
 
   return (
     <form>
@@ -62,7 +61,7 @@ const ProjectForm = () => {
         <input
           type="text"
           name="title"
-        //   onChange={updateTitle}
+          onChange={(e) => { setTitle(e.target.value)}}
           value={title}
         ></input>
       </div>
@@ -71,7 +70,7 @@ const ProjectForm = () => {
         <input
           type="text"
           name="description"
-        //   onChange={updateDescription}
+          onChange={(e) => { setDescription(e.target.value)}}
           value={description}
         ></input>
       </div>
@@ -80,24 +79,23 @@ const ProjectForm = () => {
         <input
           type="text"
           name="goal"
-        //   onChange={updateGoal}
+          onChange={(e) => { setGoal(e.target.value)}}
           value={goal}
         ></input>
       </div>
       <div>
         <label>Category</label>
         <select
-          type="text"
           name="category"
-        //   onChange={updateGoal}
-          value={category}
-        ></select>
+          onChange={(e) => { setCategory(e.target.value)}}
+        >{categories?.map((category) => (<option key={category.id} value={category.id}>{category.name}</option>))}
+        </select>
       </div>
       <div>
         <label>Image Url</label>
         <input
           name="image_url"
-        //   onChange={updateCategory}
+          onChange={(e) => { setImage(e.target.value)}}
           value={image}
         //   required={true}
         ></input>

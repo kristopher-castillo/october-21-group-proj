@@ -1,6 +1,6 @@
 // constants
-const SET_PROJECT = 'session/SET_PROJECT';
-const CREATE_PROJECT = 'session/CREATE_PROJECT';
+const SET_PROJECT = 'project/SET_PROJECT';
+const CREATE_PROJECT = 'project/CREATE_PROJECT';
 
 const setProject = (project) => ({
   type: SET_PROJECT,
