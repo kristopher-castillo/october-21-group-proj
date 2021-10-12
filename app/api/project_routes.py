@@ -105,6 +105,3 @@ def update_pledge(id):
         db.session.add(project)
         db.session.commit()
         return redirect('/')
-
-
-
