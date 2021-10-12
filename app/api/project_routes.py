@@ -10,7 +10,7 @@ def get_projects():
     """
     Get all projects
     """
-    
+
     projects = Project.query.all()
     print(current_user.get_id())
     return projects.to_dict()
@@ -23,7 +23,7 @@ def new_project():
     """
     form = ProjectForm()
     categories = Category.query.all()
-    form.category.choices = [(categories.id, categories.category_name) for categories in Category.query.all()]
+    form.category.choices = [(categories.id, categories.name) for categories in Category.query.all()]
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
@@ -84,7 +84,7 @@ def new_pledge():
                         project_id=id
         )
         db.session.add(new_pledge)
-        db.session.commit() 
+        db.session.commit()
         return redirect('/')
     else:
         return form.errors
