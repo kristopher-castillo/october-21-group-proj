@@ -8,6 +8,7 @@ function CategoryList() {
   const dispatch = useDispatch()
 
   useEffect(() => {
+
     dispatch(getCategoriesThunk())
   }, [dispatch])
 
@@ -17,9 +18,9 @@ function CategoryList() {
     <div>
       <div className='category_nav_container'>
         <ul className='category_nav'>
-          {console.log('LIST OF CATEGORIES', categories)}
+      
           {categories?.map((category) => (
-            <Link to={`/categories/${category.id}`}><li key={category.id}>{category.name}</li></Link>
+            <Link key={category.id} to={`/categories/${category.id}`}><li>{category.name}</li></Link>
           ))}
         </ul>
       </div>
