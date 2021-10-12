@@ -36,7 +36,7 @@ def new_project():
                         image_url=data['image_url'])
         db.session.add(project)
         db.session.commit()
-        return redirect('/')
+        # return redirect('/')
     else:
         return form.errors
 

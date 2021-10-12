@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { getCategoriesThunk } from "../store/categories";
+import { addProject } from "../store/project";
 // import { signUp } from '../../store/session';
 
 const ProjectForm = () => {
@@ -15,42 +16,34 @@ const ProjectForm = () => {
   const projects = useSelector(store => store.projects);
   const categories = useSelector(store => store.categories.categories)
   const dispatch = useDispatch();
+  const history = useHistory();
 
   console.log(categories)
   useEffect(() => {
       dispatch(getCategoriesThunk())
   }, [dispatch])
 
-  //   const onSignUp = async (e) => {
-  //     e.preventDefault();
-  //     if (password === repeatPassword) {
-  //       const data = await dispatch(signUp(username, email, password));
-  //       if (data) {
-  //         setErrors(data)
-  //       }
-  //     }
-  //   };
+  if (!user) {
+    return <Redirect to="/" />;
+  }
 
-  //   const updateUsername = (e) => {
-  //     setUsername(e.target.value);
-  //   };
-
-
-
-  //   const updatePassword = (e) => {
-  //     setPassword(e.target.value);
-  //   };
-
-  //   const updateRepeatPassword = (e) => {
-  //     setRepeatPassword(e.target.value);
-  //   };
-
-//   if (user) {
-//     return <Redirect to="/" />;
-//   }
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const newProject = {
+      title,
+      description,
+      goal,
+      category,
+      image_url: image,
+      user_id: user.id,
+      categories_id: category.id
+    }
+    const lastProject = await dispatch(addProject(newProject));
+    history.push("/")
+  }
+  
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
@@ -94,10 +87,11 @@ const ProjectForm = () => {
       <div>
         <label>Image Url</label>
         <input
-          name="image_url"
+          name="image"
+          type="text"
           onChange={(e) => { setImage(e.target.value)}}
           value={image}
-        //   required={true}
+          required={true}
         ></input>
       </div>
       <button type="submit">Submit Project</button>
