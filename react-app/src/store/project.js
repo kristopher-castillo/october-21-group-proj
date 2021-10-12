@@ -29,6 +29,7 @@ export const addProject = (project) => async (dispatch) => {
     }
   
     dispatch(createProject(data));
+    return data;
   }
 }
 
@@ -100,11 +101,15 @@ export const getProject = () => async (dispatch) => {
 // }
 
 export default function projectReducer(state = initialState, action) {
+  let newState = {...state}
   switch (action.type) {
     case SET_PROJECT:
       return { project: action.payload }
     case CREATE_PROJECT:
-      return { project: null }
+      return {
+        newState,
+        project: action.payload
+      }
     default:
       return state;
   }
