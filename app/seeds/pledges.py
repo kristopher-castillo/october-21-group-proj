@@ -1,27 +1,44 @@
-# from app.models import db, Pledge
+from app.models import db, Pledge
+
+def seed_pledges():
+    demo_pledge = Pledge(amount=20,
+                        user_id=1,
+                        project_id=3)
+
+    demo_pledge2 = Pledge(amount=30,
+                        user_id=1,
+                        project_id=2)
+
+    marnie_pledge = Pledge(amount=60,
+                        user_id=2,
+                        project_id=1)
+
+    marnie_pledge2 = Pledge(amount=40,
+                        user_id=2,
+                        project_id=3)
+
+    bobbie_pledge = Pledge(amount=80,
+                        user_id=3,
+                        project_id=2)
+
+    bobbie_pledge2 = Pledge(amount=20,
+                        user_id=3,
+                        project_id=1)
+
+    db.session.add(demo_pledge)
+    db.session.add(demo_pledge2)
+    db.session.add(marnie_pledge)
+    db.session.add(marnie_pledge2)
+    db.session.add(bobbie_pledge)
+    db.session.add(bobbie_pledge2)
+
+    db.session.commit()
 
 
-# # Adds a demo user, you can add other users here if you want
-# def seed_pledges():
-#     demo = User(
-#         username='Demo', email='demo@aa.io', money=200, password='password')
-#     marnie = User(
-#         username='marnie', email='marnie@aa.io', money=100, password='password')
-#     bobbie = Pldge(
-#         username='bobbie', email='bobbie@aa.io', money=100, password='password')
-
-#     db.session.add(demo)
-#     db.session.add(marnie)
-#     db.session.add(bobbie)
-
-#     db.session.commit()
+def undo_pledges():
+    db.session.execute('TRUNCATE pledges RESTART IDENTITY CASCADE;')
+    db.session.commit()
 
 
-# # Uses a raw SQL query to TRUNCATE the users table.
-# # SQLAlchemy doesn't have a built in function to do this
-# # TRUNCATE Removes all the data from the table, and RESET IDENTITY
-# # resets the auto incrementing primary key, CASCADE deletes any
-# # dependent entities
-# def undo_users():
-#     db.session.execute('TRUNCATE users RESTART IDENTITY CASCADE;')
-#     db.session.commit()
+
+
