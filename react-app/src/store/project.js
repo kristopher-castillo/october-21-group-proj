@@ -27,7 +27,7 @@ export const addProject = (project) => async (dispatch) => {
     if (data.errors) {
       return;
     }
-  
+
     dispatch(createProject(data));
   }
 }
@@ -39,11 +39,11 @@ export const getProject = () => async (dispatch) => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-   
+
     })
   });
-  
-  
+
+
   if (response.ok) {
     const data = await response.json();
     dispatch(setProject(data))
@@ -84,7 +84,7 @@ export const getProject = () => async (dispatch) => {
 //       password,
 //     }),
 //   });
-  
+
 //   if (response.ok) {
 //     const data = await response.json();
 //     dispatch(setUser(data))

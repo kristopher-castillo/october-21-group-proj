@@ -14,6 +14,15 @@ def get_all_categories():
         'categories': [category.to_dict() for category in categories]
     }
 
+@category_routes.route('/<int:id>')
+def get_specific_category(id):
+    '''
+    For getting all projects of a specific category
+    '''
+    projects = Project.query.filter(Project.categories_id == id).all()
+    return {
+        'projects': [project.to_dict() for project in projects]
+    }
 # @category_routes.route('/', methods=['POST'])
 # def create_categories():
 #     '''

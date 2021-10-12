@@ -6,10 +6,11 @@ import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
-import CategoryList from './components/CategoryList';
+import CategoryList from './components/CategoryList/CategoryList';
 import User from './components/User';
 import ProjectForm from './components/ProjectForm'
 import { authenticate } from './store/session';
+import SpecificCategory from './components/SpecificCategory/SpecificCategory'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -29,6 +30,7 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar />
+      <CategoryList />
       <Switch>
         <Route path='/login' exact={true}>
           <LoginForm />
@@ -39,8 +41,8 @@ function App() {
         <Route path='/projects' exact={true}>
           <ProjectForm />
         </Route>
-        <Route path='/categories' exact={true}>
-          <CategoryList/>
+        <Route path='/categories/:categoryId'>
+          <SpecificCategory />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
