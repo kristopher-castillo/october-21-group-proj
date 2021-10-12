@@ -1,14 +1,14 @@
 from app.models import db, Category
 
 def seed_categories():
-    arts = Category(category_name='Arts')
-    illustrations = Category(category_name='Comics & Illustration')
-    technology = Category(category_name='Design & Tech')
-    film = Category(category_name='Film')
-    food = Category(category_name='Food & Craft')
-    games = Category(category_name='Games')
-    music = Category(category_name='Music')
-    publishing = Category(category_name='Publishing')
+    arts = Category(name='Arts')
+    illustrations = Category(name='Comics & Illustration')
+    technology = Category(name='Design & Tech')
+    film = Category(name='Film')
+    food = Category(name='Food & Craft')
+    games = Category(name='Games')
+    music = Category(name='Music')
+    publishing = Category(name='Publishing')
 
     db.session.add(arts)
     db.session.add(illustrations)

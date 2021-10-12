@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { getCategoriesThunk } from "../store/categories";
 // import { signUp } from '../../store/session';
 
 const ProjectForm = () => {
@@ -12,7 +13,12 @@ const ProjectForm = () => {
   const [image, setImage] = useState("")
   const user = useSelector((state) => state.session.user);
   const projects = useSelector(store => store.projects);
+  const categories = useSelector(store => store.categories)
   const dispatch = useDispatch();
+
+  useEffect(() => {
+      dispatch(getCategoriesThunk())
+  }, [dispatch])
 
   //   const onSignUp = async (e) => {
   //     e.preventDefault();

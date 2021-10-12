@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 
 function CategoryList() {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch('/api/categories/');
+      const response = await fetch("/api/categories/");
       const responseData = await response.json();
       setCategories(responseData.categories);
     }
@@ -16,7 +16,7 @@ function CategoryList() {
   const categoryComponents = categories.map((category) => {
     return (
       <li key={category.id}>
-        {/* <NavLink to={`/categories/${category.id}`}>{category.category_name}</NavLink> */}
+        {/* <NavLink to={`/categories/${category.id}`}>{category.name}</NavLink> */}
       </li>
     );
   });

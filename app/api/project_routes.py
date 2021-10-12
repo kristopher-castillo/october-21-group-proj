@@ -23,7 +23,7 @@ def new_project():
     """
     form = ProjectForm()
     categories = Category.query.all()
-    form.category.choices = [(categories.id, categories.category_name) for categories in Category.query.all()]
+    form.category.choices = [(categories.id, categories.name) for categories in Category.query.all()]
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data

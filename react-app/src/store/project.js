@@ -32,15 +32,14 @@ export const addProject = (project) => async (dispatch) => {
   }
 }
 
-export const getProject = (email, password) => async (dispatch) => {
+export const getProject = () => async (dispatch) => {
   const response = await fetch('/api/auth/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      email,
-      password
+   
     })
   });
   
@@ -100,7 +99,7 @@ export const getProject = (email, password) => async (dispatch) => {
 //   }
 // }
 
-export default function reducer(state = initialState, action) {
+export default function projectReducer(state = initialState, action) {
   switch (action.type) {
     case SET_PROJECT:
       return { project: action.payload }
