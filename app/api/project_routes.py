@@ -36,11 +36,11 @@ def new_project():
                         image_url=data['image_url'])
         db.session.add(project)
         db.session.commit()
-        return redirect('/')
+        return project.to_dict()
     else:
         return form.errors
 
-@project_routes.route('/<int:id>', methods=["PUT"])
+@project_routes.route('/<int:id>', methods=["PATCH"])
 @login_required
 def update_project(id):
     project = Project.query.filter(Project.id == id)
@@ -58,7 +58,7 @@ def update_project(id):
                         image_url=data['image_url'])
         db.session.add(project)
         db.session.commit()
-        return redirect('/')
+        return project.to_dict()
 
 @project_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
@@ -89,7 +89,7 @@ def new_pledge():
     else:
         return form.errors
 
-@project_routes.route('/<int:id>', methods=["PUT"])
+@project_routes.route('/<int:id>', methods=["PATCH"])
 @login_required
 def update_pledge(id):
     pledge = Pledge.query.filter(Pledge.id == id)

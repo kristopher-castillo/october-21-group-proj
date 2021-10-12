@@ -18,7 +18,6 @@ const ProjectForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  console.log(categories)
   useEffect(() => {
       dispatch(getCategoriesThunk())
   }, [dispatch])

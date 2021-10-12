@@ -1,5 +1,6 @@
 const GET_PROJECT = 'project/GET_PROJECT';
 const CREATE_PROJECT = 'project/CREATE_PROJECT';
+const UPDATE_PROJECT = 'project/UPDATE_PROJECT'
 
 const getProjectAction = (project) => ({
   type: GET_PROJECT,
@@ -8,6 +9,11 @@ const getProjectAction = (project) => ({
 
 const createProjectAction = (project) => ({
   type: CREATE_PROJECT,
+  payload: project
+})
+
+const updateProjectAction = project => ({
+  type: UPDATE_PROJECT,
   payload: project
 })
 
@@ -44,6 +50,20 @@ export const getProjectThunk = () => async (dispatch) => {
   }
 
   return response;
+}
+
+export const updateProjectThunk = (project) => async (dispatch) => {
+  const response = await fetch(`/api/projects/${project.id}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(project)
+  }); 
+
+  if (response.ok) {
+    const updatedProject = await response.json();
+    dispatch(updateProjectAction(updatedProject));
+    return updatedProject;
+  }
 
 }
 
