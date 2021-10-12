@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { getCategoriesThunk } from "../store/categories";
-import { addProject } from "../store/project";
+import { addProjectThunk, getProjectThunk } from "../store/project";
 // import { signUp } from '../../store/session';
 
 const ProjectForm = () => {
@@ -23,6 +23,10 @@ const ProjectForm = () => {
       dispatch(getCategoriesThunk())
   }, [dispatch])
 
+  useEffect(() => {
+      dispatch(getProjectThunk())
+  }, [dispatch])
+
   if (!user) {
     return <Redirect to="/" />;
   }
@@ -38,7 +42,7 @@ const ProjectForm = () => {
       user_id: user.id,
       categories_id: category.id
     }
-    const lastProject = await dispatch(addProject(newProject));
+    const lastProject = await dispatch(addProjectThunk(newProject));
     history.push("/")
   }
   

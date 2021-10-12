@@ -10,10 +10,10 @@ def get_projects():
     """
     Get all projects
     """
-
     projects = Project.query.all()
-    print(current_user.get_id())
-    return projects.to_dict()
+    return {
+        'projects': [project.to_dict() for project in projects]
+    }
 
 @project_routes.route('/', methods=["POST"])
 @login_required
@@ -36,7 +36,7 @@ def new_project():
                         image_url=data['image_url'])
         db.session.add(project)
         db.session.commit()
-        # return redirect('/')
+        return redirect('/')
     else:
         return form.errors
 

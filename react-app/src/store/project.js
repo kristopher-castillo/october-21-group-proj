@@ -1,20 +1,19 @@
-// constants
-const SET_PROJECT = 'project/SET_PROJECT';
+const GET_PROJECT = 'project/GET_PROJECT';
 const CREATE_PROJECT = 'project/CREATE_PROJECT';
 
-const setProject = (project) => ({
-  type: SET_PROJECT,
+const getProjectAction = (project) => ({
+  type: GET_PROJECT,
   payload: project
 });
 
-const createProject = (project) => ({
+const createProjectAction = (project) => ({
   type: CREATE_PROJECT,
   payload: project
 })
 
 const initialState = { project: null };
 
-export const addProject = (project) => async (dispatch) => {
+export const addProjectThunk = (project) => async (dispatch) => {
   const response = await fetch('/api/projects/', {
     method: 'POST',
     body: JSON.stringify(project),
@@ -28,82 +27,30 @@ export const addProject = (project) => async (dispatch) => {
       return;
     }
   
-    dispatch(createProject(data));
+    dispatch(createProjectAction(data));
     return data;
   }
 }
 
-export const getProject = () => async (dispatch) => {
-  const response = await fetch('/api/auth/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-   
-    })
-  });
-  
-  
+export const getProjectThunk = () => async (dispatch) => {
+  const response = await fetch('/api/projects/');
+
   if (response.ok) {
     const data = await response.json();
-    dispatch(setProject(data))
-    return null;
-  } else if (response.status < 500) {
-    const data = await response.json();
-    if (data.errors) {
-      return data.errors;
-    }
-  } else {
+    dispatch(getProjectAction(data))
+  } 
+  else {
     return ['An error occurred. Please try again.']
   }
 
+  return response;
+
 }
 
-// export const logout = () => async (dispatch) => {
-//   const response = await fetch('/api/auth/logout', {
-//     headers: {
-//       'Content-Type': 'application/json',
-//     }
-//   });
-
-//   if (response.ok) {
-//     dispatch(removeUser());
-//   }
-// };
-
-
-// export const signUp = (username, email, password) => async (dispatch) => {
-//   const response = await fetch('/api/auth/signup', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify({
-//       username,
-//       email,
-//       password,
-//     }),
-//   });
-  
-//   if (response.ok) {
-//     const data = await response.json();
-//     dispatch(setUser(data))
-//     return null;
-//   } else if (response.status < 500) {
-//     const data = await response.json();
-//     if (data.errors) {
-//       return data.errors;
-//     }
-//   } else {
-//     return ['An error occurred. Please try again.']
-//   }
-// }
-
 export default function projectReducer(state = initialState, action) {
-  let newState = {...state}
+  const newState = {...state}
   switch (action.type) {
-    case SET_PROJECT:
+    case GET_PROJECT:
       return { project: action.payload }
     case CREATE_PROJECT:
       return {
