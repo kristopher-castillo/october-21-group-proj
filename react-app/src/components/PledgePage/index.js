@@ -15,17 +15,16 @@ const PledgePage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  console.log('this is my project', projects)
-  console.log('this is my user', user)
 
   useEffect(() => {
     dispatch(getSpecificProjectThunk(projectId))
   }, [dispatch])
 
+
   const handleSubmit = (e) => {
     e.preventDefault()
     const newPledge = {
-      amount,
+      amount: 10,
       user_id: user.id,
       project_id: projectId
     }
@@ -37,6 +36,7 @@ const PledgePage = () => {
       console.log('Not enough money, You broke')
     }
 
+    console.log('This is my user money', user.money)
   }
 
 

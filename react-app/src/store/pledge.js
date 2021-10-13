@@ -51,9 +51,9 @@ export const createPledgeActionThunk = (pledge, id) => async (dispatch) => {
 
     if (response.ok) {
       const data = await response.json();
-      if (data.errors) {
-        return;
-      }
+      // if (data.errors) {
+      //   return;
+      // }
 
       dispatch(createPledgeAction(data));
       return data;
