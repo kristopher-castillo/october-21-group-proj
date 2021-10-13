@@ -1,0 +1,10 @@
+.category_nav_container {
+
+}
+
+.category_nav {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
