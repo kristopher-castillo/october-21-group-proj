@@ -1,10 +1,10 @@
-// constants
-const SET_PROJECT = 'project/SET_PROJECT';
+const GET_PROJECT = 'project/GET_PROJECT';
 const CREATE_PROJECT = 'project/CREATE_PROJECT';
+const UPDATE_PROJECT = 'project/UPDATE_PROJECT'
 const GET_PROJECTS_BY_CATEGORY = "projects/LOAD";
 
-const setProject = (project) => ({
-  type: SET_PROJECT,
+const getProjectAction = (project) => ({
+  type: GET_PROJECT,
   payload: project
 });
 const getProjectsAction = (project) => ({
@@ -13,10 +13,18 @@ const getProjectsAction = (project) => ({
 });
 
 
-const createProject = (project) => ({
+const createProjectAction = (project) => ({
   type: CREATE_PROJECT,
   payload: project
 })
+
+
+const updateProjectAction = project => ({
+  type: UPDATE_PROJECT,
+  payload: project
+})
+
+const initialState = { project: null };
 
 export const getCategoryProjectsThunk = (id) => async (dispatch) => {
   const res = await fetch(`/api/categories/${id}/`);
@@ -30,7 +38,8 @@ export const getCategoryProjectsThunk = (id) => async (dispatch) => {
 };
 
 
-export const addProject = (project) => async (dispatch) => {
+
+export const addProjectThunk = (project) => async (dispatch) => {
   const response = await fetch('/api/projects/', {
     method: 'POST',
     body: JSON.stringify(project),
@@ -43,49 +52,62 @@ export const addProject = (project) => async (dispatch) => {
     if (data.errors) {
       return;
     }
-
-    dispatch(createProject(data));
+  
+    dispatch(createProjectAction(data));
+    return data;
   }
 }
 
-export const getProject = () => async (dispatch) => {
-  const response = await fetch('/api/auth/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-
-    })
-  });
+export const getProjectThunk = () => async (dispatch) => {
+  const response = await fetch('/api/projects/');
 
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(setProject(data))
-    return null;
-  } else if (response.status < 500) {
-    const data = await response.json();
-    if (data.errors) {
-      return data.errors;
-    }
-  } else {
+    dispatch(getProjectAction(data))
+  } 
+  else {
     return ['An error occurred. Please try again.']
+  }
+
+  return response;
+}
+
+
+export const updateProjectThunk = (project) => async (dispatch) => {
+  const response = await fetch(`/api/projects/${project.id}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(project)
+  }); 
+
+  if (response.ok) {
+    const updatedProject = await response.json();
+    dispatch(updateProjectAction(updatedProject));
+    return updatedProject;
   }
 
 }
 
-
 const initialState = { project: null };
 
+
 export default function projectReducer(state = initialState, action) {
+  const newState = {...state}
   switch (action.type) {
-    case SET_PROJECT:
+    case GET_PROJECT:
       return { project: action.payload }
     case CREATE_PROJECT:
+
+      return {
+        newState,
+        project: action.payload
+      }
+
       return { project: null }
     case GET_PROJECTS_BY_CATEGORY:
       return {project: action.payload}
+
     default:
       return state;
   }
