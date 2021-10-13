@@ -36,7 +36,6 @@ function App() {
       <NavBar />
       <CategoryList />
       <Switch>
-      {/* <SearchBar placeholder='search' handleChange={(e) => console.log({searchBar:e.target.value}, '<--------search bar')} /> */}
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
@@ -55,7 +54,7 @@ function App() {
         <Route path='/categories' exact={true}>
           <CategoryList/>
         </Route>
-        <Route path='/categories/:categoryId'>
+        <Route path='/categories/:categoryId' exact={true}>
           <SpecificCategory />
         </Route>
         <ProtectedRoute path='/users' exact={true} >

@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { getCategoriesThunk } from "../store/categories";
 import { addProjectThunk, getProjectThunk, updateProjectThunk } from "../store/project";
-// import { signUp } from '../../store/session';
 
 const ProjectForm = () => {
   const [errors, setErrors] = useState([]);
@@ -43,8 +42,9 @@ const ProjectForm = () => {
       }
       const lastProject = await dispatch(addProjectThunk(newProject));
       history.push("/")
+    }
 
-  return (
+return (
     <form onSubmit={handleSubmit}>
       <div>
         {errors.map((error, ind) => (
@@ -83,7 +83,7 @@ const ProjectForm = () => {
         <select
           name="category"
           onChange={(e) => { setCategory(e.target.value)}}
-        >{categories?.map((category) => (<option key={category.id} value={category.id}>{category.name}</option>))}
+        defaultValue="Arts">{categories?.map((category) => (<option key={category.id} value={category.id}>{category.name}</option>))}
         </select>
       </div>
       <div>
@@ -99,8 +99,6 @@ const ProjectForm = () => {
       <button type="submit">Submit Project</button>
     </form>
   );
-};
-
 };
 
 export default ProjectForm;

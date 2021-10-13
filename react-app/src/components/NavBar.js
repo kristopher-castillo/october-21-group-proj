@@ -32,11 +32,11 @@ const NavBar = () => {
             Users
           </NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink to='/categories' exact={true} activeClassName='active'>
             Categories
           </NavLink>
-        </li>
+        </li> */}
         <li>
           <LogoutButton />
         </li>
