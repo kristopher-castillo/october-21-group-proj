@@ -39,12 +39,12 @@ const ProjectForm = () => {
       category,
       image_url: image,
       user_id: user.id,
-      categories_id: category.id
+      categories_id: category.id === 'null' ? null : category.id
     }
     const lastProject = await dispatch(addProjectThunk(newProject));
     history.push("/")
   }
-  
+
   return (
     <form onSubmit={handleSubmit}>
       <div>
@@ -84,7 +84,10 @@ const ProjectForm = () => {
         <select
           name="category"
           onChange={(e) => { setCategory(e.target.value)}}
-        >{categories?.map((category) => (<option key={category.id} value={category.id}>{category.name}</option>))}
+          required={true}
+        >
+          <option value="null" disabled selected>Choose a category</option>
+          {categories?.map((category) => (<option key={category.id} value={category.id}>{category.name}</option>))}
         </select>
       </div>
       <div>

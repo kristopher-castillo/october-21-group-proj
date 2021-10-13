@@ -22,7 +22,7 @@ export const getCategoriesThunk = () => async (dispatch) => {
 
   return res;
 };
-
+//test comment
 const initialState = {};
 export default function categoriesReducer(state = initialState, action) {
     const newState = { ...state };
