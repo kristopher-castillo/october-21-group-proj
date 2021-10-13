@@ -51,21 +51,21 @@ def new_project():
 @project_routes.route('/<int:id>', methods=["PATCH"])
 @login_required
 def update_project(id):
-    project = Project.query.filter(Project.id == id)
+    project = Project.query.filter(Project.id == id).first()
     if current_user.id == project.user_id:
         form = ProjectForm()
         form['csrf_token'].data = request.cookies['csrf_token']
         if form.validate_on_submit():
             data = form.data
-            project = Project(title=data["title"],
-                        description=data['description'],
-                        goal=data['goal'],
-                        category=data['category'],
-                        user_id=current_user.get_id(),
-                        current_amount=0,
-                        image_url=data['image_url'])
-        db.session.add(project)
-        db.session.commit()
+            project.title=data["title"],
+            project.description=data['description'],
+            project.goal=data['goal'],
+            project.category=data['category'],
+            project.user_id=current_user.get_id(),
+            project.current_amount=project.current_amount,
+            project.image_url=data['image_url']
+        # db.session.add(edited_project)
+            db.session.commit()
         return project.to_dict()
 
 @project_routes.route('/<int:id>', methods=["DELETE"])

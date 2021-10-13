@@ -45,6 +45,9 @@ function App() {
         <Route path='/projects/:id' exact={true}>
           <ProjectPage />
         </Route>
+        <Route path='/projects/:id/edit' exact={true}>
+          <ProjectForm />
+        </Route>
         <Route path='/categories' exact={true}>
           <CategoryList/>
         </Route>

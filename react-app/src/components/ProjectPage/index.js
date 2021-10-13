@@ -17,21 +17,13 @@ const ProjectPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  console.log(id)
-  console.log(projects)
-
-  // useEffect(() => {
-  //   dispatch(getProjectThunk())
-  // }, [dispatch])
-
   useEffect(() => {
     dispatch(getSpecificProjectThunk(id))
-  }, [dispatch])
+  }, [dispatch, id])
 
   const handleDelete = (projectId) => {
     dispatch(deleteProjectThunk(projectId))
-  }
-
+}
   const deleteButton = (
     <button
       type="button"
