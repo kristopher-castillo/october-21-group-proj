@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect, useHistory, useParams } from "react-router-dom";
 import { getCategoriesThunk } from "../store/categories";
-import { addProjectThunk, getProjectThunk, updateProjectThunk } from "../store/project";
+import { getProjectThunk, updateProjectThunk } from "../store/project";
 
 const EditForm = () => {
   const [errors, setErrors] = useState([]);
@@ -16,6 +16,7 @@ const EditForm = () => {
   const categories = useSelector(store => store.categories.categories)
   const dispatch = useDispatch();
   const history = useHistory();
+  const { id } = useParams();
 
   useEffect(() => {
       dispatch(getCategoriesThunk())
@@ -32,6 +33,7 @@ const EditForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const updatedProject = {
+        id,
         title,
         description,
         goal,
@@ -40,6 +42,7 @@ const EditForm = () => {
         user_id: user.id,
         categories_id: category.id
       }
+      console.log(updatedProject)
     const updateProject = await dispatch(updateProjectThunk(updatedProject));
     history.push("/projects")
   }

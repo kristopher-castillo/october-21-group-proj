@@ -5,6 +5,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 
 project_routes = Blueprint('project', __name__)
 
+
 @project_routes.route('/')
 def get_projects():
     """
@@ -15,15 +16,17 @@ def get_projects():
         'projects': [project.to_dict() for project in projects]
     }
 
+
 @project_routes.route('/<int:id>')
 def get_specific_project(id):
     """
     Get all projects
     """
     projects = Project.query.filter(Project.id == id).first()
-    return  projects.to_dict()
+    return projects.to_dict()
 
-@project_routes.route('/', methods=["POST"])
+
+@project_routes.route('/', methods=['POST'])
 @login_required
 def new_project():
     """
@@ -31,49 +34,53 @@ def new_project():
     """
     form = ProjectForm()
     categories = Category.query.all()
-    form.category.choices = [(categories.id, categories.name) for categories in Category.query.all()]
+    form.category.choices = [(categories.id, categories.name)
+                             for categories in Category.query.all()]
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
-        project = Project(title=data["title"],
-                        description=data['description'],
-                        goal=data['goal'],
-                        categories_id=data['category'],
-                        user_id=current_user.get_id(),
-                        current_amount=0,
-                        image_url=data['image_url'])
+        project = Project(title=data['title'],
+                          description=data['description'],
+                          goal=data['goal'],
+                          categories_id=data['category'],
+                          user_id=current_user.get_id(),
+                          current_amount=0,
+                          image_url=data['image_url'])
         db.session.add(project)
         db.session.commit()
         return project.to_dict()
     else:
         return form.errors
 
-@project_routes.route('/<int:id>', methods=["PATCH"])
+
+@project_routes.route('/<int:id>', methods=['PATCH'])
 @login_required
 def update_project(id):
     project = Project.query.filter(Project.id == id).first()
-    if current_user.id == project.user_id:
-        form = ProjectForm()
-        form['csrf_token'].data = request.cookies['csrf_token']
-        if form.validate_on_submit():
-            data = form.data
-            project.title = data['title'],
-            project.description = data['description'],
-            project.goal = data['goal'],
-            project.category = data['category'],
-            project.user_id = current_user.get_id(),
-            project.current_amount = project.current_amount,
-            project.image_url = data['image_url']
+    # if current_user.id == project.user_id:
+    form = ProjectForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    # if form.validate_on_submit():
+    print("--------entering form validate-----------")
+    data = form.data
+    project.title = data['title'],
+    project.description = data['description'],
+    project.goal = data['goal'],
+    project.category = data['category'],
+    project.user_id = current_user.get_id(),
+    project.current_amount = project.current_amount,
+    project.image_url = data['image_url']
             # edited_project = Project(title=data["title"],
-                        # description=data['description'],
-                        # goal=data['goal'],
-                        # category=data['category'],
-                        # user_id=current_user.get_id(),
-                        # current_amount=project.current_amount,
-                        # image_url=data['image_url'])
+            # description=data['description'],
+            # goal=data['goal'],
+            # category=data['category'],
+            # user_id=current_user.get_id(),
+            # current_amount=project.current_amount,
+            # image_url=data['image_url'])
             # db.session.add(edited_project)
-            db.session.commit()
-            return project.to_dict()
+    db.session.commit()
+    return project.to_dict()
+
 
 @project_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
@@ -88,6 +95,7 @@ def delete_project(id):
     }
     # return project.to_dict()
 
+
 @project_routes.route('/<int:id>/pledge', methods=["POST"])
 @login_required
 def new_pledge():
@@ -99,14 +107,15 @@ def new_pledge():
     if form.validate_on_submit():
         data = form.data
         new_pledge = Pledge(amount=data["amount"],
-                        user_id=current_user.get_id(),
-                        project_id=id
-        )
+                            user_id=current_user.get_id(),
+                            project_id=id
+                            )
         db.session.add(new_pledge)
         db.session.commit()
         return redirect('/')
     else:
         return form.errors
+
 
 @project_routes.route('/<int:id>', methods=["PATCH"])
 @login_required

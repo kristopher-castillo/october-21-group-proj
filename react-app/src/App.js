@@ -46,14 +46,11 @@ function App() {
         <Route path='/projects/new' exact={true}>
           <ProjectForm />
         </Route>
-        <Route path='/projects/:id/edit'>
+        <Route path='/projects/:id/edit' exact={true}>
           <EditForm />
         </Route>
         <Route path='/projects/:id' exact={true}>
           <ProjectPage />
-        </Route>
-        <Route path='/projects/:id/edit' exact={true}>
-          <ProjectForm />
         </Route>
         <Route path='/categories' exact={true}>
           <CategoryList/>

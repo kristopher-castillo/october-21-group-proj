@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import { getProjectThunk, updateProjectThunk, deleteProjectThunk, getSpecificProjectThunk } from "../../store/project";
-// import { signUp } from '../../store/session';
 
 const ProjectPage = () => {
   const [title, setTitle] = useState("");
@@ -17,9 +16,9 @@ const ProjectPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  useEffect(() => {
-    dispatch(updateProjectThunk(id))
-  }, [dispatch])
+  // useEffect(() => {
+  //   dispatch(updateProjectThunk(id))
+  // }, [dispatch])
 
   useEffect(() => {
     dispatch(getSpecificProjectThunk(id))
@@ -29,9 +28,9 @@ const ProjectPage = () => {
     dispatch(deleteProjectThunk(projectId))
   }
 
-  const handleEdit = (projectId) => {
-    dispatch(updateProjectThunk(projectId))
-  }
+  // const handleEdit = (projectId) => {
+  //   dispatch(updateProjectThunk(projectId))
+  // }
 
   const deleteButton = (
     <button
@@ -45,16 +44,16 @@ const ProjectPage = () => {
     </button>
   )
 
-  const editButton = (
-    <button type='button'
-    onClick={() => {
-      handleEdit(id)
-      history.push(`/projects/${id}/edit`)
-    }}
-    >
-      Edit
-    </button>
-  )
+  // const editButton = (
+  //   <button type='button'
+  //   onClick={() => {
+  //     handleEdit(id)
+  //     history.push(`/projects/${id}/edit`)
+  //   }}
+  //   >
+  //     Edit
+  //   </button>
+  // )
 
   return (
     <>
@@ -62,7 +61,7 @@ const ProjectPage = () => {
         {deleteButton}
       </div>
       <div>
-        {editButton}
+        {/* {editButton} */}
       </div>
       <div>{projects?.id}</div>
       <div>{projects?.title}</div>
