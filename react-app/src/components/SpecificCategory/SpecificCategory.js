@@ -16,8 +16,10 @@ function SpecificCategory() {
                 <ul>
                     {projects?.projects?.map((project) => (
                         <li key={project.id}>
+                            <Link to={`/projects/${project.id}`}>
                             <img src={project.image_url} alt="" />
                             {project.title}
+                            </Link>
                         </li>
                     ))}
                 </ul>

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect, useHistory, useParams } from "react-router-dom";
 import { getCategoriesThunk } from "../store/categories";
-import { addProjectThunk, getProjectThunk, updateProjectThunk } from "../store/project";
+import { getProjectThunk, updateProjectThunk } from "../store/project";
 
-const ProjectForm = () => {
+const EditForm = () => {
   const [errors, setErrors] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -16,6 +16,7 @@ const ProjectForm = () => {
   const categories = useSelector(store => store.categories.categories)
   const dispatch = useDispatch();
   const history = useHistory();
+  const { id } = useParams();
 
   useEffect(() => {
       dispatch(getCategoriesThunk())
@@ -31,7 +32,8 @@ const ProjectForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-      const newProject = {
+    const updatedProject = {
+        id,
         title,
         description,
         goal,
@@ -40,11 +42,12 @@ const ProjectForm = () => {
         user_id: user.id,
         categories_id: category.id
       }
-      const lastProject = await dispatch(addProjectThunk(newProject));
-      history.push("/")
-    }
+      console.log(updatedProject)
+    const updateProject = await dispatch(updateProjectThunk(updatedProject));
+    history.push("/projects")
+  }
 
-return (
+  return (
     <form onSubmit={handleSubmit}>
       <div>
         {errors.map((error, ind) => (
@@ -83,7 +86,7 @@ return (
         <select
           name="category"
           onChange={(e) => { setCategory(e.target.value)}}
-        defaultValue="Arts">{categories?.map((category) => (<option key={category.id} value={category.id}>{category.name}</option>))}
+        >{categories?.map((category) => (<option key={category.id} value={category.id}>{category.name}</option>))}
         </select>
       </div>
       <div>
@@ -96,9 +99,9 @@ return (
           required={true}
         ></input>
       </div>
-      <button type="submit">Submit Project</button>
+      <button type="submit">Edit Project</button>
     </form>
   );
 };
 
-export default ProjectForm;
+export default EditForm;
