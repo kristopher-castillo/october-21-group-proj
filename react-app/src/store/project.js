@@ -102,7 +102,6 @@ export default function projectReducer(state = initialState, action) {
         project: action.payload
       }
 
-      return { project: null }
     case GET_PROJECTS_BY_CATEGORY:
       return {project: action.payload}
 
