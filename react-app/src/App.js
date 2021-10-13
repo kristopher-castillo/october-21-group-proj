@@ -47,6 +47,7 @@ function App() {
         </Route>
         <Route path='/categories' exact={true}>
           <CategoryList/>
+        </Route>
         <Route path='/categories/:categoryId'>
           <SpecificCategory />
         </Route>
