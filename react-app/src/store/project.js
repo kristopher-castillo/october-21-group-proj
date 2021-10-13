@@ -24,8 +24,6 @@ const updateProjectAction = project => ({
   payload: project
 })
 
-const initialState = { project: null };
-
 export const getCategoryProjectsThunk = (id) => async (dispatch) => {
   const res = await fetch(`/api/categories/${id}/`);
   console.log('Before res.ok')
