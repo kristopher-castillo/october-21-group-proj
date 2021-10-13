@@ -12,7 +12,8 @@ import ProjectForm from './components/ProjectForm';
 import ProjectPage from './components/ProjectPage';
 import { authenticate } from './store/session';
 import SpecificCategory from './components/SpecificCategory/SpecificCategory';
-import SearchBar from '/components/SearchBar/SearchBar'
+import SearchBar from './components/SearchBar/SearchBar';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -34,7 +35,7 @@ function App() {
       <NavBar />
       <CategoryList />
       <Switch>
-      <SearchBar placeholder='search' handleChange={(e) => console.log(e.target.value, 'search bar')} />
+      <SearchBar placeholder='search' handleChange={(e) => console.log({searchBar:e.target.value}, '<--------search bar')} />
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
