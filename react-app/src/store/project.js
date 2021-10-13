@@ -4,6 +4,7 @@ const UPDATE_PROJECT = 'project/UPDATE_PROJECT'
 const GET_PROJECTS_BY_CATEGORY = "projects/LOAD";
 const GET_SPECIFIC_PROJECT = 'project/GET_SPECIFIC_PROJECT'
 const DELETE_PROJECT = 'projects/DELETE_PROJECT'
+const PROJECT_AMOUNT = 'project/PROJECT_AMOUNT'
 
 const getProjectAction = (projects) => ({
   type: GET_PROJECT,
@@ -19,7 +20,6 @@ const getSpecificProjectAction = project => ({
     payload: project
 });
 
-
 const createProjectAction = (projects) => ({
   type: CREATE_PROJECT,
   payload: projects
@@ -30,6 +30,24 @@ const updateProjectAction = projects => ({
   payload: projects
 })
 
+const projectAmountAction = projects => ({
+  type: PROJECT_AMOUNT,
+  payload: projects
+})
+
+
+export const projectAmountThunk = (id, amount) => async(dispatch) => {
+  const res = await fetch(`/api/projects/${id}`, {
+    method: 'PATCH',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({amount})
+  })
+
+  if(res.ok) {
+    const updateAmount = await res.json()
+    dispatch(projectAmountAction(updateAmount))
+  }
+}
 
 export const getCategoryProjectsThunk = (id) => async (dispatch) => {
   const res = await fetch(`/api/categories/${id}`);
@@ -40,7 +58,6 @@ export const getCategoryProjectsThunk = (id) => async (dispatch) => {
   }
   return res;
 };
-
 
 
 export const addProjectThunk = (projects) => async (dispatch) => {
@@ -144,6 +161,11 @@ export default function projectReducer(state = initialState, action) {
         projects: action.payload
       }
     case DELETE_PROJECT:
+      return {
+        newState,
+        projects: action.payload
+      }
+    case PROJECT_AMOUNT:
       return {
         newState,
         projects: action.payload

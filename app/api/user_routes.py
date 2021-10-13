@@ -24,9 +24,6 @@ def user(id):
 @login_required
 def update_user_amount(id):
     users = User.query.get(id)
-    print('THIS IS MY REQUEST******************', request.json['money'])
-    print(type(request.json['money']))
     users.money = request.json['money']
-    print(users.money)
     db.session.commit()
     return users.to_dict()

@@ -3,13 +3,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import { createPledgeActionThunk } from "../../store/pledge";
 // import { signUp } from '../../store/session';
-import { getSpecificProjectThunk } from "../../store/project";
+import { getSpecificProjectThunk, projectAmountThunk } from "../../store/project";
 import { transactionThunk } from "../../store/session";
 
 const PledgePage = () => {
-  const [amount, setAmount] = useState(0);
   const user = useSelector((state) => state.session.user);
-  const projects = useSelector((store) => store.projects.projects);
+  const project = useSelector((store) => store.projects.projects);
+  const [amount, setAmount] = useState(0);
+  const [userMoney, setUserMoney] = useState(user.money)
   const { projectId } = useParams();
 
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const PledgePage = () => {
 
   useEffect(() => {
     dispatch(getSpecificProjectThunk(projectId))
-  }, [dispatch])
+  }, [dispatch, projectId])
 
 
   const handleSubmit = (e) => {
@@ -28,15 +29,18 @@ const PledgePage = () => {
       user_id: user.id,
       project_id: projectId
     }
-    if(user.money >= 10){
+    if (user.money >= 10) {
+      
       dispatch(createPledgeActionThunk(newPledge, projectId))
-      dispatch(transactionThunk(user.id, user.money - 10))
-
+      dispatch(transactionThunk(user.id, userMoney - 10))
+      setUserMoney(userMoney - 10)
+      dispatch(projectAmountThunk(projectId, project.current_amount + 10))
+      // history.push(`/projects/${projectId}`)
     }else {
       console.log('Not enough money, You broke')
     }
 
-    console.log('This is my user money', user.money)
+    console.log('This is my user money', user?.money)
   }
 
 
