@@ -31,6 +31,7 @@ const ProjectForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
       const newProject = {
         title,
         description,
@@ -83,7 +84,7 @@ return (
         <select
           name="category"
           onChange={(e) => { setCategory(e.target.value)}}
-        defaultValue="Arts">{categories?.map((category) => (<option key={category.id} value={category.id}>{category.name}</option>))}
+        >{categories?.map((category) => (<option key={category.id} value={category.id}>{category.name}</option>))}
         </select>
       </div>
       <div>

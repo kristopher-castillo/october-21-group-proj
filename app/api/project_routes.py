@@ -111,40 +111,27 @@ def delete_project(id):
     # return project.to_dict()
 
 
-@project_routes.route('/<int:id>/pledge', methods=["POST"])
+@project_routes.route('/<int:id>/pledges', methods=["POST"])
 @login_required
-def new_pledge():
+def new_pledge(id):
     """
     Creates a new pledge if user is logged in
     """
     form = PledgeForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        data = form.data
-        new_pledge = Pledge(amount=data["amount"],
-                            user_id=current_user.get_id(),
-                            project_id=id
-                            )
-        db.session.add(new_pledge)
-        db.session.commit()
-        return redirect('/')
-    else:
-        return form.errors
+    # if form.validate_on_submit():
+    print('Inside the form validate')
+    data = form.data
+    new_pledge = Pledge(amount=data["amount"],
+                    user_id=current_user.get_id(),
+                    project_id=id
+    )
+    db.session.add(new_pledge)
+    db.session.commit()
+    return new_pledge.to_dict()
+    # else:
+    #     print('Not inside form validate')
+    #     return form.errors
 
 
-@project_routes.route('/<int:id>', methods=["PATCH"])
-@login_required
-def update_pledge(id):
-    pledge = Pledge.query.filter(Pledge.id == id)
-    if current_user.id == pledge.user_id:
-        form = PledgeForm()
-        form['csrf_token'].data = request.cookies['csrf_token']
-        if form.validate_on_submit():
-            data = form.data
-            project = Pledge(amount=data["amount"],
-                             user_id=current_user.get_id(),
-                             project_id=id
-                             )
-        db.session.add(project)
-        db.session.commit()
-        return redirect('/')
+
