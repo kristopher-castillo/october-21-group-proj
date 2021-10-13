@@ -6,11 +6,13 @@ import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
-import CategoryList from './components/CategoryList';
+import CategoryList from './components/CategoryList/CategoryList';
 import User from './components/User';
-import ProjectForm from './components/ProjectForm'
+import ProjectForm from './components/ProjectForm';
+import ProjectPage from './components/ProjectPage';
 import { authenticate } from './store/session';
-import SearchBar from './components/SearchBar/SearchBar'
+import SpecificCategory from './components/SpecificCategory/SpecificCategory';
+import SearchBar from '/components/SearchBar/SearchBar'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -30,6 +32,7 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar />
+      <CategoryList />
       <Switch>
       <SearchBar placeholder='search' handleChange={(e) => console.log(e.target.value, 'search bar')} />
         <Route path='/login' exact={true}>
@@ -38,11 +41,17 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        <Route path='/projects' exact={true}>
+        <Route path='/projects/new' exact={true}>
           <ProjectForm />
+        </Route>
+        <Route path='/projects/:id' exact={true}>
+          <ProjectPage />
         </Route>
         <Route path='/categories' exact={true}>
           <CategoryList/>
+        </Route>
+        <Route path='/categories/:categoryId'>
+          <SpecificCategory />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>

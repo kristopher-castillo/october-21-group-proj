@@ -1,23 +1,46 @@
-// constants
-const SET_PROJECT = 'project/SET_PROJECT';
+const GET_PROJECT = 'project/GET_PROJECT';
 const CREATE_PROJECT = 'project/CREATE_PROJECT';
+const UPDATE_PROJECT = 'project/UPDATE_PROJECT'
+const GET_PROJECTS_BY_CATEGORY = "projects/LOAD";
 
-const setProject = (project) => ({
-  type: SET_PROJECT,
-  payload: project
+const getProjectAction = (projects) => ({
+  type: GET_PROJECT,
+  payload: projects
+});
+const getProjectsAction = (projects) => ({
+  type: GET_PROJECTS_BY_CATEGORY,
+  payload: projects,
 });
 
-const createProject = (project) => ({
+
+const createProjectAction = (projects) => ({
   type: CREATE_PROJECT,
-  payload: project
+  payload: projects
 })
 
-const initialState = { project: null };
 
-export const addProject = (project) => async (dispatch) => {
+const updateProjectAction = projects => ({
+  type: UPDATE_PROJECT,
+  payload: projects
+})
+
+
+export const getCategoryProjectsThunk = (id) => async (dispatch) => {
+  const res = await fetch(`/api/categories/${id}`);
+  if (res.ok) {
+      let projects = await res.json();
+      dispatch(getProjectsAction(projects));
+      return projects
+  }
+  return res;
+};
+
+
+
+export const addProjectThunk = (projects) => async (dispatch) => {
   const response = await fetch('/api/projects/', {
     method: 'POST',
-    body: JSON.stringify(project),
+    body: JSON.stringify(projects),
     headers: {
       'Content-Type': 'application/json'
     }
@@ -27,84 +50,62 @@ export const addProject = (project) => async (dispatch) => {
     if (data.errors) {
       return;
     }
-  
-    dispatch(createProject(data));
+
+    dispatch(createProjectAction(data));
+    return data;
   }
 }
 
-export const getProject = () => async (dispatch) => {
-  const response = await fetch('/api/auth/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-   
-    })
-  });
-  
-  
+export const getProjectThunk = () => async (dispatch) => {
+  const response = await fetch('/api/projects/');
+
+
   if (response.ok) {
     const data = await response.json();
-    dispatch(setProject(data))
-    return null;
-  } else if (response.status < 500) {
-    const data = await response.json();
-    if (data.errors) {
-      return data.errors;
-    }
-  } else {
+    dispatch(getProjectAction(data))
+  }
+  else {
     return ['An error occurred. Please try again.']
   }
 
+  return response;
 }
 
-// export const logout = () => async (dispatch) => {
-//   const response = await fetch('/api/auth/logout', {
-//     headers: {
-//       'Content-Type': 'application/json',
-//     }
-//   });
 
-//   if (response.ok) {
-//     dispatch(removeUser());
-//   }
-// };
+export const updateProjectThunk = (projects) => async (dispatch) => {
+  const response = await fetch(`/api/projects/${projects.id}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(projects)
+  });
 
+  if (response.ok) {
+    const updatedProject = await response.json();
+    dispatch(updateProjectAction(updatedProject));
+    return updatedProject;
+  }
 
-// export const signUp = (username, email, password) => async (dispatch) => {
-//   const response = await fetch('/api/auth/signup', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify({
-//       username,
-//       email,
-//       password,
-//     }),
-//   });
-  
-//   if (response.ok) {
-//     const data = await response.json();
-//     dispatch(setUser(data))
-//     return null;
-//   } else if (response.status < 500) {
-//     const data = await response.json();
-//     if (data.errors) {
-//       return data.errors;
-//     }
-//   } else {
-//     return ['An error occurred. Please try again.']
-//   }
-// }
+}
+
+const initialState = { project: null };
+
 
 export default function projectReducer(state = initialState, action) {
+  const newState = {...state}
   switch (action.type) {
-    case SET_PROJECT:
-      return { project: action.payload }
+    case GET_PROJECT:
+      return { projects: action.payload }
     case CREATE_PROJECT:
+
+      return {
+        newState,
+        projects: action.payload
+      }
+
       return { project: null }
+    case GET_PROJECTS_BY_CATEGORY:
+      return {projects: action.payload}
+
     default:
       return state;
   }
