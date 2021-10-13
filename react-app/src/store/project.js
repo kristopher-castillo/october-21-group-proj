@@ -3,44 +3,44 @@ const CREATE_PROJECT = 'project/CREATE_PROJECT';
 const UPDATE_PROJECT = 'project/UPDATE_PROJECT'
 const GET_PROJECTS_BY_CATEGORY = "projects/LOAD";
 
-const getProjectAction = (project) => ({
+const getProjectAction = (projects) => ({
   type: GET_PROJECT,
-  payload: project
+  payload: projects
 });
-const getProjectsAction = (project) => ({
+const getProjectsAction = (projects) => ({
   type: GET_PROJECTS_BY_CATEGORY,
-  payload: project,
+  payload: projects,
 });
 
 
-const createProjectAction = (project) => ({
+const createProjectAction = (projects) => ({
   type: CREATE_PROJECT,
-  payload: project
+  payload: projects
 })
 
 
-const updateProjectAction = project => ({
+const updateProjectAction = projects => ({
   type: UPDATE_PROJECT,
-  payload: project
+  payload: projects
 })
+
 
 export const getCategoryProjectsThunk = (id) => async (dispatch) => {
-  const res = await fetch(`/api/categories/${id}/`);
-  console.log('Before res.ok')
+  const res = await fetch(`/api/categories/${id}`);
   if (res.ok) {
-      console.log('Can I even get in here')
       let projects = await res.json();
       dispatch(getProjectsAction(projects));
+      return projects
   }
   return res;
 };
 
 
 
-export const addProjectThunk = (project) => async (dispatch) => {
+export const addProjectThunk = (projects) => async (dispatch) => {
   const response = await fetch('/api/projects/', {
     method: 'POST',
-    body: JSON.stringify(project),
+    body: JSON.stringify(projects),
     headers: {
       'Content-Type': 'application/json'
     }
@@ -50,7 +50,7 @@ export const addProjectThunk = (project) => async (dispatch) => {
     if (data.errors) {
       return;
     }
-  
+
     dispatch(createProjectAction(data));
     return data;
   }
@@ -63,7 +63,7 @@ export const getProjectThunk = () => async (dispatch) => {
   if (response.ok) {
     const data = await response.json();
     dispatch(getProjectAction(data))
-  } 
+  }
   else {
     return ['An error occurred. Please try again.']
   }
@@ -72,12 +72,12 @@ export const getProjectThunk = () => async (dispatch) => {
 }
 
 
-export const updateProjectThunk = (project) => async (dispatch) => {
-  const response = await fetch(`/api/projects/${project.id}`, {
+export const updateProjectThunk = (projects) => async (dispatch) => {
+  const response = await fetch(`/api/projects/${projects.id}`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(project)
-  }); 
+    body: JSON.stringify(projects)
+  });
 
   if (response.ok) {
     const updatedProject = await response.json();
@@ -94,16 +94,16 @@ export default function projectReducer(state = initialState, action) {
   const newState = {...state}
   switch (action.type) {
     case GET_PROJECT:
-      return { project: action.payload }
+      return { projects: action.payload }
     case CREATE_PROJECT:
 
       return {
         newState,
-        project: action.payload
+        projects: action.payload
       }
 
     case GET_PROJECTS_BY_CATEGORY:
-      return {project: action.payload}
+      return {projects: action.payload}
 
     default:
       return state;

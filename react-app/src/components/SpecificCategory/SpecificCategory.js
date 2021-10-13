@@ -7,7 +7,6 @@ function SpecificCategory() {
     const dispatch = useDispatch();
     const {categoryId} = useParams()
     const projects = useSelector(state => state.projects.projects)
-    console.log('This is my projects', projects)
     useEffect(() => {
         dispatch(getCategoryProjectsThunk(categoryId))
     }, [dispatch, categoryId])
@@ -15,8 +14,12 @@ function SpecificCategory() {
         <div className='main_category_container'>
             <div className='project_container'>
                 <ul>
-                    {projects?.map((project) => (
-                        <li key={project.id}>{project.title}</li>
+
+                    {projects?.projects?.map((project) => (
+                        <li key={project.id}>
+                            <img src={project.image_url} alt="" />
+                            {project.title}
+                        </li>
                     ))}
                 </ul>
             </div>
