@@ -14,7 +14,7 @@ const NavBar = () => {
         </li>
         <li>
           <NavLink to='/projects/new' exact={true} activeClassName='active'>
-            Start a project 
+            Start a project
           </NavLink>
         </li>
         <li>
@@ -32,11 +32,11 @@ const NavBar = () => {
             Users
           </NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink to='/categories' exact={true} activeClassName='active'>
             Categories
           </NavLink>
-        </li>
+        </li> */}
         <li>
           <LogoutButton />
         </li>

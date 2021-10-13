@@ -7,9 +7,6 @@ const getCategoriesAction = (categories) => ({
 });
 
 
-
-
-
 export const getCategoriesThunk = () => async (dispatch) => {
   const res = await fetch("/api/categories/");
 
