@@ -65,9 +65,9 @@ def update_project(id):
 def delete_project(id):
     project = Project.query.filter(Project.id == id).first()
     if current_user.id == project.user_id:
-        project.delete()
+        Project.query.filter(Project.id == id).delete()
     db.session.commit()
-    return redirect('/')
+    return project.to_dict()
 
 @project_routes.route('/<int:id>/pledge', methods=["POST"])
 @login_required
