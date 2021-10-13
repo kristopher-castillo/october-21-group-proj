@@ -15,6 +15,14 @@ def get_projects():
         'projects': [project.to_dict() for project in projects]
     }
 
+@project_routes.route('/<int:id>')
+def get_specific_project(id):
+    """
+    Get all projects
+    """
+    projects = Project.query.filter(Project.id == id).first()
+    return  projects.to_dict()
+
 @project_routes.route('/', methods=["POST"])
 @login_required
 def new_project():
@@ -63,11 +71,15 @@ def update_project(id):
 @project_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def delete_project(id):
-    project = Project.query.filter(Project.id == id).first()
-    if current_user.id == project.user_id:
-        Project.query.filter(Project.id == id).delete()
+    deleted_project = Project.query.filter(Project.id == id).first()
+    # if current_user.id == project.user_id:
+    #     Project.query.filter(Project.id == id).delete()
+    db.session.delete(deleted_project)
     db.session.commit()
-    return project.to_dict()
+    return {
+        'deleted_project': deleted_project.to_dict()
+    }
+    # return project.to_dict()
 
 @project_routes.route('/<int:id>/pledge', methods=["POST"])
 @login_required
