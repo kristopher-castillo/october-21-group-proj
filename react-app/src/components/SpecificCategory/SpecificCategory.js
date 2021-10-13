@@ -14,7 +14,6 @@ function SpecificCategory() {
         <div className='main_category_container'>
             <div className='project_container'>
                 <ul>
-
                     {projects?.projects?.map((project) => (
                         <li key={project.id}>
                             <img src={project.image_url} alt="" />

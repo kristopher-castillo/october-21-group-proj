@@ -2,6 +2,7 @@ const GET_PROJECT = 'project/GET_PROJECT';
 const CREATE_PROJECT = 'project/CREATE_PROJECT';
 const UPDATE_PROJECT = 'project/UPDATE_PROJECT'
 const GET_PROJECTS_BY_CATEGORY = "projects/LOAD";
+const GET_SPECIFIC_PROJECT = 'project/GET_SPECIFIC_PROJECT'
 const DELETE_PROJECT = 'projects/DELETE_PROJECT'
 
 const getProjectAction = (projects) => ({
@@ -11,6 +12,11 @@ const getProjectAction = (projects) => ({
 const getProjectsAction = (projects) => ({
   type: GET_PROJECTS_BY_CATEGORY,
   payload: projects,
+});
+
+const getSpecificProjectAction = project => ({
+    type: GET_SPECIFIC_PROJECT,
+    payload: project
 });
 
 
@@ -71,6 +77,20 @@ export const getProjectThunk = () => async (dispatch) => {
   return response;
 }
 
+export const getSpecificProjectThunk = (id) => async (dispatch) => {
+    const response = await fetch(`/api/projects/${id}`)
+  
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(getSpecificProjectAction(data))
+    }
+    else {
+      return ['An error occurred. Please try again.']
+    }
+  
+    return response;
+  }
+
 
 export const updateProjectThunk = (projects) => async (dispatch) => {
   const response = await fetch(`/api/projects/${projects.id}`, {
@@ -114,6 +134,10 @@ export default function projectReducer(state = initialState, action) {
       }
     case GET_PROJECTS_BY_CATEGORY:
       return {projects: action.payload}
+    case GET_SPECIFIC_PROJECT:
+      return {
+          projects: action.payload
+      }
     case UPDATE_PROJECT:
       return {
         newState,
