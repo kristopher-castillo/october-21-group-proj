@@ -10,6 +10,7 @@ import CategoryList from './components/CategoryList';
 import User from './components/User';
 import ProjectForm from './components/ProjectForm'
 import { authenticate } from './store/session';
+import SearchBar from './components/SearchBar/SearchBar'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -30,6 +31,7 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
+      <SearchBar placeholder='search' handleChange={(e) => console.log(e.target.value, 'search bar')} />
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
