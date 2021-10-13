@@ -2,6 +2,7 @@ const GET_PROJECT = 'project/GET_PROJECT';
 const CREATE_PROJECT = 'project/CREATE_PROJECT';
 const UPDATE_PROJECT = 'project/UPDATE_PROJECT'
 const GET_PROJECTS_BY_CATEGORY = "projects/LOAD";
+const DELETE_PROJECT = 'projects/DELETE_PROJECT'
 
 const getProjectAction = (projects) => ({
   type: GET_PROJECT,
@@ -17,7 +18,6 @@ const createProjectAction = (projects) => ({
   type: CREATE_PROJECT,
   payload: projects
 })
-
 
 const updateProjectAction = projects => ({
   type: UPDATE_PROJECT,
@@ -84,7 +84,19 @@ export const updateProjectThunk = (projects) => async (dispatch) => {
     dispatch(updateProjectAction(updatedProject));
     return updatedProject;
   }
+}
 
+export const deleteProjectThunk = (id) => async (dispatch) => {
+  const response = await fetch(`/api/projects/${id}`, {
+    method: 'DELETE',
+    headers: {'Content-Type': 'application/json'}
+  })
+
+  if (response.ok) {
+    const project = await response.json();
+    dispatch(getProjectAction(id));
+    return project;
+  }
 }
 
 const initialState = { project: null };
@@ -96,15 +108,22 @@ export default function projectReducer(state = initialState, action) {
     case GET_PROJECT:
       return { projects: action.payload }
     case CREATE_PROJECT:
-
       return {
         newState,
         projects: action.payload
       }
-
     case GET_PROJECTS_BY_CATEGORY:
       return {projects: action.payload}
-
+    case UPDATE_PROJECT:
+      return {
+        newState,
+        projects: action.payload
+      }
+    case DELETE_PROJECT:
+      return {
+        newState,
+        projects: action.payload
+      }
     default:
       return state;
   }
