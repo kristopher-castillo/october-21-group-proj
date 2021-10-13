@@ -12,6 +12,7 @@ import ProjectForm from './components/ProjectForm';
 import ProjectPage from './components/ProjectPage';
 import { authenticate } from './store/session';
 import SpecificCategory from './components/SpecificCategory/SpecificCategory'
+import PledgePage from './components/PledgePage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -47,6 +48,9 @@ function App() {
         </Route>
         <Route path='/categories' exact={true}>
           <CategoryList/>
+        </Route>
+        <Route path='/projects/:projectId/pledges'>
+          <PledgePage />
         </Route>
         <Route path='/categories/:categoryId'>
           <SpecificCategory />

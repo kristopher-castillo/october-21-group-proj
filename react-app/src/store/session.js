@@ -1,6 +1,12 @@
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
+const USER_MONEY = 'session/TRANSACTION'
+
+const userMoneyAction = (amount) => ({
+  type: USER_MONEY,
+  payload: amount
+})
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -13,6 +19,21 @@ const removeUser = () => ({
 
 const initialState = { user: null };
 
+export const transactionThunk = (id, money) => async(dispatch) => {
+  const res = await fetch(`/api/users/${id}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({money})
+  })
+
+  if(res.ok) {
+    const updateAmount = await res.json()
+    dispatch(userMoneyAction(updateAmount))
+  }
+
+
+}
+
 export const authenticate = () => async (dispatch) => {
   const response = await fetch('/api/auth/', {
     headers: {
@@ -24,7 +45,7 @@ export const authenticate = () => async (dispatch) => {
     if (data.errors) {
       return;
     }
-  
+
     dispatch(setUser(data));
   }
 }
@@ -40,8 +61,8 @@ export const login = (email, password) => async (dispatch) => {
       password
     })
   });
-  
-  
+
+
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))
@@ -82,7 +103,7 @@ export const signUp = (username, email, password) => async (dispatch) => {
       password,
     }),
   });
-  
+
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))

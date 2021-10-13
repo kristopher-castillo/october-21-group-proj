@@ -83,7 +83,7 @@ def delete_project(id):
 
 @project_routes.route('/<int:id>/pledges', methods=["POST"])
 @login_required
-def new_pledge():
+def new_pledge(id):
     """
     Creates a new pledge if user is logged in
     """

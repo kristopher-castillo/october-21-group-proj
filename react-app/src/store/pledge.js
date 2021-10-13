@@ -31,7 +31,7 @@ const deletePledgeAction = pledges => ({
 
 export const getSpecificPledgeThunk = (id) => async (dispatch) => {
   const response = await fetch(`/api/projects/${id}/pledges`)
-  
+
   if (response.ok) {
     let pledge = await response.json();
     dispatch(getSpecificPledgeAction(pledge));
@@ -40,15 +40,15 @@ export const getSpecificPledgeThunk = (id) => async (dispatch) => {
   return response;
 }
 
-export const createPledgeActionThunk = (pledge) => async (dispatch) => {
-    const response = await fetch(`/api/projects/${pledge.id}/pledges`, {
+export const createPledgeActionThunk = (pledge, id) => async (dispatch) => {
+    const response = await fetch(`/api/projects/${id}/pledges`, {
       method: "POST",
       body: JSON.stringify(pledge),
       headers: {
         "Content-Type": "application/json",
       },
     });
-  
+
     if (response.ok) {
       const data = await response.json();
       if (data.errors) {
