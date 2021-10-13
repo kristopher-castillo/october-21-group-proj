@@ -44,6 +44,17 @@ const ProjectPage = () => {
     </button>
   )
 
+  const pledgeButton = (
+    <button
+      type="button"
+      onClick={() => {
+        history.push(`/projects/${id}/pledges`);
+      }}
+    >
+      Back this Project!
+    </button>
+  );
+
   return (
     <>
       <div>
@@ -54,6 +65,9 @@ const ProjectPage = () => {
       <li key={projects?.id}>
         <img src={projects?.image_url} alt="" />
       </li>
+      <div>
+        {pledgeButton}
+      </div>
     </>
   )
 

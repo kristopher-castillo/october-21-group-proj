@@ -81,7 +81,7 @@ def delete_project(id):
     }
     # return project.to_dict()
 
-@project_routes.route('/<int:id>/pledge', methods=["POST"])
+@project_routes.route('/<int:id>/pledges', methods=["POST"])
 @login_required
 def new_pledge():
     """
