@@ -57,16 +57,23 @@ def update_project(id):
         form['csrf_token'].data = request.cookies['csrf_token']
         if form.validate_on_submit():
             data = form.data
-            project.title=data["title"],
-            project.description=data['description'],
-            project.goal=data['goal'],
-            project.category=data['category'],
-            project.user_id=current_user.get_id(),
-            project.current_amount=project.current_amount,
-            project.image_url=data['image_url']
-        # db.session.add(edited_project)
+            project.title = data['title'],
+            project.description = data['description'],
+            project.goal = data['goal'],
+            project.category = data['category'],
+            project.user_id = current_user.get_id(),
+            project.current_amount = project.current_amount,
+            project.image_url = data['image_url']
+            # edited_project = Project(title=data["title"],
+                        # description=data['description'],
+                        # goal=data['goal'],
+                        # category=data['category'],
+                        # user_id=current_user.get_id(),
+                        # current_amount=project.current_amount,
+                        # image_url=data['image_url'])
+            # db.session.add(edited_project)
             db.session.commit()
-        return project.to_dict()
+            return project.to_dict()
 
 @project_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
@@ -117,6 +124,3 @@ def update_pledge(id):
         db.session.add(project)
         db.session.commit()
         return redirect('/')
-
-
-

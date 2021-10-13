@@ -11,7 +11,10 @@ import User from './components/User';
 import ProjectForm from './components/ProjectForm';
 import ProjectPage from './components/ProjectPage';
 import { authenticate } from './store/session';
-import SpecificCategory from './components/SpecificCategory/SpecificCategory'
+import SpecificCategory from './components/SpecificCategory/SpecificCategory';
+import SearchBar from './components/SearchBar/SearchBar';
+import EditForm from './components/EditForm';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -33,6 +36,7 @@ function App() {
       <NavBar />
       <CategoryList />
       <Switch>
+      {/* <SearchBar placeholder='search' handleChange={(e) => console.log({searchBar:e.target.value}, '<--------search bar')} /> */}
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
@@ -41,6 +45,9 @@ function App() {
         </Route>
         <Route path='/projects/new' exact={true}>
           <ProjectForm />
+        </Route>
+        <Route path='/projects/:id/edit'>
+          <EditForm />
         </Route>
         <Route path='/projects/:id' exact={true}>
           <ProjectPage />

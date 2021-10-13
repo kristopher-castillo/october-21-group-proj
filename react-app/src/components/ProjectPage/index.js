@@ -18,12 +18,21 @@ const ProjectPage = () => {
   const history = useHistory();
 
   useEffect(() => {
+    dispatch(updateProjectThunk(id))
+  }, [dispatch])
+
+  useEffect(() => {
     dispatch(getSpecificProjectThunk(id))
   }, [dispatch, id])
 
   const handleDelete = (projectId) => {
     dispatch(deleteProjectThunk(projectId))
-}
+  }
+
+  const handleEdit = (projectId) => {
+    dispatch(updateProjectThunk(projectId))
+  }
+
   const deleteButton = (
     <button
       type="button"
@@ -36,10 +45,24 @@ const ProjectPage = () => {
     </button>
   )
 
+  const editButton = (
+    <button type='button'
+    onClick={() => {
+      handleEdit(id)
+      history.push(`/projects/${id}/edit`)
+    }}
+    >
+      Edit
+    </button>
+  )
+
   return (
     <>
       <div>
         {deleteButton}
+      </div>
+      <div>
+        {editButton}
       </div>
       <div>{projects?.id}</div>
       <div>{projects?.title}</div>

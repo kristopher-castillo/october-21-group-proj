@@ -3,9 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { getCategoriesThunk } from "../store/categories";
 import { addProjectThunk, getProjectThunk, updateProjectThunk } from "../store/project";
-// import { signUp } from '../../store/session';
 
-const ProjectForm = () => {
+const EditForm = () => {
   const [errors, setErrors] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -32,7 +31,7 @@ const ProjectForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-      const newProject = {
+    const updatedProject = {
         title,
         description,
         goal,
@@ -41,8 +40,9 @@ const ProjectForm = () => {
         user_id: user.id,
         categories_id: category.id
       }
-      const lastProject = await dispatch(addProjectThunk(newProject));
-      history.push("/")
+    const updateProject = await dispatch(updateProjectThunk(updatedProject));
+    history.push("/projects")
+  }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -96,11 +96,9 @@ const ProjectForm = () => {
           required={true}
         ></input>
       </div>
-      <button type="submit">Submit Project</button>
+      <button type="submit">Edit Project</button>
     </form>
   );
 };
 
-};
-
-export default ProjectForm;
+export default EditForm;
