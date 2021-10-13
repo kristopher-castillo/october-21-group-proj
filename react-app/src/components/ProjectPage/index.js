@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory, useParams } from "react-router-dom";
-import { getProjectThunk, updateProjectThunk, deleteProjectThunk } from "../../store/project";
+import { getProjectThunk, updateProjectThunk, deleteProjectThunk, getSpecificProjectThunk } from "../../store/project";
 // import { signUp } from '../../store/session';
 
 const ProjectPage = () => {
@@ -11,19 +11,25 @@ const ProjectPage = () => {
   const [category, setCategory] = useState(null);
   const [image, setImage] = useState("");
   const user = useSelector((state) => state.session.user);
-  const projects = useSelector((store) => store.projects);
+  const projects = useSelector((store) => store.projects.projects);
   const { id } = useParams();
 
   const dispatch = useDispatch();
   const history = useHistory();
 
+  console.log(id)
+  console.log(projects)
+
+  // useEffect(() => {
+  //   dispatch(getProjectThunk())
+  // }, [dispatch])
+
   useEffect(() => {
-    dispatch(getProjectThunk())
+    dispatch(getSpecificProjectThunk(id))
   }, [dispatch])
 
   const handleDelete = (projectId) => {
     dispatch(deleteProjectThunk(projectId))
-    console.log("INSIDE THE HANDLEDELETE")
   }
 
   const deleteButton = (
@@ -43,10 +49,11 @@ const ProjectPage = () => {
       <div>
         {deleteButton}
       </div>
-      <div>
-        {projects?.id}
-        {projects?.title}
-        </div>
+      <div>{projects?.id}</div>
+      <div>{projects?.title}</div>
+      <li key={projects?.id}>
+        <img src={projects?.image_url} alt="" />
+      </li>
     </>
   )
 
