@@ -14,8 +14,9 @@ import { authenticate } from './store/session';
 
 import PledgePage from './components/PledgePage';
 import SpecificCategory from './components/SpecificCategory/SpecificCategory';
-// import SearchBar from './components/SearchBar/SearchBar';
-import EditForm from './components/EditForm';
+import SearchBar from './components/SearchBar/SearchBar';
+// import EditForm from './components/EditForm';
+import EditForm from './components/EditForm/EditForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);

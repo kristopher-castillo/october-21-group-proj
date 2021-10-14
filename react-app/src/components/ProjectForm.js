@@ -9,13 +9,14 @@ const ProjectForm = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [goal, setGoal] = useState("");
-  const [category, setCategory] = useState(null);
+  const [categoryId, setCategoryId] = useState(null);
   const [image, setImage] = useState("")
   const user = useSelector((state) => state.session.user);
   const projects = useSelector(store => store.projects);
   const categories = useSelector(store => store.categories.categories)
   const dispatch = useDispatch();
   const history = useHistory();
+
 
   useEffect(() => {
       dispatch(getCategoriesThunk())
@@ -36,13 +37,13 @@ const ProjectForm = () => {
         title,
         description,
         goal,
-        category,
         image_url: image,
         user_id: user.id,
-        categories_id: category.id
+        categories_id: categoryId,
+        current_amount: 0
       }
       const lastProject = await dispatch(addProjectThunk(newProject));
-      history.push("/")
+      history.push(`/projects/${lastProject.id}`)
     }
 
 return (
@@ -83,7 +84,7 @@ return (
         <label>Category</label>
         <select
           name="category"
-          onChange={(e) => { setCategory(e.target.value)}}
+          onChange={(e) => { setCategoryId(e.target.value)}}
         >{categories?.map((category) => (<option key={category.id} value={category.id}>{category.name}</option>))}
         </select>
       </div>

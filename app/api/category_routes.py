@@ -19,7 +19,6 @@ def get_specific_category(id):
     '''
     For getting all projects of a specific category
     '''
-    print('Did i even get in here?')
     projects = Project.query.filter(Project.categories_id == id).all()
     print('This is my projects from api', projects)
     return {
