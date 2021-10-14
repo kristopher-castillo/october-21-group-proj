@@ -37,16 +37,17 @@ const projectAmountAction = projects => ({
 })
 
 
-export const projectAmountThunk = (id, amount) => async(dispatch) => {
-  const res = await fetch(`/api/projects/${id}`, {
+export const projectAmountThunk = (project, projectId) => async(dispatch) => {
+  const res = await fetch(`/api/projects/${projectId}`, {
     method: 'PATCH',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({amount})
+    body: JSON.stringify(project)
   })
 
   if(res.ok) {
     const updateAmount = await res.json()
     dispatch(projectAmountAction(updateAmount))
+    return updateAmount
   }
 }
 

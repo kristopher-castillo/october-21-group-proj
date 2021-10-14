@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import { getCategoriesThunk } from "../store/categories";
-import { getProjectThunk, updateProjectThunk } from "../store/project";
+import { getProjectThunk, updateProjectThunk, getSpecificProjectThunk } from "../store/project";
 
 const EditForm = () => {
   const [errors, setErrors] = useState([]);
@@ -12,7 +12,7 @@ const EditForm = () => {
   const [category, setCategory] = useState(null);
   const [image, setImage] = useState("")
   const user = useSelector((state) => state.session.user);
-  const projects = useSelector(store => store.projects);
+  const project = useSelector(store => store.projects?.projects);
   const categories = useSelector(store => store.categories.categories)
   const dispatch = useDispatch();
   const history = useHistory();
@@ -24,6 +24,10 @@ const EditForm = () => {
 
   useEffect(() => {
       dispatch(getProjectThunk())
+  }, [dispatch])
+
+  useEffect(() => {
+      dispatch(getSpecificProjectThunk(id))
   }, [dispatch])
 
   if (!user) {
@@ -40,7 +44,8 @@ const EditForm = () => {
         category,
         image_url: image,
         user_id: user.id,
-        categories_id: category.id
+        categories_id: category.id,
+        current_amount: project.current_amount
       }
       console.log(updatedProject)
     const updateProject = await dispatch(updateProjectThunk(updatedProject));

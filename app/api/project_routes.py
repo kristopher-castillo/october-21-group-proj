@@ -62,12 +62,13 @@ def update_project(id):
     form = ProjectForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     data = form.data
+    print("ERICSCATEGORY``````````", data['categories_id'])
     project.title = data['title'],
     project.description = data['description'],
     project.goal = data['goal'],
-    project.category = data['category'],
+    project.categories_id = data['categories_id'],
     project.user_id = current_user.get_id(),
-    project.current_amount = project.current_amount,
+    project.current_amount = data['current_amount'],
     project.image_url = data['image_url']
     db.session.commit()
     return project.to_dict()
