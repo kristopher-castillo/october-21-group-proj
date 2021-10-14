@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory, useParams } from "react-router-dom";
-import { createPledgeActionThunk } from "../../store/pledge";
+import { createPledgeThunk } from "../../store/pledge";
 // import { signUp } from '../../store/session';
 import { getSpecificProjectThunk, projectAmountThunk } from "../../store/project";
 import { transactionThunk } from "../../store/session";
@@ -17,7 +17,6 @@ const PledgePage = () => {
   
   const dispatch = useDispatch();
   const history = useHistory();
-
 
   useEffect(() => {
     dispatch(getSpecificProjectThunk(projectId))
@@ -48,12 +47,12 @@ const PledgePage = () => {
     }
     if (user.money >= 10) {
       
-      dispatch(createPledgeActionThunk(newPledge, projectId))
+      dispatch(createPledgeThunk(newPledge, projectId))
       dispatch(transactionThunk(user.id, userMoney - 10))
       setUserMoney(userMoney - 10)
       dispatch(projectAmountThunk(updatedProject, projectId))
       setCurrentAmount(currentAmount + 10)
-      // history.push(`/projects/${projectId}`)
+      history.push(`/projects/${projectId}`)
     }else {
       console.log('Not enough money, You broke')
     }
@@ -63,13 +62,15 @@ const PledgePage = () => {
 
 
   return (
-    <div>
-      <button
-        onClick={handleSubmit}>
-        10
-      </button>
-    </div>
-
+    <>
+      <h2>Pledge Below!</h2>
+      <div>
+        <button
+          onClick={handleSubmit}>
+          10
+        </button>
+      </div>
+    </>
   )
 
 }

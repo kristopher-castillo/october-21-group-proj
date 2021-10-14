@@ -14,7 +14,7 @@ def get_pledges():
     return pledges.to_dict()
 
 @pledge_routes.route('/<int:id>')
-def get_specific_pledge():
+def get_specific_pledge(id):
     """
     Gets one pledge based on pledge id.
     """

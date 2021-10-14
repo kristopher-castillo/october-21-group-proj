@@ -17,6 +17,7 @@ import SpecificCategory from './components/SpecificCategory/SpecificCategory';
 import SearchBar from './components/SearchBar/SearchBar';
 // import EditForm from './components/EditForm';
 import EditForm from './components/EditForm/EditForm';
+import EditPledge from './components/EditPledge'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -38,37 +39,40 @@ function App() {
       <NavBar />
       <CategoryList />
       <Switch>
-        <Route path='/login' exact={true}>
+        <Route path="/login" exact={true}>
           <LoginForm />
         </Route>
-        <Route path='/sign-up' exact={true}>
+        <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
-        <Route path='/projects/new' exact={true}>
+        <Route path="/projects/new" exact={true}>
           <ProjectForm />
         </Route>
-        <Route path='/projects/:id/edit' exact={true}>
+        <Route path="/projects/:id/edit" exact={true}>
           <EditForm />
         </Route>
-        <Route path='/projects/:id' exact={true}>
+        <Route path="/projects/:id" exact={true}>
           <ProjectPage />
         </Route>
-        <Route path='/categories' exact={true}>
-          <CategoryList/>
+        <Route path="/categories" exact={true}>
+          <CategoryList />
         </Route>
-        <Route path='/projects/:projectId/pledges'>
+        <Route path="/projects/:projectId/pledges" exact={true}>
           <PledgePage />
         </Route>
-        <Route path='/categories/:categoryId' exact={true}>
+        <Route path="/pledges/:pledgeId/edit" exact={true}>
+          <EditPledge />
+        </Route>
+        <Route path="/categories/:categoryId" exact={true}>
           <SpecificCategory />
         </Route>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
+        <ProtectedRoute path="/users" exact={true}>
+          <UsersList />
         </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
+        <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
+        <ProtectedRoute path="/" exact={true}>
           <h1>My Home Page</h1>
         </ProtectedRoute>
       </Switch>

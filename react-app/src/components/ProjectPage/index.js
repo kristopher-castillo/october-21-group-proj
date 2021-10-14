@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory, useParams } from "react-router-dom";
-import { getProjectThunk, updateProjectThunk, deleteProjectThunk, getSpecificProjectThunk } from "../../store/project";
-import {getProjectPledgesThunk} from "../../store/pledge"
+import { deleteProjectThunk, getSpecificProjectThunk } from "../../store/project";
+import { getProjectPledgesThunk, deletePledgeThunk } from "../../store/pledge";
 
 const ProjectPage = () => {
   const [title, setTitle] = useState("");
@@ -15,7 +15,7 @@ const ProjectPage = () => {
   const pledges = useSelector((store) => store.pledges?.pledges?.pledges)
   const { id } = useParams();
 
-  const pledging = pledges?.filter((pledge) => pledge.user_id === user.id)
+  const userPledge = pledges?.find((pledge) => pledge.user_id === user.id)
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -32,12 +32,13 @@ const ProjectPage = () => {
     dispatch(deleteProjectThunk(projectId))
   }
   console.log("Projects", projects)
-  console.log("Pledging", pledging)
+  console.log("Pledging", userPledge)
   function EditDeleteProject() {
-    if (projects?.user_id === user.id) {
+    if (userPledge?.user_id === user?.id) {
       return (
         <div>
           <button
+            type="button"
             onClick={() => {
               history.push(`/projects/${id}/edit`)
             }}
@@ -45,6 +46,7 @@ const ProjectPage = () => {
             Edit Project
           </button>
           <button
+            type="button"
             onClick={() => {
               handleDelete(id)
               history.push("/")
@@ -59,7 +61,7 @@ const ProjectPage = () => {
   }
 
   function Pledge() {
-    if (!pledging.length) {
+    if (!userPledge) {
       return (
       <button
         type="button"
@@ -71,7 +73,28 @@ const ProjectPage = () => {
     </button>
       )
     }
-    return null
+    else {
+      return (
+        <div>
+          <button
+            type="button"
+            onClick={() => {
+              history.push(`/pledges/${userPledge?.id}/edit`);
+            }}
+          >
+          Update your Pledge
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              dispatch(deletePledgeThunk(userPledge?.id))
+            }}
+          >
+          Delete your Pledge
+          </button>
+        </div>
+      )
+    }
   }
 
   return (
