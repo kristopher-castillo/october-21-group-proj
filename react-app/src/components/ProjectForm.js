@@ -36,7 +36,6 @@ const ProjectForm = () => {
         title,
         description,
         goal,
-        category,
         image_url: image,
         user_id: user.id,
         categories_id: category.id
