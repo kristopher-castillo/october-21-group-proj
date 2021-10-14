@@ -1,33 +1,37 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useHistory, useParams } from "react-router-dom";
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { getProjectThunk } from '../../store/project';
 
 const getFilteredProjects = (search, projects) => {
     if (!search) {
         return projects
     }
-    return projects.filter(project => project.title.includes(search))
+    return projects.map(project => project.title.includes(search))
 }
+
 
 const SearchBar = (props) => {
     // const history = useHistory();
     const dispatch = useDispatch();
-    const [searchTerm, setSearchTerm] = useState('')
     const searchState = useSelector(state => state.session.user);
+    const projects = useSelector(state => state.projects?.projects);
+    console.log(projects, '<======PROJECTS')
 
-    const {projects} = getProjectThunk;
+
+    // const [searchRes, setSearchRes] = useState(projects)
+    const [searchTerm, setSearchTerm] = useState('');
+
+    // const projects = getProjectThunk;
+    // console.log(getProjectThunk, '<=====Get Project Thunk')
+
     const filteredProjects = getFilteredProjects(searchTerm, projects)
+    console.log(filteredProjects, '<----Filtered Projects')
 
     // const projects = useSelector(state => Object.values(state.projects?.projects?.projects));
 
     useEffect(() => {
-        (async() => {
-          await dispatch(getProjectThunk());
-          setSearchTerm('');
-        })();
+         dispatch(getProjectThunk());
       }, [dispatch])
 
 
