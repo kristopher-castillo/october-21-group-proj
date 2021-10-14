@@ -9,7 +9,7 @@ const EditForm = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [goal, setGoal] = useState("");
-  const [category, setCategory] = useState(null);
+  const [categoryId, setCategoryId] = useState(null);
   const [image, setImage] = useState("")
   const user = useSelector((state) => state.session.user);
   const project = useSelector(store => store.projects?.projects);
@@ -22,34 +22,33 @@ const EditForm = () => {
       dispatch(getCategoriesThunk())
   }, [dispatch])
 
-  useEffect(() => {
-      dispatch(getProjectThunk())
-  }, [dispatch])
+  // useEffect(() => {
+  //     dispatch(getProjectThunk())
+  // }, [dispatch])
 
   useEffect(() => {
       dispatch(getSpecificProjectThunk(id))
-  }, [dispatch])
+  }, [dispatch, id])
 
   if (!user) {
     return <Redirect to="/" />;
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const updatedProject = {
         id,
         title,
         description,
         goal,
-        category,
         image_url: image,
         user_id: user.id,
-        categories_id: category.id,
+        categories_id: categoryId,
         current_amount: project.current_amount
       }
-      console.log(updatedProject)
-    const updateProject = await dispatch(updateProjectThunk(updatedProject));
-    history.push("/projects")
+      console.log("PROJECTFROMEDIT", project)
+    dispatch(updateProjectThunk(updatedProject));
+    history.push(`/projects/${project.id}`)
   }
 
   return (
@@ -90,7 +89,7 @@ const EditForm = () => {
         <label>Category</label>
         <select
           name="category"
-          onChange={(e) => { setCategory(e.target.value)}}
+          onChange={(e) => { setCategoryId(e.target.value)}}
         >{categories?.map((category) => (<option key={category.id} value={category.id}>{category.name}</option>))}
         </select>
       </div>

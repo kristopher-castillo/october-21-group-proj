@@ -39,10 +39,11 @@ const ProjectForm = () => {
         goal,
         image_url: image,
         user_id: user.id,
-        categories_id: categoryId
+        categories_id: categoryId,
+        current_amount: 0
       }
       const lastProject = await dispatch(addProjectThunk(newProject));
-      // history.push(`/projects/${lastProject.id}`)
+      history.push(`/projects/${lastProject.id}`)
     }
 
 return (

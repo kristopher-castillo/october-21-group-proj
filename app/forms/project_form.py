@@ -6,7 +6,7 @@ class ProjectForm(FlaskForm):
     title = StringField('Project Title', validators=[DataRequired()])
     description = StringField('Description', validators=[DataRequired()])
     goal = IntegerField('Goal', validators=[DataRequired()])
-    # current_amount = IntegerField('Current Amount')
+    current_amount = IntegerField('Current Amount')
     categories_id = IntegerField('Category', validators=[DataRequired()])
     image_url = StringField('Image Url', validators=[DataRequired()])
     # submit = SubmitField('Submit')

@@ -41,7 +41,7 @@ def new_project():
                             goal=data['goal'],
                             categories_id=data['categories_id'],
                             user_id=current_user.get_id(),
-                            current_amount=0,
+                            current_amount=data['current_amount'],
                             image_url=data['image_url'])
         db.session.add(project)
         db.session.commit()
