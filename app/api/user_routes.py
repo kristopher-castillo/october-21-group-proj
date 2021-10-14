@@ -41,12 +41,13 @@ def get_user_backed(id):
     pledges = Pledge.query.filter(Pledge.user_id == id).all()
 
     project_ids = []
-    project = []
+    projects = []
 
     for pledge in pledges:
         #Gets the project id of each pledge object
         project_ids.append(pledge.project_id)
 
     for id in project_ids:
-        project.append(Project.query.filter())
-    print(pledges)
+        projects.append(Project.query.filter(Project.id == id).one())
+
+    return {'projects': [project.to_dict() for project in projects]}
