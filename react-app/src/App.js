@@ -35,8 +35,8 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <CategoryList />
+      <SearchBar placeholder='search' handleChange={(e) => console.log({searchBar:e.target.value}, '<--------search bar')} />
       <Switch>
-      {/* <SearchBar placeholder='search' handleChange={(e) => console.log({searchBar:e.target.value}, '<--------search bar')} /> */}
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
