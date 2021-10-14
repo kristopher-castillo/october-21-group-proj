@@ -11,10 +11,11 @@ import User from './components/User';
 import ProjectForm from './components/ProjectForm';
 import ProjectPage from './components/ProjectPage';
 import { authenticate } from './store/session';
+
+import PledgePage from './components/PledgePage';
 import SpecificCategory from './components/SpecificCategory/SpecificCategory';
 import SearchBar from './components/SearchBar/SearchBar';
 import EditForm from './components/EditForm';
-
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -55,7 +56,10 @@ function App() {
         <Route path='/categories' exact={true}>
           <CategoryList/>
         </Route>
-        <Route path='/categories/:categoryId'>
+        <Route path='/projects/:projectId/pledges'>
+          <PledgePage />
+        </Route>
+        <Route path='/categories/:categoryId' exact={true}>
           <SpecificCategory />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
