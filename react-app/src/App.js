@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
-import SignUpForm from './components/auth/SignUpForm';
+// import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
@@ -14,7 +14,7 @@ import { authenticate } from './store/session';
 
 import PledgePage from './components/PledgePage';
 import SpecificCategory from './components/SpecificCategory/SpecificCategory';
-import SearchBar from './components/SearchBar/SearchBar';
+// import SearchBar from './components/SearchBar/SearchBar';
 import EditForm from './components/EditForm';
 
 function App() {
@@ -40,9 +40,9 @@ function App() {
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
-        <Route path='/sign-up' exact={true}>
+        {/* <Route path='/sign-up' exact={true}>
           <SignUpForm />
-        </Route>
+        </Route> */}
         <Route path='/projects/new' exact={true}>
           <ProjectForm />
         </Route>
