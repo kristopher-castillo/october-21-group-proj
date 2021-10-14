@@ -33,25 +33,23 @@ def new_project():
     Creates a new project if user is logged in
     """
     form = ProjectForm()
-    # categories = Category.query.all()
-    # form.categories_id.choices = [(categories.id, categories.name)
-    #                          for categories in Category.query.all()]
     form['csrf_token'].data = request.cookies['csrf_token']
-    # if form.validate_on_submit():
-    data = form.data
-    project = Project(title=data['title'],
-                        description=data['description'],
-                        goal=data['goal'],
-                        categories_id=data['categories_id'],
-                        user_id=current_user.get_id(),
-                        current_amount=0,
-                        image_url=data['image_url'])
-    db.session.add(project)
-    db.session.commit()
-    return project.to_dict()
-    # else:
-    #     print('PROJECT FORM FAILED?')
-    #     return form.errors
+    if form.validate_on_submit():
+        data = form.data
+        project = Project(title=data['title'],
+                            description=data['description'],
+                            goal=data['goal'],
+                            categories_id=data['categories_id'],
+                            user_id=current_user.get_id(),
+                            current_amount=0,
+                            image_url=data['image_url'])
+        db.session.add(project)
+        db.session.commit()
+        return project.to_dict()
+    else:
+        print('PROJECT FORM FAILED?')
+        print(form.data)
+        return form.errors
 
 
 @project_routes.route('/<int:id>', methods=['PATCH'])

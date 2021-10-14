@@ -69,6 +69,9 @@ export const addProjectThunk = (projects) => async (dispatch) => {
       "Content-Type": "application/json",
     },
   });
+
+  console.log("THUNKPROJ", projects);
+
   if (response.ok) {
     const data = await response.json();
     if (data.errors) {

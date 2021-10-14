@@ -71,6 +71,7 @@ const ProjectPage = () => {
       </div>
       <div>{projects?.id}</div>
       <div>{projects?.title}</div>
+      <div>{projects?.description}</div>
       <li key={projects?.id}>
         <img src={projects?.image_url} alt="" />
       </li>
