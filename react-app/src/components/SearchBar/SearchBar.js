@@ -4,10 +4,15 @@ import { Redirect, useHistory, useParams } from "react-router-dom";
 import { getProjectThunk } from '../../store/project';
 
 const getFilteredProjects = (search, projects) => {
+    console.log(projects, '<------Projects 1')
+
     if (!search) {
+        console.log(projects, '<------Projects 2')
         return projects
     }
-    return projects.map(project => project.title.includes(search))
+    console.log('HELLO 2')
+    const filtered = projects?.projects?.filter(project => project.title)
+    console.log(filtered, '<===== FILTERED')
 }
 
 
@@ -15,20 +20,16 @@ const SearchBar = (props) => {
     // const history = useHistory();
     const dispatch = useDispatch();
     const searchState = useSelector(state => state.session.user);
-    const projects = useSelector(state => state.projects?.projects);
+    const projects = useSelector(state => state.projects?.projects?.projects);
     console.log(projects, '<======PROJECTS')
-
-
-    // const [searchRes, setSearchRes] = useState(projects)
+    const [searchRes, setSearchRes] = useState(projects)
     const [searchTerm, setSearchTerm] = useState('');
+    console.log(searchTerm, '<----Search Term')
 
-    // const projects = getProjectThunk;
-    // console.log(getProjectThunk, '<=====Get Project Thunk')
 
     const filteredProjects = getFilteredProjects(searchTerm, projects)
     console.log(filteredProjects, '<----Filtered Projects')
 
-    // const projects = useSelector(state => Object.values(state.projects?.projects?.projects));
 
     useEffect(() => {
          dispatch(getProjectThunk());
@@ -38,7 +39,7 @@ const SearchBar = (props) => {
     return (
         <>
         <input
-        type='search'
+        type='text'
         placeholder={props.placeholder}
         onChange={(e) => setSearchTerm(e.target.value)}
         />
