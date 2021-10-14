@@ -31,6 +31,7 @@ const ProjectForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
       const newProject = {
         title,
         description,

@@ -20,3 +20,21 @@ def delete_pledge(id):
     Pledge.query.filter(Pledge.id == id).delete()
     db.session.commit()
     return redirect('/')
+
+
+@pledge_routes.route('/<int:id>', methods=["PATCH"])
+@login_required
+def update_pledge(id):
+    pledge = Pledge.query.filter(Pledge.id == id)
+    if current_user.id == pledge.user_id:
+        form = PledgeForm()
+        form['csrf_token'].data = request.cookies['csrf_token']
+        if form.validate_on_submit():
+            data = form.data
+            project = Pledge(amount=data["amount"],
+                             user_id=current_user.get_id(),
+                             project_id=id
+                             )
+        db.session.add(project)
+        db.session.commit()
+        return redirect('/')
