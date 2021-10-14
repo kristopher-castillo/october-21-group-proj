@@ -11,8 +11,9 @@ const getFilteredProjects = (search, projects) => {
         return projects
     }
     console.log('HELLO 2')
-    const filtered = projects?.projects?.filter(project => project.title)
-    console.log(filtered, '<===== FILTERED')
+    const searchResult = projects?.find(project => project.title.toLowerCase().includes(search.toLowerCase()))
+    console.log(searchResult, '<===== FILTERED')
+    return searchResult
 }
 
 
@@ -24,16 +25,18 @@ const SearchBar = (props) => {
     console.log(projects, '<======PROJECTS')
     const [searchRes, setSearchRes] = useState(projects)
     const [searchTerm, setSearchTerm] = useState('');
+    const history = useHistory();
     console.log(searchTerm, '<----Search Term')
-
-
-    const filteredProjects = getFilteredProjects(searchTerm, projects)
-    console.log(filteredProjects, '<----Filtered Projects')
-
 
     useEffect(() => {
          dispatch(getProjectThunk());
       }, [dispatch])
+
+    const result = getFilteredProjects(searchTerm, projects)
+    console.log(result, '<----Filtered Projects')
+
+
+
 
 
     return (
@@ -43,7 +46,7 @@ const SearchBar = (props) => {
         placeholder={props.placeholder}
         onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <button type='submit'>submit</button></>
+        <button type='submit' onClick={() => history.push(`/projects/${result?.id}`)}>submit</button></>
     )
 }
 
