@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getSpecificProjectThunk } from '../../store/project';
+import { getProjectThunk } from '../../store/project';
 
 const SearchBar = (props) => {
     // const history = useHistory();
@@ -11,12 +11,15 @@ const SearchBar = (props) => {
     const [searchTerm, setSearchTerm] = useState('')
     const searchState = useSelector(state => state.session.user);
 
+    const projects = useSelector(state => Object.values(state.projects?.projects?.projects));
+
     useEffect(() => {
         (async() => {
-          await dispatch(getSpecificProjectThunk());
+          await dispatch(getProjectThunk());
           setSearchTerm('');
         })();
       }, [dispatch])
+
 
 
 
@@ -25,7 +28,7 @@ const SearchBar = (props) => {
         <input
         type='search'
         placeholder={props.placeholder}
-        onChange={props.handleChange}
+        // onChange={(e) => () {}}
         />
         <button type='submit'>submit</button></>
     )
