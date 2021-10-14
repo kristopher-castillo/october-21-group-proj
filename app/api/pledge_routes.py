@@ -13,13 +13,24 @@ def get_pledges():
     pledges = Pledge.query.all()
     return pledges.to_dict()
 
+@pledge_routes.route('/<int:id>')
+def get_specific_pledge():
+    """
+    Gets one pledge based on pledge id.
+    """
+    pledge = Pledge.query.filter(Pledge.id == id).first()
+    return pledge.to_dict()
+
+
 @pledge_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def delete_pledge(id):
-    # deleted_project = Project.query.filter(Project.id == id).first()
-    Pledge.query.filter(Pledge.id == id).delete()
+    deleted_pledge = Pledge.query.filter(Pledge.id == id).first()
+    db.session.delete(deleted_pledge)
     db.session.commit()
-    return redirect('/')
+    return {
+        'deleted_pledge': deleted_pledge.to_dict()
+    }
 
 
 @pledge_routes.route('/<int:id>', methods=["PATCH"])

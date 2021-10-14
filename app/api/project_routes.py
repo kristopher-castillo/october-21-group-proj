@@ -20,7 +20,7 @@ def get_projects():
 @project_routes.route('/<int:id>')
 def get_specific_project(id):
     """
-    Get all projects
+    Get a specific project based on id.
     """
     projects = Project.query.filter(Project.id == id).first()
     return projects.to_dict()
@@ -95,19 +95,31 @@ def new_pledge(id):
     """
     form = PledgeForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    # if form.validate_on_submit():
-    print('Inside the form validate')
-    data = form.data
-    new_pledge = Pledge(amount=data["amount"],
-                    user_id=current_user.get_id(),
-                    project_id=id
-    )
+    if form.validate_on_submit():
+        print('~~~~~~~~Inside the form validate~~~~~~~~~~~~~~')
+        data = form.data
+        new_pledge = Pledge(amount=data["amount"],
+                        user_id=current_user.get_id(),
+                        project_id=id
+        )
+    else:
+        print('PROJECT FORM FAILED?')
+        print(form.data)
+        return form.errors
     db.session.add(new_pledge)
     db.session.commit()
     return new_pledge.to_dict()
-    # else:
-    #     print('Not inside form validate')
-    #     return form.errors
 
+
+@project_routes.route('/<int:id>/pledges')
+@login_required
+def get_project_pledges(id):
+    """
+    Gets all pledges associated with a specific project if user is logged in.
+    """
+    pledges = Pledge.query.filter(Pledge.project_id == id).all()
+    return {
+        'pledges': [pledge.to_dict() for pledge in pledges]
+    }
 
 
