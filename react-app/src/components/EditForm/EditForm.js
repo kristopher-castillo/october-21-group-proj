@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory, useParams } from "react-router-dom";
-import { getCategoriesThunk } from "../store/categories";
-import { getProjectThunk, updateProjectThunk, getSpecificProjectThunk } from "../store/project";
+import { getCategoriesThunk } from "../../store/categories";
+import { getProjectThunk, updateProjectThunk, getSpecificProjectThunk } from "../../store/project";
 
 const EditForm = () => {
   const [errors, setErrors] = useState([]);
@@ -13,7 +13,7 @@ const EditForm = () => {
   const [image, setImage] = useState("")
   const user = useSelector((state) => state.session.user);
   const project = useSelector(store => store.projects?.projects);
-  const categories = useSelector(store => store.categories.categories)
+  const categories = useSelector(store => store.categories?.categories)
   const dispatch = useDispatch();
   const history = useHistory();
   const { id } = useParams();
@@ -62,8 +62,11 @@ const EditForm = () => {
         <label>Title</label>
         <input
           type="text"
+          placeholder={project?.title}
           name="title"
-          onChange={(e) => { setTitle(e.target.value)}}
+          onChange={(e) => {
+            setTitle(e.target.value);
+          }}
           value={title}
         ></input>
       </div>
@@ -71,8 +74,11 @@ const EditForm = () => {
         <label>Description</label>
         <input
           type="text"
+          placeholder={project?.description}
           name="description"
-          onChange={(e) => { setDescription(e.target.value)}}
+          onChange={(e) => {
+            setDescription(e.target.value);
+          }}
           value={description}
         ></input>
       </div>
@@ -80,8 +86,11 @@ const EditForm = () => {
         <label>Goal</label>
         <input
           type="text"
+          placeholder={project?.goal}
           name="goal"
-          onChange={(e) => { setGoal(e.target.value)}}
+          onChange={(e) => {
+            setGoal(e.target.value);
+          }}
           value={goal}
         ></input>
       </div>
@@ -89,16 +98,28 @@ const EditForm = () => {
         <label>Category</label>
         <select
           name="category"
-          onChange={(e) => { setCategoryId(e.target.value)}}
-        >{categories?.map((category) => (<option key={category.id} value={category.id}>{category.name}</option>))}
+          onChange={(e) => {
+            setCategoryId(e.target.value);
+          }}
+        >
+          {/* The category shown on the edit page is not correct. */}
+          {/* <option value={project?.categories_id} selected>{categories[project?.categories_id - 1].name}</option> */}
+          {categories?.map((category) => (
+            <option key={category.id} value={category.id}>
+              {category.name}
+            </option>
+          ))}
         </select>
       </div>
       <div>
         <label>Image Url</label>
         <input
           name="image"
+          placeholder={project?.image_url}
           type="text"
-          onChange={(e) => { setImage(e.target.value)}}
+          onChange={(e) => {
+            setImage(e.target.value);
+          }}
           value={image}
           required={true}
         ></input>
