@@ -1,0 +1,23 @@
+.profile_image_container {
+    display: flex;
+    justify-content: center;
+}
+#user-profile-picture {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+.profile_header_container {
+    display: flex;
+    justify-content: center;
+}
+
+.profile-page-tabs {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+.profile-tab-item{
+    margin: 0 10px 0 0;
+}
+

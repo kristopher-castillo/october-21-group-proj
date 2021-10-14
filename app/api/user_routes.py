@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import User, db
+from app.models import User, db, Project, Pledge
+
 
 
 
@@ -27,3 +28,25 @@ def update_user_amount(id):
     users.money = request.json['money']
     db.session.commit()
     return users.to_dict()
+
+
+@user_routes.route('/<int:id>/projects')
+def get_user_projects(id):
+    projects = Project.query.filter(Project.user_id == id).all()
+    return {'projects': [project.to_dict() for project in projects]}
+
+@user_routes.route('/<int:id>/backed')
+def get_user_backed(id):
+    #rreturns a list of pledge objects with the user id
+    pledges = Pledge.query.filter(Pledge.user_id == id).all()
+
+    project_ids = []
+    project = []
+
+    for pledge in pledges:
+        #Gets the project id of each pledge object
+        project_ids.append(pledge.project_id)
+
+    for id in project_ids:
+        project.append(Project.query.filter())
+    print(pledges)
