@@ -4,13 +4,10 @@ import { Redirect, useHistory, useParams } from "react-router-dom";
 import { getProjectThunk } from '../../store/project';
 
 const getFilteredProjects = (search, projects) => {
-    console.log(projects, '<------Projects 1')
 
     if (!search) {
-        console.log(projects, '<------Projects 2')
         return projects
     }
-    console.log('HELLO 2')
     const searchResult = projects?.find(project => project.title.toLowerCase().includes(search.toLowerCase()))
     console.log(searchResult, '<===== FILTERED')
     return searchResult
@@ -33,11 +30,7 @@ const SearchBar = (props) => {
       }, [dispatch])
 
     const result = getFilteredProjects(searchTerm, projects)
-    console.log(result, '<----Filtered Projects')
-
-
-
-
+    console.log(result, '<----RESULT')
 
     return (
         <>
@@ -46,7 +39,11 @@ const SearchBar = (props) => {
         placeholder={props.placeholder}
         onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <button type='submit' onClick={() => history.push(`/projects/${result?.id}`)}>submit</button></>
+        <button type='submit' onClick={() => history.push(`/projects/${result?.id}`)}>submit</button>
+        <ul>
+            {result.map((project) => <p key={projects}>{project?.title}</p>)}
+        </ul>
+        </>
     )
 }
 
