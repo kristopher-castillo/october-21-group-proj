@@ -21,6 +21,7 @@ const NavBar = () => {
             <button type="button" className="user-button">
             <NavLink to={`/users/${sessionUser.id}`}>Profile Page</NavLink>
             </button>
+            <LogoutButton />
             </div>
       </>
     );
@@ -39,57 +40,23 @@ const NavBar = () => {
     <nav>
       <div className="nav-bar-container">
         <div className="nav-bar-left">
-      <ul>
-        {/* <li>
-          <NavLink to='/' exact={true} activeClassName='active'>
-            Home
-          </NavLink>
-        </li> */}
-        <li>
-          <NavLink to='/disover' exact={true} activeClassName='active'>
-            Discover
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/projects/new' exact={true} activeClassName='active'>
-            Start a project
-          </NavLink>
-        </li>
-        {/* <li>
-          <NavLink to='/login' exact={true} activeClassName='active'>
-            Login
-          </NavLink>
-        </li> */}
-        {/* <li>
-          <NavLink to='/sign-up' exact={true} activeClassName='active'>
-            Sign Up
-          </NavLink>
-        </li> */}
-        {/* <div>
-          <SignupFormModal />
-        </div>
-        <div>
-          <LoginFormModal />
-        </div> */}
-        {/* <li>
-          <NavLink to='/users' exact={true} activeClassName='active'>
-            Users
-          </NavLink>
-        </li> */}
-        {/* <li>
-          <NavLink to='/categories' exact={true} activeClassName='active'>
-            Categories
-          </NavLink>
-        </li> */}
-        <li>
-          <LogoutButton />
-        </li>
-      </ul>
+          <button className="discover-button">
+            <NavLink to='/discover' exact={true} activeClassName='active'>
+             Discover
+           </NavLink>
+          </button>
+          <button className="start-project-button">
+            <NavLink to='/projects/new' exact={true} activeClassName='active'>
+             Start a project
+            </NavLink>
+          </button>
       </div>
       <div className="nav-bar-center">
         <div className="nav-bar-center-logo">
-          <button className="nav-bar-logo-button"></button>
-          {/* <img src="/jumpstarter-logo.png" alt="logo"></img> */}
+          <NavLink to="/">
+          <button type="button" className="nav-bar-logo-button">
+          </button>
+          </NavLink>
         </div>
       </div>
       <div className="nav-bar-right">
