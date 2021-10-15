@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import LogoutButton from '../auth/LogoutButton';
 import SignupFormModal from '../SignupFormModal';
 import LoginFormModal from '../LoginFormModal';
+import SearchBar from '../SearchBar/SearchBar';
 import './NavBar.css';
 
 const NavBar = () => {
@@ -20,8 +21,9 @@ const NavBar = () => {
         <div className="user-container">
           <button type="button" className="user-button">
             <NavLink to={`/users/${sessionUser.id}`}>Profile Page</NavLink>
-          </button>
-        </div>
+            </button>
+            <LogoutButton />
+            </div>
       </>
     );
   } else {
@@ -35,48 +37,32 @@ const NavBar = () => {
 
   return (
     <nav>
-      <ul>
-        <li>
-          <NavLink to="/" exact={true} activeClassName="active">
-            Home
+      <div className="nav-bar-container">
+        <div className="nav-bar-left">
+          <button className="discover-button">
+            <NavLink to='/discover' exact={true} activeClassName='active'>
+             Discover
+           </NavLink>
+          </button>
+          <button className="start-project-button">
+            <NavLink to='/projects/new' exact={true} activeClassName='active'>
+             Start a project
+            </NavLink>
+          </button>
+      </div>
+      <div className="nav-bar-center">
+        <div className="nav-bar-center-logo">
+          <NavLink to="/">
+          <button type="button" className="nav-bar-logo-button">
+          </button>
           </NavLink>
-        </li>
-        <li>
-          <NavLink to="/projects/new" exact={true} activeClassName="active">
-            Start a project
-          </NavLink>
-        </li>
-        {/* <li>
-          <NavLink to='/login' exact={true} activeClassName='active'>
-            Login
-          </NavLink>
-        </li> */}
-        {/* <li>
-          <NavLink to='/sign-up' exact={true} activeClassName='active'>
-            Sign Up
-          </NavLink>
-        </li> */}
-        {/* <div>
-          <SignupFormModal />
         </div>
-        <div>
-          <LoginFormModal />
-        </div> */}
-        {/* <li>
-          <NavLink to='/users' exact={true} activeClassName='active'>
-            Users
-          </NavLink>
-        </li> */}
-        {/* <li>
-          <NavLink to='/categories' exact={true} activeClassName='active'>
-            Categories
-          </NavLink>
-        </li> */}
-        <li>
-          <LogoutButton />
-        </li>
-      </ul>
-      <div className="nav-bar-right">{sessionLinks}</div>
+      </div>
+      <div className="nav-bar-right">
+      <SearchBar />
+      {sessionLinks}
+      </div>
+      </div>
     </nav>
   );
 };

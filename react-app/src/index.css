@@ -1,6 +1,17 @@
 /* TODO Add site wide styles */
-body {
-    width: 100vw;
-    height: 100vh;
 
+body{
+    margin: 0;
+    /* background-color: rgba(0, 0, 0, 0.918); */
+    list-style-type: none;
+    font-family: "Open Sans";
+    /* text-decoration: none; */
+    /* color: white; */
 }
+
+h1 {
+    /* color: #00eaed ; */
+    color:  rgb(40, 40, 40);
+}
+
+
