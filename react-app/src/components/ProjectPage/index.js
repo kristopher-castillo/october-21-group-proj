@@ -125,13 +125,15 @@ const ProjectPage = () => {
   return (
     <div>
       <div className='project-content-container'>
-          <div>
-            <h2 className='project-page-title'>{projects?.title}</h2>
+          <div className='project-page-title'>
+            <h2>{projects?.title}</h2>
           </div>
-          <div>
+          <div className='project-image-container'>
             <img className='project-image' src={projects?.image_url} alt="" />
-			<Pledge />
           </div>
+		  <div className='pledge-area'>
+			<Pledge />
+		  </div>
       </div>
       {/* <div>{projects?.id}</div>
       <div>{projects?.title}</div>
