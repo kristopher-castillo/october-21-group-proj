@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux';
 import LogoutButton from '../auth/LogoutButton';
 import SignupFormModal from '../SignupFormModal';
 import LoginFormModal from '../LoginFormModal';
+import SearchBar from '../SearchBar/SearchBar';
 import './NavBar.css';
-
 
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
@@ -37,10 +37,17 @@ const NavBar = () => {
 
   return (
     <nav>
+      <div className="nav-bar-container">
+        <div className="nav-bar-left">
       <ul>
-        <li>
+        {/* <li>
           <NavLink to='/' exact={true} activeClassName='active'>
             Home
+          </NavLink>
+        </li> */}
+        <li>
+          <NavLink to='/disover' exact={true} activeClassName='active'>
+            Discover
           </NavLink>
         </li>
         <li>
@@ -78,8 +85,17 @@ const NavBar = () => {
           <LogoutButton />
         </li>
       </ul>
+      </div>
+      <div className="nav-bar-center">
+        <div className="nav-bar-center-logo">
+          <button className="nav-bar-logo-button"></button>
+          {/* <img src="/jumpstarter-logo.png" alt="logo"></img> */}
+        </div>
+      </div>
       <div className="nav-bar-right">
+      <SearchBar />
       {sessionLinks}
+      </div>
       </div>
     </nav>
 

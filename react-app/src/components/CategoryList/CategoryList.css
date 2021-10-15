@@ -1,5 +1,6 @@
+
 .category_nav_container {
-    border-style: solid;
+    border-bottom: 0.1rem solid #DCDEDD;
 
 }
 
@@ -12,5 +13,9 @@
 }
 
 .ul {
+    list-style-type: none;
+}
+
+.li {
     list-style-type: none;
 }

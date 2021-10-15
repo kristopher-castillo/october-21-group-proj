@@ -1,5 +1,30 @@
 /* TODO Add site wide styles */
 
+body{
+    /* background-color: rgba(0, 0, 0, 0.918); */
+    list-style-type: none;
+    font-family: "Open Sans";
+    /* text-decoration: none; */
+    /* color: white; */
+}
+
 h1 {
-    color: #00eaed ;
+    /* color: #00eaed ; */
+    color:  rgb(40, 40, 40);
+}
+
+button {
+    background: none;
+    border: none;
+    text-decoration: none;
+    color: rgb(167, 159, 148);
+}
+
+li {
+    list-style: none;
+    list-style-type: none;
+    /* color:  rgb(167, 159, 148); */
+    color:  #656969;
+    text-decoration: none;
+    display: list-item;
 }
