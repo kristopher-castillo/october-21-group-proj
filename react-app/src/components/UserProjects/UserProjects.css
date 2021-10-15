@@ -1,0 +1,36 @@
+.project-card {
+    display: grid;
+    grid-template-columns: 300px;
+    grid-template-rows: 210px 210px 80px;
+    grid-template-areas: "image" "info";
+
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+    background: white;
+    text-align: center;
+    border: 1px solid gray;
+
+}
+ul {
+    list-style: none;
+}
+.project-card-image {
+    grid-area: image;
+    width: 300px;
+    height: 210px;
+}
+
+.project-card-info {
+    grid-area: info;
+}
+
+.project-card-title {
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.project-card-des {
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+

@@ -4,12 +4,14 @@ import session from './session'
 import categoriesReducer from './categories';
 import projectReducer from './project';
 import pledgeReducer from './pledge';
+import userReducer from './users';
 
 const rootReducer = combineReducers({
   session,
   projects:projectReducer,
   categories:categoriesReducer,
-  pledges:pledgeReducer
+  pledges:pledgeReducer,
+  users: userReducer,
 });
 
 
