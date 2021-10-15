@@ -1,3 +1,62 @@
+.nav-bar-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 66px;
+  border-bottom: 0.1rem solid #DCDEDD;
+  font-size: 14px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.nav-bar-left {
+  display: flex;
+}
+
+.discover-button{
+  width: 56px;
+}
+
+.start-project-button{
+  width: 109px;
+}
+
+
+.nav-bar-center-logo{
+  width: 180px;
+
+}
+
+.nav-bar-logo-button{
+  width: 180px;
+  height: 22.16px;
+  background-image: url("jumpstarter-logo.png");
+  background-size:100%;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  align-items: center;
+  justify-content: space-around;
+
+}
+
 .nav-bar-right {
   display: flex;
+}
+
+button {
+  background: none;
+  border: none;
+  text-decoration: none;
+  color: rgb(167, 159, 148);
+  cursor: pointer;
+}
+
+
+a {
+  list-style: none;
+  list-style-type: none;
+  /* color:  rgb(167, 159, 148); */
+  color:  #656969;
+  text-decoration: none;
+  display: list-item;
 }

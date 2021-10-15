@@ -12,7 +12,7 @@ const SearchBar = (props) => {
     const searchState = useSelector(state => state.session.user);
     const projects = useSelector(state => state.search?.projects);
     console.log(projects, '<======PROJECTS use selector')
-    const [searchRes, setSearchRes] = useState(projects)
+    const [searchText, setSearchText] = useState("")
     const [searchTerm, setSearchTerm] = useState('');
     const history = useHistory();
     console.log(searchTerm, '<----Search Term')
@@ -37,8 +37,8 @@ const SearchBar = (props) => {
         <>
         <input
         type='text'
-        placeholder={props.placeholder}
         onChange={(e) => setSearchTerm(e.target.value)}
+        value={searchTerm}
         />
         {/* <button type='submit' onClick={() => history.push(`/projects/${result?.id}`)}>submit</button> */}
         <ul>
