@@ -1,17 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, useHistory, useParams } from "react-router-dom";
+import { Redirect, useHistory, useParams, NavLink } from "react-router-dom";
 import { getProjectThunk } from '../../store/project';
+import './SearchBar.css'
 
-const getFilteredProjects = (search, projects) => {
-
-    if (!search) {
-        return projects
-    }
-    const searchResult = projects?.find(project => project.title.toLowerCase().includes(search.toLowerCase()))
-    console.log(searchResult, '<===== FILTERED')
-    return searchResult
-}
 
 
 const SearchBar = (props) => {
@@ -19,7 +11,7 @@ const SearchBar = (props) => {
     const dispatch = useDispatch();
     const searchState = useSelector(state => state.session.user);
     const projects = useSelector(state => state.projects?.projects?.projects);
-    console.log(projects, '<======PROJECTS')
+    console.log(projects, '<======PROJECTS use selector')
     const [searchRes, setSearchRes] = useState(projects)
     const [searchTerm, setSearchTerm] = useState('');
     const history = useHistory();
@@ -27,9 +19,18 @@ const SearchBar = (props) => {
 
     useEffect(() => {
          dispatch(getProjectThunk());
-      }, [dispatch])
+        }, [dispatch])
 
-    const result = getFilteredProjects(searchTerm, projects)
+        const getFilteredProjects = (search, projects) => {
+
+            // if (!search) {
+            //     return projects
+            // }
+            const searchResult = projects?.filter(project => project.title.toLowerCase().includes(search.toLowerCase()))
+            console.log(searchResult, '<===== FILTERED projects')
+            return searchResult
+        }
+        const result = getFilteredProjects(searchTerm, projects)
     console.log(result, '<----RESULT')
 
     return (
@@ -39,9 +40,11 @@ const SearchBar = (props) => {
         placeholder={props.placeholder}
         onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <button type='submit' onClick={() => history.push(`/projects/${result?.id}`)}>submit</button>
+        {/* <button type='submit' onClick={() => history.push(`/projects/${result?.id}`)}>submit</button> */}
         <ul>
-            {result.map((project) => <p key={projects}>{project?.title}</p>)}
+            {result?.map((project) => <li onClick={() =>
+                {setSearchTerm('')
+                history.push(`/projects/${project?.id}`)}} key={project.id}>{project?.title}</li>)}
         </ul>
         </>
     )
