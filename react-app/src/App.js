@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import LoginForm from './components/auth/LoginForm';
-// import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
@@ -11,15 +9,12 @@ import User from './components/UsersPage/User';
 import ProjectForm from './components/ProjectForm';
 import ProjectPage from './components/ProjectPage';
 import { authenticate } from './store/session';
-
 import PledgePage from './components/PledgePage';
 import SpecificCategory from './components/SpecificCategory/SpecificCategory';
 import SearchBar from './components/SearchBar/SearchBar';
 // import EditForm from './components/EditForm';
 import EditForm from './components/EditForm/EditForm';
-
 import EditPledge from './components/EditPledge'
-
 import UserBacked from './components/UserBacked/UserBacked';
 import UserProjects from './components/UserProjects/UserProjects';
 
@@ -43,16 +38,8 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <CategoryList />
-      <SearchBar />
       <Switch>
-        {/* <Route path='/login' exact={true}>
-          <LoginForm />
-        </Route> */}
-        {/* <Route path='/sign-up' exact={true}>
-          <SignUpForm />
-        </Route> */}
         <Route path='/projects/new' exact={true}>
-
           <ProjectForm />
         </Route>
         <Route path="/projects/:id/edit" exact={true}>
@@ -67,9 +54,9 @@ function App() {
         <Route path="/projects/:projectId/pledges" exact={true}>
           <PledgePage />
         </Route>
-        <Route path="/pledges/:pledgeId/edit" exact={true}>
+        <ProtectedRoute path="/pledges/:pledgeId/edit" exact={true}>
           <EditPledge />
-        </Route>
+        </ProtectedRoute>
         <Route path="/categories/:categoryId" exact={true}>
           <SpecificCategory />
         </Route>
