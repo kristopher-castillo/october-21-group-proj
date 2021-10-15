@@ -106,7 +106,7 @@ const EditForm = () => {
           onChange={(e) => {
             setCategoryId(e.target.value);
           }}
-          defaultValue={project?.categories_id}CE
+          defaultValue={project?.categories_id}
         >
           {/* The category shown on the edit page is not correct. */}
           {/* <option defaultValue={project?.categories_id}>{categories[project?.categories_id - 1].name}</option> */}
