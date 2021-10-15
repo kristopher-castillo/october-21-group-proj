@@ -45,10 +45,7 @@ function User() {
 			</ul>
 		</div>
 
-		<div className='profile-content-wrap'>
-			<div className='profile-content-container'></div>
 
-		</div>
 	</div>
   );
 }
