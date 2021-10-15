@@ -50,7 +50,7 @@ export const getSpecificPledgeThunk = (pledgeId) => async (dispatch) => {
   return response;
 }
 
-export const createPledgeActionThunk = (pledge, id) => async (dispatch) => {
+export const createPledgeThunk = (pledge, id) => async (dispatch) => {
     const response = await fetch(`/api/projects/${id}/pledges`, {
       method: "POST",
       body: JSON.stringify(pledge),
