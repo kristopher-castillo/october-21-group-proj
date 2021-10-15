@@ -1,3 +1,4 @@
+
 .project-card {
     display: grid;
     grid-template-columns: 300px;
@@ -10,7 +11,15 @@
     text-align: center;
     border: 1px solid gray;
 
+    transition: 0.5s ease;
+    cursor: pointer;
 }
+
+.project-card:hover {
+    transform: scale(1.2);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
+}
+
 ul {
     list-style: none;
 }
@@ -37,4 +46,9 @@ ul {
 .profile-content-container {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+}
+
+.project-item {
+    margin: 3rem 1rem;
 }
