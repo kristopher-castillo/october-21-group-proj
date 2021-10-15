@@ -1,0 +1,10 @@
+.editForm {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    position: fixed;
+    margin-left: 45%;
+    margin-right: 45%;
+    border-style: solid;
+    border-radius: 5%;
+}
