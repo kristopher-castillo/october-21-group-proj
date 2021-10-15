@@ -4,6 +4,7 @@ import { Redirect, useHistory, useParams } from "react-router-dom";
 import { deleteProjectThunk, getSpecificProjectThunk, projectAmountThunk, getProjectThunk } from "../../store/project";
 import { getProjectPledgesThunk, deletePledgeThunk } from "../../store/pledge";
 import { transactionThunk } from "../../store/session";
+import ProgressBar from "../ProgressBar/ProgressBar";
 import './ProjectPage.css'
 const ProjectPage = () => {
   const [title, setTitle] = useState("");
@@ -132,6 +133,13 @@ const ProjectPage = () => {
             <img className='project-image' src={projects?.image_url} alt="" />
           </div>
 		  <div className='pledge-area'>
+			  <ProgressBar bgcolor="#009E74" progress={((projects?.current_amount / projects?.goal) * 100).toFixed(1)} height={30} />
+			  <div>
+				  <h3 className='pledge-amount'>${projects?.current_amount}</h3>
+			  </div>
+			  <div>
+				  <p>pledged of ${projects?.goal}</p>
+			  </div>
 			<Pledge />
 		  </div>
       </div>

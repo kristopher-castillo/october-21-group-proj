@@ -12,10 +12,12 @@
         ". image pledge .";
     column-gap: 1rem;
     row-gap: 1rem;
+    grid-column: 2/4;
 
 }
 .project-page-title {
     grid-area: header;
+    text-align: center;
 
 }
 .project-image-container {
@@ -24,4 +26,7 @@
 }
 .pledge-area {
     grid-area: pledge;
+}
+.pledge-amount {
+    color: #009E74;
 }
