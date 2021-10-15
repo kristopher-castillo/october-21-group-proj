@@ -1,37 +1,35 @@
+
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import LogoutButton from '../auth/LogoutButton';
-import SignupFormModal from '../SignUpFormModal';
+import SignupFormModal from '../SignupFormModal';
 import LoginFormModal from '../LoginFormModal';
 import './NavBar.css';
-
 
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
 
   let sessionLinks;
-  if(sessionUser){
+  if (sessionUser) {
     sessionLinks = (
       <>
         {/* <button type="button" className="user-button">
           <ProfileButton user={sessionUser} />
         </button> */}
         <div className="user-container">
-            <button type="button" className="user-button">
+          <button type="button" className="user-button">
             <NavLink to={`/users/${sessionUser.id}`}>Profile Page</NavLink>
-            </button>
-            </div>
+          </button>
+        </div>
       </>
     );
-  }
-
-  else {
-  sessionLinks = (
-    <div className="login-menu-right">
-      <LoginFormModal />
-      <SignupFormModal />
-    </div>
+  } else {
+    sessionLinks = (
+      <div className="login-menu-right">
+        <LoginFormModal />
+        <SignupFormModal />
+      </div>
     );
   }
 
@@ -39,12 +37,12 @@ const NavBar = () => {
     <nav>
       <ul>
         <li>
-          <NavLink to='/' exact={true} activeClassName='active'>
+          <NavLink to="/" exact={true} activeClassName="active">
             Home
           </NavLink>
         </li>
         <li>
-          <NavLink to='/projects/new' exact={true} activeClassName='active'>
+          <NavLink to="/projects/new" exact={true} activeClassName="active">
             Start a project
           </NavLink>
         </li>
@@ -78,12 +76,9 @@ const NavBar = () => {
           <LogoutButton />
         </li>
       </ul>
-      <div className="nav-bar-right">
-      {sessionLinks}
-      </div>
+      <div className="nav-bar-right">{sessionLinks}</div>
     </nav>
-
   );
-}
+};
 
 export default NavBar;
