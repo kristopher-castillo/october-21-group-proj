@@ -7,7 +7,7 @@ import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import CategoryList from './components/CategoryList/CategoryList';
-import User from './components/User';
+import User from './components/UsersPage/User';
 import ProjectForm from './components/ProjectForm';
 import ProjectPage from './components/ProjectPage';
 import { authenticate } from './store/session';
@@ -17,7 +17,12 @@ import SpecificCategory from './components/SpecificCategory/SpecificCategory';
 import SearchBar from './components/SearchBar/SearchBar';
 // import EditForm from './components/EditForm';
 import EditForm from './components/EditForm/EditForm';
+
 import EditPledge from './components/EditPledge'
+
+import UserBacked from './components/UserBacked/UserBacked';
+import UserProjects from './components/UserProjects/UserProjects';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -73,7 +78,13 @@ function App() {
         <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true}>
+        <ProtectedRoute path='/users/:userId/backed'>
+          <UserBacked />
+        </ProtectedRoute>
+        <ProtectedRoute path='/users/:userId/projects'>
+          <UserProjects />
+        </ProtectedRoute>
+        <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
         </ProtectedRoute>
       </Switch>
