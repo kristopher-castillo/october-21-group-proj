@@ -18,7 +18,6 @@ function CategoryList() {
     <div>
       <div className='category_nav_container'>
         <ul className='category_nav'>
-      
           {categories?.map((category) => (
             <Link key={category.id} to={`/categories/${category.id}`}><li>{category.name}</li></Link>
           ))}

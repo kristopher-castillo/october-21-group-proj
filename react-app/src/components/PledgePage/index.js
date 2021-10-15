@@ -11,6 +11,7 @@ const PledgePage = () => {
   const project = useSelector((store) => store.projects?.projects);
   const [currentAmount, setCurrentAmount] = useState(0);
   const [userMoney, setUserMoney] = useState(user.money)
+  const [pledgeAmount, setPledgeAmount] = useState(0)
   const { projectId } = useParams();
 
   console.log("THISISPROJECT", project)
@@ -25,13 +26,14 @@ const PledgePage = () => {
   useEffect(() => {
     setCurrentAmount(project?.current_amount)
   }, [project?.current_amount])
+    console.log("PledgeAmount", pledgeAmount)
 
 
   const handleSubmit = (e) => {
     e.preventDefault()
-
+    
     const newPledge = {
-      amount: 10,
+      amount: pledgeAmount,
       user_id: user.id,
       project_id: projectId
     }
@@ -42,16 +44,16 @@ const PledgePage = () => {
       goal: project?.goal,
       categories_id: project?.categories_id,
       user_id: project?.user_id,
-      current_amount: currentAmount + 10,
+      current_amount: currentAmount + pledgeAmount,
       image_url: project?.image_url
     }
     if (user.money >= 10) {
       
       dispatch(createPledgeThunk(newPledge, projectId))
-      dispatch(transactionThunk(user.id, userMoney - 10))
-      setUserMoney(userMoney - 10)
+      dispatch(transactionThunk(user.id, userMoney - pledgeAmount))
+      setUserMoney(userMoney - pledgeAmount)
       dispatch(projectAmountThunk(updatedProject, projectId))
-      setCurrentAmount(currentAmount + 10)
+      setCurrentAmount(currentAmount + pledgeAmount)
       history.push(`/projects/${projectId}`)
     }else {
       console.log('Not enough money, You broke')
@@ -60,19 +62,60 @@ const PledgePage = () => {
     console.log('This is my user money', user?.money)
   }
 
-
   return (
-    <>
-      <h2>Pledge Below!</h2>
-      <div>
-        <button
-          onClick={handleSubmit}>
-          10
-        </button>
+    <form onSubmit={handleSubmit}>
+      <div className="pledgeButtons">
+        <input        
+          type="radio"
+          id="pledge5"
+          name="pledge_amount"
+          value="5"
+          onChange={(e) => setPledgeAmount(+(e.target.value))}
+          >
+        </input>
+        <label for="pledge5">$5</label>
+        <input        
+          type="radio"
+          id="pledge10"
+          name="pledge_amount"
+          value="10"
+          onChange={(e) => setPledgeAmount(+(e.target.value))}
+          >
+        </input>
+        <label for="pledge10">$10</label>
+        <input        
+          type="radio"
+          id="pledge20"
+          name="pledge_amount"
+          value="20"
+          onChange={(e) => setPledgeAmount(+(e.target.value))}
+          >
+        </input>
+        <label for="pledge20">$20</label>
+        <input        
+          type="radio"
+          id="pledge50"
+          name="pledge_amount"
+          value="50"
+          onChange={(e) => setPledgeAmount(+(e.target.value))}
+          >
+        </input>
+        <label for="pledge50">$50</label>
+        <input        
+          type="radio"
+          id="pledge100"
+          name="pledge_amount"
+          value="100"
+          onChange={(e) => setPledgeAmount(+(e.target.value))}
+          >
+        </input>
+        <label for="pledge100">$100</label>
       </div>
-    </>
+      <div>
+        <button>Submit your Pledge</button>
+      </div>
+    </form>
   )
-
 }
 
 export default PledgePage;

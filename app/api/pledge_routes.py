@@ -36,16 +36,15 @@ def delete_pledge(id):
 @pledge_routes.route('/<int:id>', methods=["PATCH"])
 @login_required
 def update_pledge(id):
-    pledge = Pledge.query.filter(Pledge.id == id)
+    pledge = Pledge.query.filter(Pledge.id == id).first()
+    print('PLEDGEINPATCH`````````', pledge.project_id)
     if current_user.id == pledge.user_id:
         form = PledgeForm()
         form['csrf_token'].data = request.cookies['csrf_token']
-        if form.validate_on_submit():
-            data = form.data
-            project = Pledge(amount=data["amount"],
-                             user_id=current_user.get_id(),
-                             project_id=id
-                             )
-        db.session.add(project)
+        data = form.data
+        pledge.amount=data["amount"],
+        pledge.user_id=current_user.get_id(),
+        pledge.project_id=data["project_id"]
+
         db.session.commit()
-        return redirect('/')
+        return pledge.to_dict()

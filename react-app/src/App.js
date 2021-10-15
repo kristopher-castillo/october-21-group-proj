@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
-import SignUpForm from './components/auth/SignUpForm';
-import NavBar from './components/NavBar';
+// import SignUpForm from './components/auth/SignUpForm';
+import NavBar from './components/NavBar/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import CategoryList from './components/CategoryList/CategoryList';
-import User from './components/User';
+import User from './components/UsersPage/User';
 import ProjectForm from './components/ProjectForm';
 import ProjectPage from './components/ProjectPage';
 import { authenticate } from './store/session';
@@ -17,7 +17,12 @@ import SpecificCategory from './components/SpecificCategory/SpecificCategory';
 import SearchBar from './components/SearchBar/SearchBar';
 // import EditForm from './components/EditForm';
 import EditForm from './components/EditForm/EditForm';
+
 import EditPledge from './components/EditPledge'
+
+import UserBacked from './components/UserBacked/UserBacked';
+import UserProjects from './components/UserProjects/UserProjects';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -40,13 +45,14 @@ function App() {
       <CategoryList />
       <SearchBar />
       <Switch>
-        <Route path="/login" exact={true}>
+        {/* <Route path='/login' exact={true}>
           <LoginForm />
-        </Route>
-        <Route path="/sign-up" exact={true}>
+        </Route> */}
+        {/* <Route path='/sign-up' exact={true}>
           <SignUpForm />
-        </Route>
-        <Route path="/projects/new" exact={true}>
+        </Route> */}
+        <Route path='/projects/new' exact={true}>
+
           <ProjectForm />
         </Route>
         <Route path="/projects/:id/edit" exact={true}>
@@ -73,9 +79,15 @@ function App() {
         <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true}>
-          <h1>My Home Page</h1>
+        <ProtectedRoute path='/users/:userId/backed'>
+          <UserBacked />
         </ProtectedRoute>
+        <ProtectedRoute path='/users/:userId/projects'>
+          <UserProjects />
+        </ProtectedRoute>
+        <Route path='/' exact={true} >
+          <h1>My Home Page</h1>
+        </Route>
       </Switch>
     </BrowserRouter>
   );
