@@ -40,12 +40,12 @@ const SearchBar = (props) => {
         onChange={(e) => setSearchTerm(e.target.value)}
         value={searchTerm}
         />
-        {/* <button type='submit' onClick={() => history.push(`/projects/${result?.id}`)}>submit</button> */}
+            {/* <button type='submit' onClick={() => history.push(`/projects/${result?.id}`)}>submit</button> */}
         <ul>
             {result?.map((project) => <li onClick={() =>
                 {setSearchTerm('')
                 history.push(`/projects/${project?.id}`)}} key={project.id}>{project?.title}</li>)}
-        </ul>
+            </ul>
         </>
     )
 }
