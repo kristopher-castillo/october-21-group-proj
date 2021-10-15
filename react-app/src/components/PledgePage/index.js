@@ -11,6 +11,7 @@ const PledgePage = () => {
   const project = useSelector((store) => store.projects?.projects);
   const [currentAmount, setCurrentAmount] = useState(0);
   const [userMoney, setUserMoney] = useState(user.money)
+  const [pledgeAmount, setPledgeAmount] = useState(0)
   const { projectId } = useParams();
 
   console.log("THISISPROJECT", project)
@@ -63,10 +64,31 @@ const PledgePage = () => {
 
 
   return (
-    <div>
+    <div class="pledgeButtons">
       <button
-        onClick={handleSubmit}>
-        10
+        id="pledge5"
+        onClick={() => setPledgeAmount(5)}>
+        $5
+      </button>
+      <button
+        id="pledge10"
+        onClick={() => setPledgeAmount(10)}>
+        $10
+      </button>
+      <button
+        id="pledge20"
+        onClick={() => setPledgeAmount(20)}>
+        $20
+      </button>
+      <button
+        id="pledge50"
+        onClick={() => setPledgeAmount(50)}>
+        $50
+      </button>
+      <button
+        id="pledge100"
+        onClick={() => setPledgeAmount(100)}>
+        $10
       </button>
     </div>
 
