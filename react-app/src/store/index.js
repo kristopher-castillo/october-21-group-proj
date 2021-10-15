@@ -5,6 +5,7 @@ import categoriesReducer from './categories';
 import projectReducer from './project';
 import pledgeReducer from './pledge';
 import userReducer from './users';
+import searchReducer from './search'
 
 const rootReducer = combineReducers({
   session,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   categories:categoriesReducer,
   pledges:pledgeReducer,
   users: userReducer,
+  search: searchReducer
 });
 
 
