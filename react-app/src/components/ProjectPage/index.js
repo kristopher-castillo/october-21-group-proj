@@ -139,9 +139,13 @@ const ProjectPage = () => {
 			  </div>
 			  <div>
 				  <p>pledged of ${projects?.goal}</p>
+				<Pledge />
 			  </div>
-			<Pledge />
 		  </div>
+		  <div className='description-area'>
+				<p>{projects?.description}</p>
+		  </div>
+
       </div>
       {/* <div>{projects?.id}</div>
       <div>{projects?.title}</div>
