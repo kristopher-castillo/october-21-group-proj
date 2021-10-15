@@ -5,15 +5,17 @@ import { getCategoriesThunk } from "../../store/categories";
 import { getProjectThunk, updateProjectThunk, getSpecificProjectThunk } from "../../store/project";
 
 const EditForm = () => {
-  const [errors, setErrors] = useState([]);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [goal, setGoal] = useState("");
-  const [categoryId, setCategoryId] = useState(null);
-  const [image, setImage] = useState("")
-  const user = useSelector((state) => state.session.user);
   const project = useSelector(store => store.projects?.projects);
+  const user = useSelector((state) => state.session.user);
   const categories = useSelector(store => store.categories?.categories)
+  const [errors, setErrors] = useState([]);
+  const [title, setTitle] = useState(project?.title);
+  const [description, setDescription] = useState(project?.description);
+  const [goal, setGoal] = useState(project?.goal);
+  const [categoryId, setCategoryId] = useState(project?.categories_id); //remove this null
+  // const [categoryName, setCategoryName] = useState(categories[project?.categories_id - 1].name)
+  const [image, setImage] = useState(project?.image_url)
+
   const dispatch = useDispatch();
   const history = useHistory();
   const { id } = useParams();
@@ -62,12 +64,13 @@ const EditForm = () => {
         <label>Title</label>
         <input
           type="text"
-          placeholder={project?.title}
+          // placeholder={project?.title}
           name="title"
           onChange={(e) => {
             setTitle(e.target.value);
           }}
           value={title}
+          required={true}
         ></input>
       </div>
       <div>
@@ -80,6 +83,7 @@ const EditForm = () => {
             setDescription(e.target.value);
           }}
           value={description}
+          required={true}
         ></input>
       </div>
       <div>
@@ -92,6 +96,7 @@ const EditForm = () => {
             setGoal(e.target.value);
           }}
           value={goal}
+          required={true}
         ></input>
       </div>
       <div>
@@ -101,9 +106,12 @@ const EditForm = () => {
           onChange={(e) => {
             setCategoryId(e.target.value);
           }}
+          defaultValue={project?.categories_id}
         >
           {/* The category shown on the edit page is not correct. */}
-          {/* <option value={project?.categories_id} selected>{categories[project?.categories_id - 1].name}</option> */}
+          {/* <option defaultValue={project?.categories_id}>{categories[project?.categories_id - 1].name}</option> */}
+          {/* <option defaultValue={project?.categories_id}>{categories[project?.categories_id - 1].name}</option> */}
+
           {categories?.map((category) => (
             <option key={category.id} value={category.id}>
               {category.name}
