@@ -1,9 +1,40 @@
-
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import LogoutButton from './auth/LogoutButton';
+import SignupFormModal from './SignupFormModal';
+import LoginFormModal from './LoginFormModal';
+import './NavBar.css';
+
 
 const NavBar = () => {
+  const sessionUser = useSelector((state) => state.session.user);
+
+  let sessionLinks;
+  if(sessionUser){
+    sessionLinks = (
+      <>
+        {/* <button type="button" className="user-button">
+          <ProfileButton user={sessionUser} />
+        </button> */}
+        <div className="user-container">
+            <button type="button" className="user-button">
+            <NavLink to={`/users/${sessionUser.id}`}>Profile Page</NavLink>
+            </button>
+            </div>
+      </>
+    );
+  }
+
+  else {
+  sessionLinks = (
+    <div className="login-menu-right">
+      <LoginFormModal />
+      <SignupFormModal />
+    </div>
+    );
+  }
+
   return (
     <nav>
       <ul>
@@ -17,21 +48,27 @@ const NavBar = () => {
             Start a project
           </NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink to='/login' exact={true} activeClassName='active'>
             Login
           </NavLink>
-        </li>
-        <li>
+        </li> */}
+        {/* <li>
           <NavLink to='/sign-up' exact={true} activeClassName='active'>
             Sign Up
           </NavLink>
-        </li>
-        <li>
+        </li> */}
+        {/* <div>
+          <SignupFormModal />
+        </div>
+        <div>
+          <LoginFormModal />
+        </div> */}
+        {/* <li>
           <NavLink to='/users' exact={true} activeClassName='active'>
             Users
           </NavLink>
-        </li>
+        </li> */}
         {/* <li>
           <NavLink to='/categories' exact={true} activeClassName='active'>
             Categories
@@ -41,7 +78,11 @@ const NavBar = () => {
           <LogoutButton />
         </li>
       </ul>
+      <div className="nav-bar-right">
+      {sessionLinks}
+      </div>
     </nav>
+
   );
 }
 
