@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory, useParams } from "react-router-dom";
-import { deleteProjectThunk, getSpecificProjectThunk, projectAmountThunk } from "../../store/project";
+import { deleteProjectThunk, getSpecificProjectThunk, projectAmountThunk, getProjectThunk } from "../../store/project";
 import { getProjectPledgesThunk, deletePledgeThunk } from "../../store/pledge";
 import { transactionThunk } from "../../store/session";
-
+import './ProjectPage.css'
 const ProjectPage = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -21,6 +21,10 @@ const ProjectPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  //   useEffect(() => {
+  //   dispatch(getProjectThunk())
+  // }, [dispatch])
+
   useEffect(() => {
     dispatch(getSpecificProjectThunk(id))
   }, [dispatch, id])
@@ -28,6 +32,8 @@ const ProjectPage = () => {
   useEffect(() => {
     dispatch(getProjectPledgesThunk(id))
   }, [dispatch, id])
+
+
 
   const handleDeleteProject = (projectId) => {
     dispatch(deleteProjectThunk(projectId))
@@ -117,19 +123,28 @@ const ProjectPage = () => {
   }
 
   return (
-    <>
-      <div>{projects?.id}</div>
+    <div>
+      <div className='project-content-container'>
+          <div>
+            <h2 className='project-page-title'>{projects?.title}</h2>
+          </div>
+          <div>
+            <img className='project-image' src={projects?.image_url} alt="" />
+			<Pledge />
+          </div>
+      </div>
+      {/* <div>{projects?.id}</div>
       <div>{projects?.title}</div>
       <div>{projects?.description}</div>
       <li key={projects?.id}>
         <img src={projects?.image_url} alt="" />
-      </li>
-      
+      </li> */}
+
       <div>
-        <Pledge />
+
         <EditDeleteProject />
       </div>
-    </>
+    </div>
   )
 
 }

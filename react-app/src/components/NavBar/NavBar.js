@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -11,28 +12,26 @@ const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
 
   let sessionLinks;
-  if(sessionUser){
+  if (sessionUser) {
     sessionLinks = (
       <>
         {/* <button type="button" className="user-button">
           <ProfileButton user={sessionUser} />
         </button> */}
         <div className="user-container">
-            <button type="button" className="user-button">
+          <button type="button" className="user-button">
             <NavLink to={`/users/${sessionUser.id}`}>Profile Page</NavLink>
             </button>
             <LogoutButton />
             </div>
       </>
     );
-  }
-
-  else {
-  sessionLinks = (
-    <div className="login-menu-right">
-      <LoginFormModal />
-      <SignupFormModal />
-    </div>
+  } else {
+    sessionLinks = (
+      <div className="login-menu-right">
+        <LoginFormModal />
+        <SignupFormModal />
+      </div>
     );
   }
 
@@ -65,8 +64,7 @@ const NavBar = () => {
       </div>
       </div>
     </nav>
-
   );
-}
+};
 
 export default NavBar;

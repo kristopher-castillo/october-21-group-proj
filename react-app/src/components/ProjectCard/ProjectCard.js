@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import { getUserProjectsThunk, getSpecificUserThunk } from '../../store/users';
 import React, { useState, useEffect } from 'react';
-import User from '../UsersPage/User'
+// import User from '../UsersPage/User'
 
 function ProjectCard() {
     const { userId }  = useParams();
@@ -18,8 +18,9 @@ function ProjectCard() {
     return(
         <div className='profile-content-wrap'>
                 <ul className='profile-content-container'>
-                    <li>
-                        {user_projects?.projects.map(project => (
+                    {user_projects?.projects.map(project => (
+                    <li className='project-item'>
+                        <Link to={`/projects/${project.id}`} key={project.id}>
                             <div className='project-card'>
                                 <div>
                                     <img className='project-card-image' src={project.image_url} alt="" />
@@ -30,8 +31,9 @@ function ProjectCard() {
                                 </div>
 
                             </div>
-                        ))}
+                        </Link>
                     </li>
+                    ))}
                 </ul>
 
             </div>

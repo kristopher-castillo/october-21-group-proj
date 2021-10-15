@@ -1,52 +1,52 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, useHistory, useParams } from "react-router-dom";
-import { getProjectThunk } from '../../store/project';
+import { Redirect, useHistory, useParams, NavLink } from "react-router-dom";
+import { getProjectsSearchThunk } from '../../store/search';
+import './SearchBar.css'
 
-const getFilteredProjects = (search, projects) => {
-    console.log(projects, '<------Projects 1')
-
-    if (!search) {
-        console.log(projects, '<------Projects 2')
-        return projects
-    }
-    console.log('HELLO 2')
-    const searchResult = projects?.find(project => project.title.toLowerCase().includes(search.toLowerCase()))
-    console.log(searchResult, '<===== FILTERED')
-    return searchResult
-}
 
 
 const SearchBar = (props) => {
     // const history = useHistory();
     const dispatch = useDispatch();
     const searchState = useSelector(state => state.session.user);
-    const projects = useSelector(state => state.projects?.projects?.projects);
-    console.log(projects, '<======PROJECTS')
-    const [searchRes, setSearchRes] = useState(projects)
+    const projects = useSelector(state => state.search?.projects);
+    console.log(projects, '<======PROJECTS use selector')
+    const [searchText, setSearchText] = useState("")
     const [searchTerm, setSearchTerm] = useState('');
     const history = useHistory();
     console.log(searchTerm, '<----Search Term')
 
     useEffect(() => {
-         dispatch(getProjectThunk());
-      }, [dispatch])
+         dispatch(getProjectsSearchThunk());
+        }, [dispatch])
 
+    const getFilteredProjects = (search, projects) => {
+        if (!search) {
+            return []
+        }
+        const searchResult = projects?.filter(project => 
+            project.title.toLowerCase().includes(search.toLowerCase()))
+        console.log(searchResult, '<===== FILTERED projects')
+        return searchResult
+    }
     const result = getFilteredProjects(searchTerm, projects)
-    console.log(result, '<----Filtered Projects')
-
-
-
-
+    console.log(result, '<----RESULT')
 
     return (
         <>
         <input
         type='text'
-        placeholder={props.placeholder}
         onChange={(e) => setSearchTerm(e.target.value)}
+        value={searchTerm}
         />
-        <button type='submit' onClick={() => history.push(`/projects/${result?.id}`)}>submit</button></>
+        {/* <button type='submit' onClick={() => history.push(`/projects/${result?.id}`)}>submit</button> */}
+        <ul>
+            {result?.map((project) => <li onClick={() =>
+                {setSearchTerm('')
+                history.push(`/projects/${project?.id}`)}} key={project.id}>{project?.title}</li>)}
+        </ul>
+        </>
     )
 }
 
