@@ -13,28 +13,38 @@ def get_pledges():
     pledges = Pledge.query.all()
     return pledges.to_dict()
 
+@pledge_routes.route('/<int:id>')
+def get_specific_pledge(id):
+    """
+    Gets one pledge based on pledge id.
+    """
+    pledge = Pledge.query.filter(Pledge.id == id).first()
+    return pledge.to_dict()
+
+
 @pledge_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def delete_pledge(id):
-    # deleted_project = Project.query.filter(Project.id == id).first()
-    Pledge.query.filter(Pledge.id == id).delete()
+    deleted_pledge = Pledge.query.filter(Pledge.id == id).first()
+    db.session.delete(deleted_pledge)
     db.session.commit()
-    return redirect('/')
+    return {
+        'deleted_pledge': deleted_pledge.to_dict()
+    }
 
 
 @pledge_routes.route('/<int:id>', methods=["PATCH"])
 @login_required
 def update_pledge(id):
-    pledge = Pledge.query.filter(Pledge.id == id)
+    pledge = Pledge.query.filter(Pledge.id == id).first()
+    print('PLEDGEINPATCH`````````', pledge.project_id)
     if current_user.id == pledge.user_id:
         form = PledgeForm()
         form['csrf_token'].data = request.cookies['csrf_token']
-        if form.validate_on_submit():
-            data = form.data
-            project = Pledge(amount=data["amount"],
-                             user_id=current_user.get_id(),
-                             project_id=id
-                             )
-        db.session.add(project)
+        data = form.data
+        pledge.amount=data["amount"],
+        pledge.user_id=current_user.get_id(),
+        pledge.project_id=data["project_id"]
+
         db.session.commit()
-        return redirect('/')
+        return pledge.to_dict()

@@ -1,29 +1,22 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
-import { getUserProjectsThunk } from '../../store/users';
+import { getUserProjectsThunk, getSpecificUserThunk } from '../../store/users';
 import React, { useState, useEffect } from 'react';
 import User from '../UsersPage/User'
-import '../ProjectCard/ProjectCard.css'
-import ProjectCard from '../ProjectCard/ProjectCard';
 
-function UserProjects() {
-    //WILL NEED TO CHANGE THE STATE TO THE USER'S PROFILE INSTEAD OF CURRENT USER
-    const sessionUser = useSelector(state => state.session.user)
+function ProjectCard() {
     const { userId }  = useParams();
     const dispatch = useDispatch()
     const user_projects = useSelector(state => state.users.projects)
 
-    console.log(' These are the user projects',user_projects)
     useEffect(() => {
-      dispatch(getUserProjectsThunk(userId))
-    }, [dispatch])
-    return (
-        <div>
-            <User users={sessionUser}/>
-            <h2>hi from projects</h2>
+        dispatch(getUserProjectsThunk(userId))
 
-            <ProjectCard />
-            {/* <div className='profile-content-wrap'>
+      }, [dispatch])
+
+
+    return(
+        <div className='profile-content-wrap'>
                 <ul className='profile-content-container'>
                     <li>
                         {user_projects?.projects.map(project => (
@@ -35,14 +28,16 @@ function UserProjects() {
                                     <h3 className='project-card-title'>{project.title}</h3>
                                     <p className='project-card-des'>{project.description}</p>
                                 </div>
+
                             </div>
                         ))}
                     </li>
                 </ul>
 
-            </div> */}
-        </div>
+            </div>
     )
+
 }
 
-export default UserProjects;
+export default ProjectCard;
+
