@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory, useParams } from "react-router-dom";
-import { deleteProjectThunk, getSpecificProjectThunk } from "../../store/project";
+import { deleteProjectThunk, getSpecificProjectThunk, projectAmountThunk } from "../../store/project";
 import { getProjectPledgesThunk, deletePledgeThunk } from "../../store/pledge";
+import { transactionThunk } from "../../store/session";
 
 const ProjectPage = () => {
   const [title, setTitle] = useState("");
@@ -28,11 +29,29 @@ const ProjectPage = () => {
     dispatch(getProjectPledgesThunk(id))
   }, [dispatch, id])
 
-  const handleDelete = (projectId) => {
+  const handleDeleteProject = (projectId) => {
     dispatch(deleteProjectThunk(projectId))
   }
+
+  const handleDeletePledge = (pledgeId) => {
+    const updatedProject = {
+      title: projects?.title,
+      description: projects?.description,
+      goal: projects?.goal,
+      categories_id: projects?.categories_id,
+      user_id: projects?.user_id,
+      current_amount: projects?.current_amount - userPledge?.amount,
+      image_url: projects?.image_url
+    }
+
+    dispatch(transactionThunk(user.id, user.money + userPledge?.amount))
+    dispatch(projectAmountThunk(updatedProject, projects?.id))
+    dispatch(deletePledgeThunk(pledgeId))
+  }
+
+
   console.log("Projects", projects)
-  console.log("Pledging", userPledge)
+  console.log("userPledge", userPledge)
   function EditDeleteProject() {
     if (userPledge?.user_id === user?.id) {
       return (
@@ -48,7 +67,7 @@ const ProjectPage = () => {
           <button
             type="button"
             onClick={() => {
-              handleDelete(id)
+              handleDeleteProject(id)
               history.push("/")
             }}
           >
@@ -87,7 +106,7 @@ const ProjectPage = () => {
           <button
             type="button"
             onClick={() => {
-              dispatch(deletePledgeThunk(userPledge?.id))
+            handleDeletePledge(userPledge?.id)
             }}
           >
           Delete your Pledge

@@ -33,14 +33,18 @@ const EditPledge = () => {
     setCurrentAmount(project?.current_amount);
   }, [project?.current_amount]);
 
+  console.log("NewPledgeAmount", newPledgeAmount)
+  console.log('looking for project id in pledge', pledge)
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const newPledge = {
-      amount: 10,
+    const updatedPledge = {
+      id: pledge?.id,
+      amount: newPledgeAmount,
       user_id: user.id,
       project_id: pledge?.project_id,
     };
+    console.log('UPdatedPlege', updatedPledge)
   //  ( current pledge - new pledge) + users money
   //  (newpledge - currentpledge) + project money
     const updatedProject = {
@@ -49,15 +53,15 @@ const EditPledge = () => {
       goal: project?.goal,
       categories_id: project?.categories_id,
       user_id: project?.user_id,
-      current_amount: currentAmount + 10,
+      current_amount: (newPledgeAmount - pledge?.amount) + currentAmount,
       image_url: project?.image_url,
     };
     if (user.money >= 10) {
-      dispatch(updatePledgeThunk(newPledge));
-      dispatch(transactionThunk(user.id, userMoney - newPledgeAmount));
-      setUserMoney(userMoney - newPledgeAmount);
+      dispatch(updatePledgeThunk(updatedPledge));
+      dispatch(transactionThunk(user.id, (pledge?.amount - newPledgeAmount) + userMoney));
+      setUserMoney((pledge?.amount - newPledgeAmount) + userMoney);
       dispatch(projectAmountThunk(updatedProject, project?.id));
-      setCurrentAmount(currentAmount + newPledgeAmount);
+      setCurrentAmount((newPledgeAmount - pledge?.amount) + currentAmount);
       history.push(`/projects/${project?.id}`);
     } else {
       console.log("Not enough money, You broke");
@@ -75,7 +79,7 @@ const EditPledge = () => {
           name="pledge_amount"
           value="5"
           onChange={(e) => setNewPledgeAmount(+e.target.value)}
-          checked={pledge?.amount === 5 ? true : false}
+          // checked={pledge?.amount === 5 ? true : false}
         ></input>
         <label for="pledge5">$5</label>
         <input
@@ -84,7 +88,7 @@ const EditPledge = () => {
           name="pledge_amount"
           value="10"
           onChange={(e) => setNewPledgeAmount(+e.target.value)}
-          checked={pledge?.amount === 10 ? true : false}
+          // checked={pledge?.amount === 10 ? true : false}
         ></input>
         <label for="pledge10">$10</label>
         <input
@@ -93,7 +97,7 @@ const EditPledge = () => {
           name="pledge_amount"
           value="20"
           onChange={(e) => setNewPledgeAmount(+e.target.value)}
-          checked={pledge?.amount === 20 ? true : false}
+          // checked={pledge?.amount === 20 ? true : false}
         ></input>
         <label for="pledge20">$20</label>
         <input
@@ -102,7 +106,7 @@ const EditPledge = () => {
           name="pledge_amount"
           value="50"
           onChange={(e) => setNewPledgeAmount(+e.target.value)}
-          checked={pledge?.amount === 50 ? true : false}
+          // checked={pledge?.amount === 50 ? true : false}
         ></input>
         <label for="pledge50">$50</label>
         <input
@@ -111,12 +115,12 @@ const EditPledge = () => {
           name="pledge_amount"
           value="100"
           onChange={(e) => setNewPledgeAmount(+e.target.value)}
-          checked={pledge?.amount === 100 ? true : false}
+          // checked={pledge?.amount === 100 ? true : false}
         ></input>
         <label for="pledge100">$100</label>
       </div>
       <div>
-        <button>Submit your Pledge</button>
+        <button>Update your Pledge</button>
       </div>
     </form>
   );
