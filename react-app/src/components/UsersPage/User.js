@@ -21,7 +21,7 @@ function User() {
 
   if (!user) {
     return null;
-  }
+	}
 
   return (
     <div className="profile-page-container">
@@ -46,7 +46,7 @@ function User() {
             <Link to={`/users/${userId}/backed`}>Backed</Link>
           </li>
           <li className="profile-tab-item">
-            <Link to={`/users/${userId}/funds`}>Your Funds: {user.money}</Link>
+            <Link to={`/users/${userId}/funds`}>Your Funds</Link>
           </li>
         </ul>
       </div>

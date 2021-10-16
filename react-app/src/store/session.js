@@ -30,8 +30,6 @@ export const transactionThunk = (id, money) => async(dispatch) => {
     const updateAmount = await res.json()
     dispatch(userMoneyAction(updateAmount))
   }
-
-
 }
 
 export const authenticate = () => async (dispatch) => {

@@ -8,11 +8,19 @@
 
 .funds-items {
   display: flex;
-  width: 50%;
+  width: 35%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: rgba(10, 249, 245, .1);
+}
+
+#funds-heading {
+  font-size: 1.5rem;
+}
+
+#funds-amount {
+  font-size: 1rem;
 }
 
 #funds-button {

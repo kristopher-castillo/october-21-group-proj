@@ -13,11 +13,6 @@ const getBackedProjectsAction = projects => ({
     payload: projects
 })
 
-const increaseUserFundsAction = users => ({
-    type: INCREASE_USER_FUNDS,
-    payload: users
-})
-
 // const getSpecificUserAction = users => ({
 //     type: GET_SPECIFIC_USER,
 //     payload: users
@@ -52,15 +47,6 @@ export const getUserProjectsThunk = (id) => async (dispatch) => {
         return projects
     }
     return res
-}
-
-// USE THE OTHER USER PATCH THUNK TO INCREASE FUNDS
-export const increaseUserFundsThunk = (user) => async (dispatch) => {
-    const res = await fetch(`/apie/users/${user.id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(user),
-    });
 }
 
 
