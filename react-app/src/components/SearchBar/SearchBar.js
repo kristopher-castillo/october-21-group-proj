@@ -25,7 +25,7 @@ const SearchBar = (props) => {
         if (!search) {
             return []
         }
-        const searchResult = projects?.filter(project => 
+        const searchResult = projects?.filter(project =>
             project.title.toLowerCase().includes(search.toLowerCase()))
         console.log(searchResult, '<===== FILTERED projects')
         return searchResult

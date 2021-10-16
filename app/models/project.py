@@ -5,7 +5,7 @@ class Project(db.Model):
     __tablename__ = 'projects'
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(50), nullable=False, unique=True)
+    title = db.Column(db.String(100), nullable=False, unique=True)
     description = db.Column(db.Text, nullable=False, unique=True)
     goal = db.Column(db.Integer, nullable=False)
     current_amount = db.Column(db.Integer, nullable=False)
