@@ -1,0 +1,29 @@
+.search-bar-div {
+    display: flex;
+    align-items: center;
+    padding: 0px;
+    width: 400px;
+    flex-direction: column;
+}
+
+.search-bar-input{
+    width: 300px;
+}
+.search-dropdown {
+    position: absolute;
+    /* z-index: 1; */
+    /* background: blue; */
+    /* border: 1px rgb(51, 51, 51) solid; */
+    width: 50%;
+    padding: 0px;
+    margin: 0px;
+
+}
+
+li[class^="results-"] {
+    /* position: absolute; */
+    /* z-index: 1; */
+    background: white;
+    border: 1px rgb(51, 51, 51) solid;
+    width: 50%;
+}
