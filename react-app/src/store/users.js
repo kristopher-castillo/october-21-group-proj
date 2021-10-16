@@ -1,5 +1,6 @@
 const GET_USER_PROJECTS = 'user/projects_load'
 const GET_USER_PLEDGED_PROJECTS = 'user/pledge_project_load'
+const INCREASE_USER_FUNDS = 'user/INCREASE_USER_FUNDS'
 // const GET_SPECIFIC_USER = 'user/specific'
 
 const getUserProjectsAction = projects => ({
@@ -10,6 +11,11 @@ const getUserProjectsAction = projects => ({
 const getBackedProjectsAction = projects => ({
     type: GET_USER_PLEDGED_PROJECTS,
     payload: projects
+})
+
+const increaseUserFundsAction = users => ({
+    type: INCREASE_USER_FUNDS,
+    payload: users
 })
 
 // const getSpecificUserAction = users => ({
@@ -48,6 +54,14 @@ export const getUserProjectsThunk = (id) => async (dispatch) => {
     return res
 }
 
+// USE THE OTHER USER PATCH THUNK TO INCREASE FUNDS
+export const increaseUserFundsThunk = (user) => async (dispatch) => {
+    const res = await fetch(`/apie/users/${user.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(user),
+    });
+}
 
 
 const initialState = {}

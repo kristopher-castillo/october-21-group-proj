@@ -1,0 +1,20 @@
+.funds-container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.funds-items {
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(10, 249, 245, .1);
+}
+
+#funds-button {
+  font-size: 2rem;
+}

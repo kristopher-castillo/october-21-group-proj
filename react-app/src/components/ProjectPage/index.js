@@ -59,7 +59,7 @@ const ProjectPage = () => {
   console.log("Projects", projects)
   console.log("userPledge", userPledge)
   function EditDeleteProject() {
-    if (user && userPledge?.user_id === user?.id) {
+    if (user && projects?.user_id === user?.id) {
       return (
         <div>
           <button
@@ -86,7 +86,7 @@ const ProjectPage = () => {
   }
 
   function Pledge() {
-    if (user) {
+    if (user && user.id !== projects?.user_id) {
       if (!userPledge) {
         return (
           <button

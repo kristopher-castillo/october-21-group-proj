@@ -17,7 +17,7 @@ import EditForm from './components/EditForm/EditForm';
 import EditPledge from './components/EditPledge'
 import UserBacked from './components/UserBacked/UserBacked';
 import UserProjects from './components/UserProjects/UserProjects';
-
+import UserFunds from './components/UserFunds';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -71,6 +71,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId/projects'>
           <UserProjects />
+        </ProtectedRoute>
+        <ProtectedRoute path='/users/:userId/funds'>
+          <UserFunds />
         </ProtectedRoute>
         <Route path='/' exact={true} >
           <h1>My Home Page</h1>
