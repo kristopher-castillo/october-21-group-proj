@@ -1,0 +1,27 @@
+.projects-container {
+  display: flex;
+
+}
+
+.featured-projects {
+  padding: 20px 40px 20px 20px;
+  width: 50%;
+  border-right: 2px solid aquamarine;
+}
+
+#featured-projects-image {
+  width: 600px;
+  max-height: 600px;
+}
+
+.recommended-projects {
+  padding: 20px 20px 20px 40px;
+  width: 50%;
+  border-left: 2px solid aquamarine;
+}
+
+
+#recommended-projects-image {
+  width: 300px;
+  max-height: 200px;
+}

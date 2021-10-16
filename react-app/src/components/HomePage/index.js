@@ -50,9 +50,9 @@ const HomePage = () => {
               </div>
               <div className="featured-projects-info">
                 <p id="selected-featured-title">{featuredProject?.title}</p>
-                <p id="selected-featured-description">
+                {/* <p id="selected-featured-description">
                   {featuredProject?.descrption}
-                </p>
+                </p> */}
               </div>
             </div>
           </Link>
@@ -72,9 +72,9 @@ const HomePage = () => {
                 </div>
                 <div className="recommended-projects-info">
                   <p id="selected-recommended-title">{project.title}</p>
-                  <p id="selected-featured-description">
+                  {/* <p id="selected-featured-description">
                     {project.description}
-                  </p>
+                  </p> */}
                 </div>              
               </li>
             </Link>
