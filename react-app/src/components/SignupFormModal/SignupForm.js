@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector} from "react-redux";
 // import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
-import './SignupForm.css';
+import './SignUpForm.css';
 
 function SignupForm() {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ function SignupForm() {
 
   //   if (sessionUser) return <Redirect to="/" />;
 
-  const handleSubmit = (e) => {
+const handleSubmit = (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
