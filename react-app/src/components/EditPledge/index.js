@@ -33,8 +33,6 @@ const EditPledge = () => {
     setCurrentAmount(project?.current_amount);
   }, [project?.current_amount]);
 
-  console.log("NewPledgeAmount", newPledgeAmount)
-  console.log('looking for project id in pledge', pledge)
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -44,7 +42,6 @@ const EditPledge = () => {
       user_id: user.id,
       project_id: pledge?.project_id,
     };
-    console.log('UPdatedPlege', updatedPledge)
   //  ( current pledge - new pledge) + users money
   //  (newpledge - currentpledge) + project money
     const updatedProject = {
