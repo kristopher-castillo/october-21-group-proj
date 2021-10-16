@@ -59,7 +59,7 @@ const ProjectPage = () => {
   console.log("Projects", projects)
   console.log("userPledge", userPledge)
   function EditDeleteProject() {
-    if (userPledge?.user_id === user?.id) {
+    if (user && userPledge?.user_id === user?.id) {
       return (
         <div>
           <button
@@ -86,40 +86,43 @@ const ProjectPage = () => {
   }
 
   function Pledge() {
-    if (!userPledge) {
-      return (
-      <button
-        type="button"
-        onClick={() => {
-          history.push(`/projects/${id}/pledges`);
-        }}
-      >
-        Back this Project!
-    </button>
-      )
-    }
-    else {
-      return (
-        <div>
+    if (user) {
+      if (!userPledge) {
+        return (
           <button
             type="button"
             onClick={() => {
-              history.push(`/pledges/${userPledge?.id}/edit`);
+              history.push(`/projects/${id}/pledges`);
             }}
           >
-          Update your Pledge
+            Back this Project!
           </button>
-          <button
-            type="button"
-            onClick={() => {
-            handleDeletePledge(userPledge?.id)
-            }}
-          >
-          Delete your Pledge
-          </button>
-        </div>
-      )
+        )
+      }
+      else {
+        return (
+          <div>
+            <button
+              type="button"
+              onClick={() => {
+                history.push(`/pledges/${userPledge?.id}/edit`);
+              }}
+            >
+              Update your Pledge
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                handleDeletePledge(userPledge?.id)
+              }}
+            >
+              Delete your Pledge
+            </button>
+          </div>
+        )
+      }
     }
+    return null
   }
 
   return (
