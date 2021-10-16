@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector} from "react-redux";
 // import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
-import './SignUpForm.css';
+import './SignupForm.css';
 
 function SignupForm() {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const handleSubmit = (e) => {
     if (password === confirmPassword) {
       setErrors([]);
       return dispatch(
-        sessionActions.signUp(username, email, password)
+        sessionActions.signUp( username, email, password )
       ).catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);

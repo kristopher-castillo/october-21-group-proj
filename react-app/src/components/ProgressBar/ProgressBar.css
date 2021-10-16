@@ -1,0 +1,13 @@
+.progress-bar-container {
+    height: 30;
+    width: '100%';
+    border-radius: 40px;
+    background-color: lightgray;
+    margin: 50;
+}
+
+.progress-text {
+    padding: 10;
+    color: 'black';
+    font-weight: 900;
+}

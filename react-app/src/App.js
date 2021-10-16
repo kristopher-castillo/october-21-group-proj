@@ -17,6 +17,8 @@ import EditForm from './components/EditForm/EditForm';
 import EditPledge from './components/EditPledge'
 import UserBacked from './components/UserBacked/UserBacked';
 import UserProjects from './components/UserProjects/UserProjects';
+import AboutFooter from './components/AboutFooter/AboutFooter';
+
 import UserFunds from './components/UserFunds';
 import HomePage from './components/HomePage';
 
@@ -83,6 +85,7 @@ function App() {
           <h1>My Home Page</h1>
         </Route>
       </Switch>
+      <AboutFooter />
     </BrowserRouter>
   );
 }

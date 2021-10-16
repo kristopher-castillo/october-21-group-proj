@@ -1,20 +1,36 @@
 .project-image {
     width: 818px;
-    height: 460px;
+    height: 430px;
 }
 
 .project-content-container {
     display: grid;
     grid-template-columns: 15% 53% 17% 15%;
-    grid-template-rows: 10% auto;
+    grid-template-rows: 10% auto auto;
     grid-template-areas:
         ". header header ."
         ". image pledge ."
+        ". description description .";
+    column-gap: 1rem;
+    row-gap: 1rem;
+    grid-column: 2/4;
 
 }
 .project-page-title {
+    grid-area: header;
+    text-align: center;
 
 }
-.project-image {
+.project-image-container {
     grid-area: image;
+
+}
+.pledge-area {
+    grid-area: pledge;
+}
+.pledge-amount {
+    color: #009E74;
+}
+.description-area {
+    grid-area: description;
 }
