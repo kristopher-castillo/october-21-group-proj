@@ -11,11 +11,10 @@ const SearchBar = (props) => {
     const dispatch = useDispatch();
     const searchState = useSelector(state => state.session.user);
     const projects = useSelector(state => state.search?.projects);
-    console.log(projects, '<======PROJECTS use selector')
     const [searchText, setSearchText] = useState("")
     const [searchTerm, setSearchTerm] = useState('');
     const history = useHistory();
-    console.log(searchTerm, '<----Search Term')
+
 
     useEffect(() => {
          dispatch(getProjectsSearchThunk());
@@ -27,17 +26,16 @@ const SearchBar = (props) => {
         }
         const searchResult = projects?.filter(project =>
             project.title.toLowerCase().includes(search.toLowerCase()))
-        console.log(searchResult, '<===== FILTERED projects')
         return searchResult
     }
     const result = getFilteredProjects(searchTerm, projects)
-    console.log(result, '<----RESULT')
 
     return (
         <>
-        <div classname="search-bar-div">
+        <div className="search-bar-div">
             <input
             type='text'
+            placeholder='Search'
             onChange={(e) => setSearchTerm(e.target.value)}
             value={searchTerm}
             className="search-bar-input"

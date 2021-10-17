@@ -13,7 +13,6 @@ function UserProjects() {
     const dispatch = useDispatch()
     const user_projects = useSelector(state => state.users.projects)
 
-    console.log(' These are the user projects',user_projects)
     useEffect(() => {
       dispatch(getUserProjectsThunk(userId))
     }, [dispatch])

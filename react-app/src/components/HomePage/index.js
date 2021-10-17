@@ -5,16 +5,12 @@ import { deleteProjectThunk, getSpecificProjectThunk, projectAmountThunk, getPro
 import './HomePage.css'
 
 const HomePage = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [goal, setGoal] = useState("");
-  const [category, setCategory] = useState(null);
-  const [image, setImage] = useState("");
+
   const user = useSelector((state) => state.session.user);
   const projects = useSelector((store) => store.projects?.projects?.projects);
 
   const dispatch = useDispatch();
-  const history = useHistory();
+
 
   useEffect(() => {
     dispatch(getProjectThunk());
@@ -50,9 +46,6 @@ const HomePage = () => {
               </div>
               <div className="featured-projects-info">
                 <p id="selected-featured-title">{featuredProject?.title}</p>
-                {/* <p id="selected-featured-description">
-                  {featuredProject?.descrption}
-                </p> */}
               </div>
             </div>
           </Link>
@@ -75,7 +68,7 @@ const HomePage = () => {
                   {/* <p id="selected-featured-description">
                     {project.description}
                   </p> */}
-                </div>              
+                </div>
               </li>
             </Link>
           ))}

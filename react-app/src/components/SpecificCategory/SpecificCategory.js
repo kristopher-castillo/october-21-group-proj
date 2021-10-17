@@ -2,7 +2,8 @@ import React, { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {useHistory, Link, useParams } from "react-router-dom";
 import { getCategoryProjectsThunk } from "../../store/project";
-
+import HomePage from "../HomePage";
+import ProjectCard from "../ProjectCard/ProjectCard";
 function SpecificCategory() {
     const dispatch = useDispatch();
     const {categoryId} = useParams()
@@ -10,21 +11,19 @@ function SpecificCategory() {
     useEffect(() => {
         dispatch(getCategoryProjectsThunk(categoryId))
     }, [dispatch, categoryId])
+
+    console.log(projects)
+    let featured = projects?.projects[Math.floor(Math.random() * projects?.projects.length)]
+
+
     return(
-        <div className='main_category_container'>
-            <div className='project_container'>
-                <ul>
-                    {projects?.projects?.map((project) => (
-                        <li key={project.id}>
-                            <Link to={`/projects/${project.id}`}>
-                            <img src={project.image_url} alt="" />
-                            {project.title}
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
-            </div>
+
+        <div>
+            <HomePage projects={projects}/>
+            <ProjectCard />
+
         </div>
+
     )
 }
 

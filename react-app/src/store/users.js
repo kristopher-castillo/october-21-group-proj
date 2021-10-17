@@ -31,7 +31,6 @@ const getBackedProjectsAction = projects => ({
 export const getBackedProjectsThunk = (id) => async (dispatch) => {
     const res = await fetch(`/api/users/${id}/backed`)
     if(res.ok) {
-        console.log('backedProjectThunk~~~~~~~~~')
         const projects = await res.json()
         dispatch(getBackedProjectsAction(projects))
         return projects

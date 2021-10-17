@@ -48,7 +48,7 @@ const EditForm = () => {
         categories_id: categoryId,
         current_amount: project.current_amount
       }
-      console.log("PROJECTFROMEDIT", project)
+ 
     dispatch(updateProjectThunk(updatedProject));
     history.push(`/projects/${project.id}`)
   }
