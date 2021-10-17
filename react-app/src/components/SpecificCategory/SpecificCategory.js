@@ -1,7 +1,11 @@
 import React, { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {useHistory, Link, useParams } from "react-router-dom";
+import {useParams, Link } from "react-router-dom";
 import { getCategoryProjectsThunk } from "../../store/project";
+import HomePage from "../HomePage";
+import './SpecificCategory.css'
+import { left, right } from "../images";
+
 
 function SpecificCategory() {
     const dispatch = useDispatch();
@@ -9,22 +13,46 @@ function SpecificCategory() {
     const projects = useSelector(state => state.projects.projects)
     useEffect(() => {
         dispatch(getCategoryProjectsThunk(categoryId))
-    }, [dispatch, categoryId])
+        document.getElementById('slider').scrollLeft = 0
+    }, [dispatch, categoryId, document])
+
+
+    function leftClick(e) {
+
+        document.getElementById('slider').scrollLeft -= 316
+    }
+    function rightClick(e) {
+
+        // window.alert('hi')
+        document.getElementById('slider').scrollLeft += 316
+    }
+
     return(
-        <div className='main_category_container'>
-            <div className='project_container'>
-                <ul>
+        <div>
+            <HomePage />
+            <div className='carousel-container'>
+                <img id='slide-left'
+                className='arrow'
+                onClick={leftClick}
+                src={left} alt="" />
+
+                <div id='slider'>
                     {projects?.projects?.map((project) => (
-                        <li key={project.id}>
-                            <Link to={`/projects/${project.id}`}>
-                            <img src={project.image_url} alt="" />
-                            {project.title}
-                            </Link>
-                        </li>
+                        <Link to={`/projects/${project?.id}`}>
+                            <img className='thumbnail' src={project.image_url} alt="" />
+                        </Link>
                     ))}
-                </ul>
+                </div>
+
+                <img id='slide-right'
+                onClick={rightClick}
+                className='arrow'
+                src={right} alt="" />
+
             </div>
+
         </div>
+
     )
 }
 

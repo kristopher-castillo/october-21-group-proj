@@ -13,9 +13,7 @@ export const getCategoriesThunk = () => async (dispatch) => {
   if (res.ok) {
     let categories = await res.json();
     dispatch(getCategoriesAction(categories));
-  } else {
-    console.log("didn't make it here");
-  }
+  } 
 
   return res;
 };

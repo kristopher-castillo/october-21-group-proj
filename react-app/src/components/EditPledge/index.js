@@ -65,7 +65,6 @@ const EditPledge = () => {
       console.log("Not enough money, You broke");
     }
 
-    console.log("This is my user money", user?.money);
   };
 
   return (

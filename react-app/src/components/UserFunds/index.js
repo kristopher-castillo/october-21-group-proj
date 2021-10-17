@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import User from "../UsersPage/User";
 import { transactionThunk } from "../../store/session";
 import "./UserFunds.css";

@@ -1,6 +1,4 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import "./AboutFooter.css"
 
 const AboutFooter = () => {
@@ -27,7 +25,7 @@ const AboutFooter = () => {
                 </div>
             </div>
         </div>
-        
+
     )
 }
 // .follow

@@ -1,0 +1,31 @@
+.thumbnail {
+    height: 150px;
+    width: 300px;
+}
+
+.carousel-container {
+    display:flex;
+    max-width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+#slider {
+    display: flex;
+    width: 65%;
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+.arrow {
+    cursor: pointer;
+    transition: .3s;
+}
+
+.arrow:hover {
+    opacity: .5;
+}
+
+.thumbnail {
+    margin: 1rem;
+}

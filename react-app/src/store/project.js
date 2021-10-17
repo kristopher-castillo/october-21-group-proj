@@ -70,7 +70,6 @@ export const addProjectThunk = (projects) => async (dispatch) => {
     },
   });
 
-  console.log("THUNKPROJ", projects);
 
   if (response.ok) {
     const data = await response.json();
@@ -110,15 +109,12 @@ export const getSpecificProjectThunk = (id) => async (dispatch) => {
 };
 
 export const updateProjectThunk = (projects) => async (dispatch) => {
-  console.log("entering patch thunk")
-  console.log("projects", projects)
-  console.log("projects.id", projects.id)
+
   const response = await fetch(`/api/projects/${projects.id}`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(projects),
   });
-  console.log(response)
 
   if (response.ok) {
     const updatedProject = await response.json();

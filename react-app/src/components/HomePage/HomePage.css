@@ -29,7 +29,7 @@
   align-content: center;
   padding: 10px 20px 20px 65px;
   width: 50%;
-  
+
 }
 
 #recommended-projects-image {
@@ -37,3 +37,13 @@
   max-height: 150px;
 }
 
+.percentage-info {
+  color: #009E74;
+}
+.recommended-projects-item {
+  display: flex;
+}
+
+.recommended-projects-info {
+  margin-left: 1rem;
+}
