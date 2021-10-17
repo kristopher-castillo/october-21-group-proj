@@ -1,5 +1,6 @@
 const GET_USER_PROJECTS = 'user/projects_load'
 const GET_USER_PLEDGED_PROJECTS = 'user/pledge_project_load'
+const INCREASE_USER_FUNDS = 'user/INCREASE_USER_FUNDS'
 // const GET_SPECIFIC_USER = 'user/specific'
 
 const getUserProjectsAction = projects => ({
@@ -47,7 +48,6 @@ export const getUserProjectsThunk = (id) => async (dispatch) => {
     }
     return res
 }
-
 
 
 const initialState = {}

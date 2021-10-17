@@ -4,6 +4,7 @@ import { Redirect, useHistory, useParams } from "react-router-dom";
 import { deleteProjectThunk, getSpecificProjectThunk, projectAmountThunk, getProjectThunk } from "../../store/project";
 import { getProjectPledgesThunk, deletePledgeThunk } from "../../store/pledge";
 import { transactionThunk } from "../../store/session";
+import ProgressBar from "../ProgressBar/ProgressBar";
 import './ProjectPage.css'
 const ProjectPage = () => {
   const [title, setTitle] = useState("");
@@ -59,7 +60,7 @@ const ProjectPage = () => {
   console.log("Projects", projects)
   console.log("userPledge", userPledge)
   function EditDeleteProject() {
-    if (userPledge?.user_id === user?.id) {
+    if (user && projects?.user_id === user?.id) {
       return (
         <div>
           <button
@@ -86,40 +87,43 @@ const ProjectPage = () => {
   }
 
   function Pledge() {
-    if (!userPledge) {
-      return (
-      <button
-        type="button"
-        onClick={() => {
-          history.push(`/projects/${id}/pledges`);
-        }}
-      >
-        Back this Project!
-    </button>
-      )
-    }
-    else {
-      return (
-        <div>
+    if (user && user.id !== projects?.user_id) {
+      if (!userPledge) {
+        return (
           <button
             type="button"
             onClick={() => {
-              history.push(`/pledges/${userPledge?.id}/edit`);
+              history.push(`/projects/${id}/pledges`);
             }}
           >
-          Update your Pledge
+            Back this Project!
           </button>
-          <button
-            type="button"
-            onClick={() => {
-            handleDeletePledge(userPledge?.id)
-            }}
-          >
-          Delete your Pledge
-          </button>
-        </div>
-      )
+        )
+      }
+      else {
+        return (
+          <div>
+            <button
+              type="button"
+              onClick={() => {
+                history.push(`/pledges/${userPledge?.id}/edit`);
+              }}
+            >
+              Update your Pledge
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                handleDeletePledge(userPledge?.id)
+              }}
+            >
+              Delete your Pledge
+            </button>
+          </div>
+        )
+      }
     }
+    return null
   }
 
   return (
@@ -132,8 +136,19 @@ const ProjectPage = () => {
             <img className='project-image' src={projects?.image_url} alt="" />
           </div>
 		  <div className='pledge-area'>
-			<Pledge />
+			  <ProgressBar bgcolor="#009E74" progress={((projects?.current_amount / projects?.goal) * 100).toFixed(1)} height={30} />
+			  <div>
+				  <h3 className='pledge-amount'>${projects?.current_amount}</h3>
+			  </div>
+			  <div>
+				  <p>pledged of ${projects?.goal}</p>
+				<Pledge />
+			  </div>
 		  </div>
+		  <div className='description-area'>
+				<p>{projects?.description}</p>
+		  </div>
+
       </div>
       {/* <div>{projects?.id}</div>
       <div>{projects?.title}</div>
