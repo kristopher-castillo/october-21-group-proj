@@ -18,7 +18,7 @@ function UserProjects() {
     return (
         <div>
             <User users={sessionUser}/>
-            <h2>hi from projects</h2>
+            
 
             <ProjectCard />
             {/* <div className='profile-content-wrap'>
