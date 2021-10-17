@@ -133,7 +133,7 @@ const EditForm = () => {
           required={true}
         ></input>
       </div>
-      <button type="submit">Edit Project</button>
+      <button type="submit" className='edit-btn'>Edit Project</button>
     </form>
   );
 };

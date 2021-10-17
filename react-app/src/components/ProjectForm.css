@@ -1,4 +1,4 @@
-.editForm {
+.projectForm {
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -16,7 +16,7 @@
 
 }
 
-.edit-btn {
+.submit-btn {
     margin-top: 15px;
     padding: 5px;
     border-style: solid;
