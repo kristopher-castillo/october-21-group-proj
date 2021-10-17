@@ -30,7 +30,7 @@ const HomePage = () => {
         .sort(() => 0.5 - Math.random()).slice(0, 3)
     }
     else {
-      recommendedProjects = projects.sort(() => 0.5 - Math.random()).slice(0, 2)
+      recommendedProjects = projects.sort(() => 0.5 - Math.random()).slice(0, 3)
     }
   }
 
