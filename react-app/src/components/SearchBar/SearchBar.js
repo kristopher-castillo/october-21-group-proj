@@ -35,7 +35,7 @@ const SearchBar = (props) => {
 
     return (
         <>
-        <div classname="search-bar-div">
+        <div className="search-bar-div">
             <input
             type='text'
             onChange={(e) => setSearchTerm(e.target.value)}
