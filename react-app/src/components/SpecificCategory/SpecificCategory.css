@@ -15,6 +15,7 @@
     width: 65%;
     flex-wrap: nowrap;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 .arrow {
     cursor: pointer;

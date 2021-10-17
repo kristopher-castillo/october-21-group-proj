@@ -19,12 +19,12 @@ function SpecificCategory() {
 
     function leftClick(e) {
 
-        document.getElementById('slider').scrollLeft -= 200
+        document.getElementById('slider').scrollLeft -= 316
     }
     function rightClick(e) {
 
         // window.alert('hi')
-        document.getElementById('slider').scrollLeft += 200
+        document.getElementById('slider').scrollLeft += 316
     }
 
     return(
