@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getUserProjectsThunk } from '../../store/users';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import User from '../UsersPage/User'
 import '../ProjectCard/ProjectCard.css'
 import ProjectCard from '../ProjectCard/ProjectCard';
@@ -11,9 +11,7 @@ function UserProjects() {
     const sessionUser = useSelector(state => state.session.user)
     const { userId }  = useParams();
     const dispatch = useDispatch()
-    const user_projects = useSelector(state => state.users.projects)
 
-    console.log(' These are the user projects',user_projects)
     useEffect(() => {
       dispatch(getUserProjectsThunk(userId))
     }, [dispatch])

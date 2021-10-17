@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import { getCategoriesThunk } from "../../store/categories";
-import { getProjectThunk, updateProjectThunk, getSpecificProjectThunk } from "../../store/project";
+import { updateProjectThunk, getSpecificProjectThunk } from "../../store/project";
 import './EditForm.css';
 
 const EditForm = () => {
@@ -49,7 +49,7 @@ const EditForm = () => {
         categories_id: categoryId,
         current_amount: project.current_amount
       }
-      console.log("PROJECTFROMEDIT", project)
+
     dispatch(updateProjectThunk(updatedProject));
     history.push(`/projects/${project.id}`)
   }

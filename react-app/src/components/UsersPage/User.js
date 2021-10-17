@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { getUserProjectsThunk } from '../../store/users';
-import { useDispatch, useSelector } from 'react-redux';
 import './UserPage.css'
 function User() {
   const [user, setUser] = useState({});

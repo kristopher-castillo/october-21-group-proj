@@ -14,8 +14,8 @@ const PledgePage = () => {
   const [pledgeAmount, setPledgeAmount] = useState(0)
   const { projectId } = useParams();
 
-  console.log("THISISPROJECT", project)
-  
+
+
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -26,12 +26,11 @@ const PledgePage = () => {
   useEffect(() => {
     setCurrentAmount(project?.current_amount)
   }, [project?.current_amount])
-  console.log("PledgeAmount", pledgeAmount)
 
-  console.log("useridtest", project?.user_id)
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    
+
     const newPledge = {
       amount: pledgeAmount,
       user_id: user.id,
@@ -47,14 +46,13 @@ const PledgePage = () => {
       current_amount: currentAmount + pledgeAmount,
       image_url: project?.image_url
     }
-    console.log("UPDATEDPROJECT1", updatedProject)
+
 
     if (user.money >= 10) {
-      
+
       dispatch(createPledgeThunk(newPledge, projectId))
       dispatch(transactionThunk(user.id, userMoney - pledgeAmount))
       setUserMoney(userMoney - pledgeAmount)
-      console.log("UPDATEDPROJECT2", updatedProject)
       dispatch(projectAmountThunk(updatedProject, projectId))
       setCurrentAmount(currentAmount + pledgeAmount)
       history.push(`/projects/${projectId}`)
@@ -73,7 +71,7 @@ const PledgePage = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="pledgeButtons">
-        <input        
+        <input
           type="radio"
           id="pledge5"
           name="pledge_amount"
@@ -82,7 +80,7 @@ const PledgePage = () => {
           >
         </input>
         <label for="pledge5">$5</label>
-        <input        
+        <input
           type="radio"
           id="pledge10"
           name="pledge_amount"
@@ -91,7 +89,7 @@ const PledgePage = () => {
           >
         </input>
         <label for="pledge10">$10</label>
-        <input        
+        <input
           type="radio"
           id="pledge20"
           name="pledge_amount"
@@ -100,7 +98,7 @@ const PledgePage = () => {
           >
         </input>
         <label for="pledge20">$20</label>
-        <input        
+        <input
           type="radio"
           id="pledge50"
           name="pledge_amount"
@@ -109,7 +107,7 @@ const PledgePage = () => {
           >
         </input>
         <label for="pledge50">$50</label>
-        <input        
+        <input
           type="radio"
           id="pledge100"
           name="pledge_amount"
