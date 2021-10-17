@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import { getCategoriesThunk } from "../../store/categories";
 import { getProjectThunk, updateProjectThunk, getSpecificProjectThunk } from "../../store/project";
+import './EditForm.css';
 
 const EditForm = () => {
   const project = useSelector(store => store.projects?.projects);
@@ -54,7 +55,7 @@ const EditForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='editForm'>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
@@ -132,7 +133,7 @@ const EditForm = () => {
           required={true}
         ></input>
       </div>
-      <button type="submit">Edit Project</button>
+      <button type="submit" className='edit-btn'>Edit Project</button>
     </form>
   );
 };
