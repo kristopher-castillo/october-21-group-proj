@@ -5,6 +5,7 @@ import { createPledgeThunk } from "../../store/pledge";
 // import { signUp } from '../../store/session';
 import { getSpecificProjectThunk, projectAmountThunk } from "../../store/project";
 import { transactionThunk } from "../../store/session";
+import "./PledgePage.css"
 
 const PledgePage = () => {
   const user = useSelector((state) => state.session.user);
@@ -71,59 +72,64 @@ const PledgePage = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="pledgeButtons">
-        <input        
-          type="radio"
-          id="pledge5"
-          name="pledge_amount"
-          value="5"
-          onChange={(e) => setPledgeAmount(+(e.target.value))}
-          >
-        </input>
-        <label for="pledge5">$5</label>
-        <input        
-          type="radio"
-          id="pledge10"
-          name="pledge_amount"
-          value="10"
-          onChange={(e) => setPledgeAmount(+(e.target.value))}
-          >
-        </input>
-        <label for="pledge10">$10</label>
-        <input        
-          type="radio"
-          id="pledge20"
-          name="pledge_amount"
-          value="20"
-          onChange={(e) => setPledgeAmount(+(e.target.value))}
-          >
-        </input>
-        <label for="pledge20">$20</label>
-        <input        
-          type="radio"
-          id="pledge50"
-          name="pledge_amount"
-          value="50"
-          onChange={(e) => setPledgeAmount(+(e.target.value))}
-          >
-        </input>
-        <label for="pledge50">$50</label>
-        <input        
-          type="radio"
-          id="pledge100"
-          name="pledge_amount"
-          value="100"
-          onChange={(e) => setPledgeAmount(+(e.target.value))}
-          >
-        </input>
-        <label for="pledge100">$100</label>
+    <div className="new-pledge-container">
+      <div className="new-pledge-title">Jumpstart {project?.title}!</div>
+      <div className="new-pledge-image">
+        <img id="new-pledge-image" src={project?.image_url} alt={project?.title}></img>
       </div>
-      <div>
-        <button>Submit your Pledge</button>
-      </div>
-    </form>
-  )
+      <form onSubmit={handleSubmit}>
+        <div className="pledgeButtons">
+          <div id="pledge-button-5">
+            <input
+              type="radio"
+              id="pledge5"
+              name="pledge_amount"
+              value="5"
+              onChange={(e) => setPledgeAmount(+e.target.value)}
+            ></input>
+            <label htmlFor="pledge5">$5</label>
+          </div>
+          <div id="pledge-button-10">
+            <input
+              type="radio"
+              id="pledge10"
+              name="pledge_amount"
+              value="10"
+              onChange={(e) => setPledgeAmount(+e.target.value)}
+            ></input>
+            <label htmlFor="pledge10">$10</label>
+          </div>
+          <input
+            type="radio"
+            id="pledge20"
+            name="pledge_amount"
+            value="20"
+            onChange={(e) => setPledgeAmount(+e.target.value)}
+          ></input>
+          <label for="pledge20">$20</label>
+          <input
+            type="radio"
+            id="pledge50"
+            name="pledge_amount"
+            value="50"
+            onChange={(e) => setPledgeAmount(+e.target.value)}
+          ></input>
+          <label for="pledge50">$50</label>
+          <input
+            type="radio"
+            id="pledge100"
+            name="pledge_amount"
+            value="100"
+            onChange={(e) => setPledgeAmount(+e.target.value)}
+          ></input>
+          <label for="pledge100">$100</label>
+        </div>
+        <div>
+          <button>Submit your Pledge</button>
+        </div>
+      </form>
+    </div>
+  );
 }
 
 export default PledgePage;
