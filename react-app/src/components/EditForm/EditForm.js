@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import { getCategoriesThunk } from "../../store/categories";
-import { getProjectThunk, updateProjectThunk, getSpecificProjectThunk } from "../../store/project";
+import { updateProjectThunk, getSpecificProjectThunk } from "../../store/project";
 
 const EditForm = () => {
   const project = useSelector(store => store.projects?.projects);
@@ -48,7 +48,7 @@ const EditForm = () => {
         categories_id: categoryId,
         current_amount: project.current_amount
       }
- 
+
     dispatch(updateProjectThunk(updatedProject));
     history.push(`/projects/${project.id}`)
   }

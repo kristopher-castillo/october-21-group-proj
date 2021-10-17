@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, useHistory, useParams, NavLink } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { getProjectsSearchThunk } from '../../store/search';
 import './SearchBar.css'
 

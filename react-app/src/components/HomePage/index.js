@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect, useHistory, Link } from "react-router-dom";
-import { deleteProjectThunk, getSpecificProjectThunk, projectAmountThunk, getProjectThunk } from "../../store/project";
+import { Link } from "react-router-dom";
+import {getProjectThunk } from "../../store/project";
 import './HomePage.css'
 
 const HomePage = () => {
@@ -65,6 +65,7 @@ const HomePage = () => {
                 </div>
                 <div className="recommended-projects-info">
                   <p id="selected-recommended-title">{project.title}</p>
+                  <p className='percentage-info'>{((project.current_amount / project.goal)* 100).toFixed(0)}% Funded</p>
                   {/* <p id="selected-featured-description">
                     {project.description}
                   </p> */}

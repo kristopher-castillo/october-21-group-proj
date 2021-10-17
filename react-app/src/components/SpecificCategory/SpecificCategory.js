@@ -1,26 +1,55 @@
 import React, { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {useHistory, Link, useParams } from "react-router-dom";
+import {useParams, Link } from "react-router-dom";
 import { getCategoryProjectsThunk } from "../../store/project";
 import HomePage from "../HomePage";
-import ProjectCard from "../ProjectCard/ProjectCard";
+import './SpecificCategory.css'
+import { left, right } from "../images";
+
+
 function SpecificCategory() {
     const dispatch = useDispatch();
     const {categoryId} = useParams()
     const projects = useSelector(state => state.projects.projects)
     useEffect(() => {
         dispatch(getCategoryProjectsThunk(categoryId))
-    }, [dispatch, categoryId])
+        document.getElementById('slider').scrollLeft = 0
+    }, [dispatch, categoryId, document])
 
-    console.log(projects)
-    let featured = projects?.projects[Math.floor(Math.random() * projects?.projects.length)]
 
+    function leftClick(e) {
+
+        document.getElementById('slider').scrollLeft -= 180
+    }
+    function rightClick(e) {
+
+        // window.alert('hi')
+        document.getElementById('slider').scrollLeft += 180
+    }
 
     return(
-
         <div>
-            <HomePage projects={projects}/>
-            <ProjectCard />
+            <HomePage />
+            <div className='carousel-container'>
+                <img id='slide-left'
+                className='arrow'
+                onClick={leftClick}
+                src={left} alt="" />
+
+                <div id='slider'>
+                    {projects?.projects?.map((project) => (
+                        <Link to={`/projects/${project?.id}`}>
+                            <img className='thumbnail' src={project.image_url} alt="" />
+                        </Link>
+                    ))}
+                </div>
+
+                <img id='slide-right'
+                onClick={rightClick}
+                className='arrow'
+                src={right} alt="" />
+
+            </div>
 
         </div>
 

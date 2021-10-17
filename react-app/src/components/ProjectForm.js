@@ -12,7 +12,6 @@ const ProjectForm = () => {
   const [categoryId, setCategoryId] = useState(null);
   const [image, setImage] = useState("")
   const user = useSelector((state) => state.session.user);
-  const projects = useSelector(store => store.projects);
   const categories = useSelector(store => store.categories.categories)
   const dispatch = useDispatch();
   const history = useHistory();

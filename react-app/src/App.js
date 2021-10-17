@@ -11,7 +11,7 @@ import ProjectPage from './components/ProjectPage';
 import { authenticate } from './store/session';
 import PledgePage from './components/PledgePage';
 import SpecificCategory from './components/SpecificCategory/SpecificCategory';
-import SearchBar from './components/SearchBar/SearchBar';
+// import SearchBar from './components/SearchBar/SearchBar';
 // import EditForm from './components/EditForm';
 import EditForm from './components/EditForm/EditForm';
 import EditPledge from './components/EditPledge'
