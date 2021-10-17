@@ -16,3 +16,10 @@
   padding-bottom: 25px;
 }
 
+.pledgeButtons div {
+  border: 2px solid #DCDEDD;
+  padding: 10px;
+  margin: 5px;
+  width: 400px;
+  height: 100px;
+}

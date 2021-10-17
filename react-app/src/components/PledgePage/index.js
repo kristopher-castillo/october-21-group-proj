@@ -75,7 +75,11 @@ const PledgePage = () => {
     <div className="new-pledge-container">
       <div className="new-pledge-title">Jumpstart {project?.title}!</div>
       <div className="new-pledge-image">
-        <img id="new-pledge-image" src={project?.image_url} alt={project?.title}></img>
+        <img
+          id="new-pledge-image"
+          src={project?.image_url}
+          alt={project?.title}
+        ></img>
       </div>
       <form onSubmit={handleSubmit}>
         <div className="pledgeButtons">
@@ -88,6 +92,7 @@ const PledgePage = () => {
               onChange={(e) => setPledgeAmount(+e.target.value)}
             ></input>
             <label htmlFor="pledge5">$5</label>
+            <p>Tier 1</p>
           </div>
           <div id="pledge-button-10">
             <input
@@ -98,31 +103,41 @@ const PledgePage = () => {
               onChange={(e) => setPledgeAmount(+e.target.value)}
             ></input>
             <label htmlFor="pledge10">$10</label>
+            <p>Tier 2</p>
           </div>
-          <input
-            type="radio"
-            id="pledge20"
-            name="pledge_amount"
-            value="20"
-            onChange={(e) => setPledgeAmount(+e.target.value)}
-          ></input>
-          <label for="pledge20">$20</label>
-          <input
-            type="radio"
-            id="pledge50"
-            name="pledge_amount"
-            value="50"
-            onChange={(e) => setPledgeAmount(+e.target.value)}
-          ></input>
-          <label for="pledge50">$50</label>
-          <input
-            type="radio"
-            id="pledge100"
-            name="pledge_amount"
-            value="100"
-            onChange={(e) => setPledgeAmount(+e.target.value)}
-          ></input>
-          <label for="pledge100">$100</label>
+          <div id="pledge-button-20">
+            <input
+              type="radio"
+              id="pledge20"
+              name="pledge_amount"
+              value="20"
+              onChange={(e) => setPledgeAmount(+e.target.value)}
+            ></input>
+            <label htmlFor="pledge20">$20</label>
+            <p>Tier 3</p>
+          </div>
+          <div id="pledge-button-50">
+            <input
+              type="radio"
+              id="pledge50"
+              name="pledge_amount"
+              value="50"
+              onChange={(e) => setPledgeAmount(+e.target.value)}
+            ></input>
+            <label htmlFor="pledge50">$50</label>
+            <p>Tier 4</p>
+          </div>
+          <div id="pledge-button-100">
+            <input
+              type="radio"
+              id="pledge100"
+              name="pledge_amount"
+              value="100"
+              onChange={(e) => setPledgeAmount(+e.target.value)}
+            ></input>
+            <label htmlFor="pledge100">$100</label>
+            <p>Tier 5</p>
+          </div>
         </div>
         <div>
           <button>Submit your Pledge</button>
