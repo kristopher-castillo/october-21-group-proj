@@ -15,12 +15,12 @@ function SignupForm() {
 
   //   if (sessionUser) return <Redirect to="/" />;
 
-  const handleSubmit = (e) => {
+const handleSubmit = (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
       return dispatch(
-        sessionActions.signUp({ email, username, password })
+        sessionActions.signUp( username, email, password )
       ).catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);

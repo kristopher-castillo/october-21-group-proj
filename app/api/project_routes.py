@@ -55,18 +55,16 @@ def new_project():
 @project_routes.route('/<int:id>', methods=['PATCH'])
 @login_required
 def update_project(id):
-    print("--------entered PATCH route-----------")
     project = Project.query.filter(Project.id == id).first()
     # if current_user.id == project.user_id:
     form = ProjectForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     data = form.data
-    print("ERICSCATEGORY``````````", data['categories_id'])
     project.title = data['title'],
     project.description = data['description'],
     project.goal = data['goal'],
     project.categories_id = data['categories_id'],
-    project.user_id = current_user.get_id(),
+    project.user_id = project.user_id,
     project.current_amount = data['current_amount'],
     project.image_url = data['image_url']
     db.session.commit()
@@ -96,7 +94,6 @@ def new_pledge(id):
     form = PledgeForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        print('~~~~~~~~Inside the form validate~~~~~~~~~~~~~~')
         data = form.data
         new_pledge = Pledge(amount=data["amount"],
                         user_id=current_user.get_id(),

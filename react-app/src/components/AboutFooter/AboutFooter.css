@@ -1,0 +1,47 @@
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    bottom: 40px;
+    /* background-color: #264653; */
+    color: black;
+}
+  
+.follow {
+    display: flex;
+    flex-direction: row;
+    margin: 15px 15px;
+    align-items: center;
+    justify-content: space-around;
+    width: 150px;
+    font-size: 30px;
+    height: 25px;
+}
+  
+.follow > p {
+      height: 15px;
+      font-size: 20px;
+}
+  
+.footer-members {
+    display: flex;
+}
+  
+.footer-item a {
+      margin: 15px 15px 0;
+      font-size: 15px;
+}
+  
+.footer-year {
+    margin: 20px 0px 15px 0px;
+    font-size: 10px;
+}
+  
+@media screen and (max-height: 750px) {
+      .footer {
+      display: none;
+    }
+}

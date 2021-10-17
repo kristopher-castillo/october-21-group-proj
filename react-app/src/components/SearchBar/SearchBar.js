@@ -25,7 +25,7 @@ const SearchBar = (props) => {
         if (!search) {
             return []
         }
-        const searchResult = projects?.filter(project => 
+        const searchResult = projects?.filter(project =>
             project.title.toLowerCase().includes(search.toLowerCase()))
         console.log(searchResult, '<===== FILTERED projects')
         return searchResult
@@ -35,17 +35,20 @@ const SearchBar = (props) => {
 
     return (
         <>
-        <input
-        type='text'
-        onChange={(e) => setSearchTerm(e.target.value)}
-        value={searchTerm}
-        />
+        <div classname="search-bar-div">
+            <input
+            type='text'
+            onChange={(e) => setSearchTerm(e.target.value)}
+            value={searchTerm}
+            className="search-bar-input"
+            />
         {/* <button type='submit' onClick={() => history.push(`/projects/${result?.id}`)}>submit</button> */}
-        <ul>
-            {result?.map((project) => <li onClick={() =>
-                {setSearchTerm('')
-                history.push(`/projects/${project?.id}`)}} key={project.id}>{project?.title}</li>)}
-        </ul>
+            <ul className="search-dropdown">
+                {result?.map((project) => <li onClick={() =>
+                    {setSearchTerm('')
+                    history.push(`/projects/${project?.id}`)}} key={project.id} className={`results-${project.id}`}>{project?.title}</li>)}
+            </ul>
+        </div>
         </>
     )
 }

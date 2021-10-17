@@ -26,9 +26,9 @@ const PledgePage = () => {
   useEffect(() => {
     setCurrentAmount(project?.current_amount)
   }, [project?.current_amount])
-    console.log("PledgeAmount", pledgeAmount)
+  console.log("PledgeAmount", pledgeAmount)
 
-
+  console.log("useridtest", project?.user_id)
   const handleSubmit = (e) => {
     e.preventDefault()
     
@@ -47,15 +47,23 @@ const PledgePage = () => {
       current_amount: currentAmount + pledgeAmount,
       image_url: project?.image_url
     }
+    console.log("UPDATEDPROJECT1", updatedProject)
+
     if (user.money >= 10) {
       
       dispatch(createPledgeThunk(newPledge, projectId))
       dispatch(transactionThunk(user.id, userMoney - pledgeAmount))
       setUserMoney(userMoney - pledgeAmount)
+      console.log("UPDATEDPROJECT2", updatedProject)
       dispatch(projectAmountThunk(updatedProject, projectId))
       setCurrentAmount(currentAmount + pledgeAmount)
       history.push(`/projects/${projectId}`)
-    }else {
+    } else {
+      if (window.confirm("You're out of money! Would you like to add more?")) {
+        history.push(`/users/${user.id}`)
+      } else {
+        history.push(`/projects/${projectId}`);
+      }
       console.log('Not enough money, You broke')
     }
 
