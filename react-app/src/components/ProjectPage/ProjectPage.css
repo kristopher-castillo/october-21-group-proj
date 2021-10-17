@@ -1,6 +1,8 @@
 .project-image {
-    width: 818px;
-    height: 430px;
+    /* width: 818px;
+    height: 430px; */
+    height: 100%;
+    width: 100%;
 }
 
 .project-content-container {
@@ -23,14 +25,26 @@
 }
 .project-image-container {
     grid-area: image;
+    height: 422px;
+    width: 620px;
+
 
 }
 .pledge-area {
     grid-area: pledge;
 }
 .pledge-amount {
-    color: #009E74;
+    color: #006869;
 }
 .description-area {
     grid-area: description;
+}
+
+
+.back-project-button {
+    height: 36px;
+    width: 304px;
+    border: solid 1px;
+    color: white;
+    background-color: #006869;
 }

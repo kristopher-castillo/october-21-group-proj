@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { getCategoriesThunk } from "../store/categories";
 import { addProjectThunk, getProjectThunk, updateProjectThunk } from "../store/project";
+import LoginForm from "./LoginFormModal";
 
 const ProjectForm = () => {
   const [errors, setErrors] = useState([]);
@@ -27,7 +28,8 @@ const ProjectForm = () => {
   }, [dispatch])
 
   if (!user) {
-    return <Redirect to="/" />;
+    // return <Redirect to="/login" />;
+    // return <LoginForm />
   }
 
   const handleSubmit = async (e) => {

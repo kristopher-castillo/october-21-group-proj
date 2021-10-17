@@ -81,7 +81,6 @@ function App() {
           <h1>My Home Page</h1>
         </Route>
       </Switch>
-      <AboutFooter />
     </BrowserRouter>
   );
 }

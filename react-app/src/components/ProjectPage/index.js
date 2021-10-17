@@ -92,6 +92,7 @@ const ProjectPage = () => {
         return (
           <button
             type="button"
+            className="back-project-button"
             onClick={() => {
               history.push(`/projects/${id}/pledges`);
             }}

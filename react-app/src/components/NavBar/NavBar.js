@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import LogoutButton from '../auth/LogoutButton';
 import SignupFormModal from '../SignupFormModal';
 import LoginFormModal from '../LoginFormModal';
+import LoginForm from '../LoginFormModal/LoginForm';
 import SearchBar from '../SearchBar/SearchBar';
 import './NavBar.css';
 
@@ -23,14 +24,23 @@ const NavBar = () => {
             </button>
             <LogoutButton />
             </div>
+
+          {/* <div className='start-project-button'>
+            <LoginFormModal />
+          </div> */}
       </>
     );
   } else {
     sessionLinks = (
+      <>
       <div className="login-menu-right">
         <LoginFormModal />
         <SignupFormModal />
       </div>
+       <button className="start-project-button">
+         <LoginFormModal />
+       </button>
+      </>
     );
   }
 
@@ -44,6 +54,7 @@ const NavBar = () => {
            </NavLink>
           </button>
           <button className="start-project-button">
+            {/* {if session.user} */}
             <NavLink to='/projects/new' exact={true} activeClassName='active'>
              Start a project
             </NavLink>

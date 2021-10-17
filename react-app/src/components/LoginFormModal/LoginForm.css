@@ -1,0 +1,39 @@
+.login-form-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 350px;
+    height: 200px;
+}
+
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.username-label {
+    display: flex;
+}
+
+
+.submit-button > button {
+    width: 300px;
+    height: 40px;
+    margin: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(255, 85, 0);
+    color: white;
+}
+
+.demo-button > button {
+    width: 300px;
+    height: 40px;
+    margin: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(0, 59, 252);
+    color: white;
+}
