@@ -1,8 +1,7 @@
 .project-image {
-    /* width: 818px;
-    height: 430px; */
-    height: 100%;
+    object-fit: cover;
     width: 100%;
+    max-height: 100%;
 }
 
 .project-content-container {
@@ -16,6 +15,7 @@
     column-gap: 1rem;
     row-gap: 1rem;
     grid-column: 2/4;
+
 
 }
 .project-page-title {
