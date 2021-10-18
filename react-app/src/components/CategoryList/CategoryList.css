@@ -1,6 +1,6 @@
 
 .category_nav_container {
-    border-bottom: 0.1rem solid #DCDEDD;
+    border-bottom: 0.1rem solid rgb(220, 222, 221);
 
 }
 
@@ -36,10 +36,11 @@
 }
 
 
-/* a {
+.category_nav > a {
     list-style: none;
     list-style-type: none;
+    /* color:  rgb(167, 159, 148); */
     color:  #656969;
     text-decoration: none;
     display: list-item;
-} */
+  }

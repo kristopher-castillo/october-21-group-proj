@@ -35,6 +35,8 @@
 }
 .pledge-amount {
     color: #006869;
+    font-size: 28px;
+    margin: 10px 0px ;
 }
 .description-area {
     grid-area: description;
@@ -42,9 +44,16 @@
 
 
 .back-project-button {
-    height: 36px;
+    height: 46px;
     width: 304px;
     border: solid 1px;
     color: white;
-    background-color: #006869;
+    background-color: #028858;
+    font-size: 15px;
+    padding: 0px;
+}
+
+.back-project-button:hover{
+    background-color:#015738;
+
 }

@@ -93,7 +93,7 @@ const ProjectPage = () => {
               history.push(`/projects/${id}/pledges`);
             }}
           >
-            Back this Project!
+            Back this project
           </button>
         )
       }
@@ -138,7 +138,7 @@ const ProjectPage = () => {
 				  <h3 className='pledge-amount'>${projects?.current_amount}</h3>
 			  </div>
 			  <div>
-				  <p>pledged of ${projects?.goal}</p>
+				  <p>pledged of ${projects?.goal} goal</p>
 				<Pledge />
 			  </div>
 		  </div>

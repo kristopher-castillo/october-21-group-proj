@@ -1,3 +1,16 @@
+a {
+  list-style: none;
+  list-style-type: none;
+  color:  #656969;
+  text-decoration: none;
+  display: list-item;
+}
+
+
+p#selected-recommend-title p:hover{
+  text-decoration-line: underline;
+}
+
 .nav-bar-container {
   display: flex;
   flex-direction: row;
@@ -9,21 +22,46 @@
   justify-content: space-around;
 }
 
+.nav-bar-container a:hover{
+  color: #037362
+}
+
 .nav-bar-left {
   display: flex;
+  /* color:#656969 */
 }
+
+.nav-bar-left button {
+  background: none;
+  border: none;
+  text-decoration: none;
+  color:  #282828;
+  cursor: pointer;
+  font-size: 14px;
+}
+
 
 .discover-button{
   width: 56px;
 }
 
-.start-project-button{
+.start-project-button a{
   width: 109px;
+  color:  #282828;
+  font-size: 14px;
 }
 
+.start-project-button:hover{
+  color: #037362
+}
+
+.nav-bar-center {
+  display:flex;
+}
 
 .nav-bar-center-logo{
   width: 180px;
+  /* background: none; */
 
 }
 
@@ -36,6 +74,8 @@
   cursor: pointer;
   align-items: center;
   justify-content: space-around;
+  border: none;
+  background-color: transparent;
 
 }
 
@@ -43,20 +83,26 @@
   display: flex;
 }
 
-button {
+.nav-bar-right button {
   background: none;
   border: none;
   text-decoration: none;
-  color: rgb(167, 159, 148);
+  color:  #282828;
   cursor: pointer;
+  font-size: 14px;
+
 }
 
-
-a {
-  list-style: none;
-  list-style-type: none;
-  /* color:  rgb(167, 159, 148); */
-  color:  #656969;
-  text-decoration: none;
-  display: list-item;
+.nav-bar-right button:hover {
+  color: #037362
 }
+
+.user-button a{
+  color:  #282828;
+  font-size: 14px;
+}
+
+/* .login-menu-right button:hover {
+  color: #037362
+
+} */
