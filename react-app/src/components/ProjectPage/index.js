@@ -18,7 +18,7 @@ const ProjectPage = () => {
   const pledges = useSelector((store) => store.pledges?.pledges?.pledges)
   const { id } = useParams();
 
-  const userPledge = pledges?.find((pledge) => pledge.user_id === user.id)
+  const userPledge = pledges?.find((pledge) => pledge.user_id === user?.id)
 
   const dispatch = useDispatch();
   const history = useHistory();
