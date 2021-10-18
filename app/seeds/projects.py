@@ -167,12 +167,12 @@ def seed_projects():
                     user_id=5,
                     image_url='https://ksr-ugc.imgix.net/assets/035/141/993/c4d38810af775940c987c26754fa95aa_original.jpeg?ixlib=rb-4.0.2&w=680&fit=max&v=1633552233&auto=format&frame=1&q=92&s=3ca2745e48d7e86f2f976e4aff6c6bf0')
     sikh = Project(title='American Sikh',
-                    description='',
+                    description='The film begins in India, 1984. Vishavjit is only 12 years old when he witnesses first-hand the violent anti-Sikh massacre in New Delhi. His family narrowly escapes death. After seeing the violence towards Sikhs, Vishavjit dreams of returning to his birthplace - the United States.',
                     goal=60000,
                     current_amount=70569,
                     categories_id=4,
                     user_id=6,
-                    image_url='The film begins in India, 1984. Vishavjit is only 12 years old when he witnesses first-hand the violent anti-Sikh massacre in New Delhi. His family narrowly escapes death. After seeing the violence towards Sikhs, Vishavjit dreams of returning to his birthplace - the United States.')
+                    image_url='https://ksr-ugc.imgix.net/assets/034/653/509/4d6d6ba3fad1bf28c75e603776b4c001_original.jpg?ixlib=rb-4.0.2&w=680&fit=max&v=1630004622&auto=format&frame=1&q=92&s=c7c364ac12da12dd5d57008f30ac22ce')
     horn = Project(title="The Sound of His Horn (80's Horror Paperback & Movies)",
                     description="Think back to the classic era of horror pulp fiction, when sinister paperbacks occupied turnstiles, adorned with chilling book covers, painted by artists such as Lisa Falkenstern, Jill Bauman and Tom Hallman, whose works are celebrated in the fantastic “Paperbacks from Hell”, a history of 70's and 80's horror fiction, by Grady Hendrix.",
                     goal=6872,
