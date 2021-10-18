@@ -27,7 +27,8 @@ const ProjectForm = () => {
   }, [dispatch])
 
   if (!user) {
-    return <Redirect to="/" />;
+    // return <Redirect to="/login" />;
+    // return <LoginForm />
   }
 
   const handleSubmit = async (e) => {

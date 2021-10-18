@@ -1,16 +1,33 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import LogoutButton from '../auth/LogoutButton';
 import SignupFormModal from '../SignupFormModal';
 import LoginFormModal from '../LoginFormModal';
+import LoginForm from '../LoginFormModal/LoginForm';
+import { Modal } from "../../context/Modal";
 import SearchBar from '../SearchBar/SearchBar';
 import './NavBar.css';
 
 const NavBar = () => {
+  const [showModal, setShowModal] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
 
+  // const startProjectButton = () => {
+  //   if (sessionUser) {
+  //     <NavLink to='/projects/new' exact={true} activeClassName='active'>
+  //     Start a project
+  //    </NavLink>
+  //   }
+
+    
+  //   else{
+  //     <LoginFormModal />
+  //   }
+
+  // }
   let sessionLinks;
+  let startProject;
   if (sessionUser) {
     sessionLinks = (
       <>
@@ -24,13 +41,38 @@ const NavBar = () => {
             <LogoutButton />
             </div>
       </>
+
+
     );
+
+    startProject = (
+      <button className="start-project-button">
+        <NavLink to='/projects/new' exact={true} activeClassName='active'>
+             Start a project logged in
+        </NavLink>
+      </button>   
+      );
   } else {
     sessionLinks = (
+      <>
       <div className="login-menu-right">
         <LoginFormModal />
         <SignupFormModal />
       </div>
+      </>
+    );
+
+    startProject = (
+      <>
+      <button className="start-project-button" onClick={() => setShowModal(true)}>
+        Start a project logged out
+      </button>
+      {showModal && (<Modal onClose={() => setShowModal(false)}>
+        <LoginForm />
+      </Modal>
+      )}
+      </>
+    
     );
   }
 
@@ -43,11 +85,7 @@ const NavBar = () => {
              Discover
            </NavLink>
           </button>
-          <button className="start-project-button">
-            <NavLink to='/projects/new' exact={true} activeClassName='active'>
-             Start a project
-            </NavLink>
-          </button>
+          {startProject}
       </div>
       <div className="nav-bar-center">
         <div className="nav-bar-center-logo">

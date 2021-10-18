@@ -44,6 +44,7 @@ function App() {
       <Switch>
         <Route path="/" exact={true}>
           <HomePage />
+          <AboutFooter />
         </Route>
         <Route path="/projects/new" exact={true}>
           <ProjectForm />
@@ -81,11 +82,7 @@ function App() {
         <ProtectedRoute path="/users/:userId/funds">
           <UserFunds />
         </ProtectedRoute>
-        <Route path="/" exact={true}>
-          <h1>My Home Page</h1>
-        </Route>
       </Switch>
-      <AboutFooter />
     </BrowserRouter>
   );
 }
