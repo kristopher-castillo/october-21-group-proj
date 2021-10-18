@@ -15,29 +15,31 @@ function ProjectCard() {
       }, [dispatch])
 
 
-    return(
-        <div className='profile-content-wrap'>
-                <ul className='profile-content-container'>
-                    {user_projects?.projects.map(project => (
-                    <li className='project-item'>
-                        <Link to={`/projects/${project.id}`} key={project.id}>
-                            <div className='project-card'>
-                                <div>
-                                    <img className='project-card-image' src={project.image_url} alt="" />
-                                </div>
-                                <div className='project-card-info'>
-                                    <h3 className='project-card-title'>{project.title}</h3>
-                                    <p className='project-card-des'>{project.description}</p>
-                                </div>
-
-                            </div>
-                        </Link>
-                    </li>
-                    ))}
-                </ul>
-
-            </div>
-    )
+    return (
+      <div className="profile-content-wrap">
+        <ul className="profile-content-container">
+          {user_projects?.projects.map((project) => (
+            <li className="project-item" key={project.id}>
+              <Link to={`/projects/${project.id}`} key={project.id}>
+                <div className="project-card">
+                  <div>
+                    <img
+                      className="project-card-image"
+                      src={project.image_url}
+                      alt=""
+                    />
+                  </div>
+                  <div className="project-card-info">
+                    <h3 className="project-card-title">{project.title}</h3>
+                    <p className="project-card-des">{project.description}</p>
+                  </div>
+                </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
 
 }
 
