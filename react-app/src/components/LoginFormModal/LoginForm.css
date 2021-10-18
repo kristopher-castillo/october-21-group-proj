@@ -2,37 +2,52 @@
     display: flex;
     flex-direction: column;
     text-align: center;
+    align-items: center;
     width: 350px;
-    height: 200px;
+    height: 350px;
 }
 
+.login-form-container > h2 {
+    margin: 0;
+}
+
+.login-form-container > h4 {
+    margin: 0px 15px 15px 0px;
+}
 
 .login-form {
     display: flex;
     flex-direction: column;
-    height: 100%;
 }
 
 .username-label {
     display: flex;
+    flex-direction: column;
+    margin: 5px 50px 5px 50px;
+}
+
+.password-label {
+    display: flex;
+    flex-direction: column;
+    margin: 5px 50px 10px 50px;
 }
 
 
 .submit-button > button {
-    width: 300px;
+    width: 200px;
     height: 40px;
     margin: 10px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     border: none;
-    background-color: rgb(255, 85, 0);
+    background-color: #009E74;
     color: white;
 }
 
 .demo-button > button {
-    width: 300px;
+    width: 200px;
     height: 40px;
     margin: 10px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     border: none;
     background-color: rgb(0, 59, 252);
     color: white;

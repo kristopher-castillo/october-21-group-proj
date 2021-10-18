@@ -1,26 +1,26 @@
-.new-pledge-container {
+.edit-pledge-container {
   padding: 20px;
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
-.new-pledge-content {
+.edit-pledge-content {
   text-align: center;
 }
 
-.new-pledge-title {
+.edit-pledge-title {
   font-size: 2rem;
   padding-bottom: 25px;
 }
 
-#new-pledge-image {
+#edit-pledge-image {
   max-height: 500px;
   max-width: 500px;
   padding-bottom: 25px;
 }
 
-#new-pledge-form {
+#edit-pledge-form {
   padding: 70px 20px;
 }
 

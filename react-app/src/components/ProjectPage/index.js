@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect, useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { deleteProjectThunk, getSpecificProjectThunk, projectAmountThunk, getProjectThunk } from "../../store/project";
 import { getProjectPledgesThunk, deletePledgeThunk } from "../../store/pledge";
 import { transactionThunk } from "../../store/session";
@@ -57,8 +57,7 @@ const ProjectPage = () => {
   }
 
 
-  console.log("Projects", projects)
-  console.log("userPledge", userPledge)
+
   function EditDeleteProject() {
     if (user && projects?.user_id === user?.id) {
       return (

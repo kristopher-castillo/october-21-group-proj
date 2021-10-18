@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { getCategoriesThunk } from "../store/categories";
 import { addProjectThunk, getProjectThunk, updateProjectThunk } from "../store/project";
-import LoginForm from "./LoginFormModal";
+import './ProjectForm.css'
 
 const ProjectForm = () => {
   const [errors, setErrors] = useState([]);
@@ -13,7 +13,6 @@ const ProjectForm = () => {
   const [categoryId, setCategoryId] = useState(null);
   const [image, setImage] = useState("")
   const user = useSelector((state) => state.session.user);
-  const projects = useSelector(store => store.projects);
   const categories = useSelector(store => store.categories.categories)
   const dispatch = useDispatch();
   const history = useHistory();
@@ -49,7 +48,7 @@ const ProjectForm = () => {
     }
 
 return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='projectForm'>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
@@ -100,7 +99,7 @@ return (
           required={true}
         ></input>
       </div>
-      <button type="submit">Submit Project</button>
+      <button type="submit" className='submit-btn'>Submit Project</button>
     </form>
   );
 };
