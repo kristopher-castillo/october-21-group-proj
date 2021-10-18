@@ -1,134 +1,29 @@
-# Flask React Project
 
-This is the starter for the Flask React project.
+# Jumpstarter
 
-## Getting started
+Jumpstarter is Kickstarter clone that allows users to post their own projects and receive support through crowdfunding.
 
-1. Clone this repository (only this branch)
+Users are able register for their own accounts, allowing them to create their own projects with custom funding goals. Other registered users are then able to pledge funds towards these projects to help them meet their goal. User funds are tracked in their profile where they can be conveniently increased. Users without accounts are still able to view projects, which are organized by category and searchable by title.
 
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
+## Link to live Jumpstarter site on Heroku
 
-2. Install dependencies
+http://jumpstarter21.herokuapp.com/
 
-      ```bash
-      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
-      ```
+## Link to wiki docs
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+https://github.com/kristopher-castillo/october-21-group-proj/wiki
 
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
+## Discussion of technologies used
 
-   ```bash
-   pipenv shell
-   ```
+Our team utilized a wide variety of technologies in this project. In our back end, 
+we relied on Flask-SQLAlchemy to manage our database. We used Flask 
+to build and implement interconnected routes. We also used WTForms to provide seamless backend validations to our forms. When 
+designing the front end, we relied on React's powerful HTML syntax along with 
+CSS to create a functional and attractive app. These technologies were enhanced by our use of Redux to manage and manipulate our state, producing a dynamic final product. Finally, we were able to host our site on Heroku so that we might share our hardwork with present and future colleagues alike.
 
-   ```bash
-   flask db upgrade
-   ```
+## Challenges
 
-   ```bash
-   flask seed all
-   ```
-
-   ```bash
-   flask run
-   ```
-
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
-
-***
-*IMPORTANT!*
-   If you add any python dependencies to your pipfiles, you'll need to regenerate your requirements.txt before deployment.
-   You can do this by running:
-
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
-
-*ALSO IMPORTANT!*
-   psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
-   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
-***
-
-## Deploy to Heroku
-
-1. Before you deploy, don't forget to run the following command in order to
-ensure that your production environment has all of your up-to-date
-dependencies. You only have to run this command when you have installed new
-Python packages since your last deployment, but if you aren't sure, it won't
-hurt to run it again.
-
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
-
-2. Create a new project on Heroku
-3. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
-4. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
-5. Run
-
-   ```bash
-   heroku login
-   ```
-
-6. Login to the heroku container registry
-
-   ```bash
-   heroku container:login
-   ```
-
-7. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.
-   This should be the full URL of your Heroku app: i.e. "https://flask-react-aa.herokuapp.com"
-8. Push your docker container to heroku from the root directory of your project.
-   (If you are using an M1 mac, follow [these steps below](#for-m1-mac-users) instead, then continue on to step 9.)
-   This will build the Dockerfile and push the image to your heroku container registry.
-
-   ```bash
-   heroku container:push web -a {NAME_OF_HEROKU_APP}
-   ```
-
-9. Release your docker container to heroku
-
-      ```bash
-      heroku container:release web -a {NAME_OF_HEROKU_APP}
-      ```
-
-10. set up your database
-
-      ```bash
-      heroku run -a {NAME_OF_HEROKU_APP} flask db upgrade
-      heroku run -a {NAME_OF_HEROKU_APP} flask seed all
-      ```
-
-11. Under Settings find "Config Vars" and add any additional/secret .env
-variables.
-
-12. profit
-
-### For M1 Mac users
-
-(Replaces **Step 8**)
-
-1. Build image with linux platform for heroku servers. Replace
-{NAME_OF_HEROKU_APP} with your own tag:
-
-   ```bash=
-   docker buildx build --platform linux/amd64 -t {NAME_OF_HEROKU_APP} .
-   ```
-
-2. Tag your app with the url for your apps registry. Make sure to use the name
-of your Heroku app in the url and tag name:
-
-   ```bash=2
-   docker tag {NAME_OF_HEROKU_APP} registry.heroku.com/{NAME_OF_HEROKU_APP}/web
-   ```
-
-3. Use docker to push the image to the Heroku container registry:
-
-   ```bash=3
-   docker push registry.heroku.com/{NAME_OF_HEROKU_APP}/web
-   ```
+* Mantaining and manipulating state
+  * The React-Redux cycle is a challenging, but rewarding, technology to utlize. As such, we faced several hurdles when managing multiple slices of states, particularly when different components where making simultaneous calls to the backend.
+* Integerating a Python-based backend with a JS-based frontend
+  * Though Python proved to be a powerful language for building our backend through Flask, managing the movement of data to our Javascript-based frontend was not always seamless. We had to be cautious about issues with parsing data types unique to Python and ensured that we were correctly building our JSON requests.
