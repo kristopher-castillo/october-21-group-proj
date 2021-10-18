@@ -57,3 +57,42 @@
     background-color:#015738;
 
 }
+
+.pledge-container{
+    display: flex;
+    align-items: center;
+    width: 150px;
+    height: 100px;
+}
+.update-pledge-button{
+    border: none;
+    background-color: #028858;
+    color: white;
+    margin-right: 10px;
+}
+
+.delete-pledge-button{
+    border:none;
+    background-color: red;
+    color:white;
+}
+
+.edit-delete-container{
+    display: flex;
+    align-items: center;
+    width: 150px;
+    height: 100px;
+}
+
+.edit-button{
+    border: none;
+    background-color: #028858;
+    color: white;
+    margin-right: 10px;
+}
+
+.delete-button{
+    border:none;
+    background-color: red;
+    color:white;
+}

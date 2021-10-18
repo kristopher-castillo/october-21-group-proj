@@ -4,6 +4,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  
+
 }
 
 .funds-items {
@@ -12,7 +14,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #006869;
+  /* background-color: white; */
+  border: solid #009E74;
 }
 
 #funds-heading {
@@ -25,4 +28,6 @@
 
 #funds-button {
   font-size: 2rem;
+  border: solid #009E74 1px;
+  background: none;
 }

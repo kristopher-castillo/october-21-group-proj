@@ -19,7 +19,7 @@ p#selected-recommend-title p:hover{
   border-bottom: 0.1rem solid #DCDEDD;
   font-size: 14px;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .nav-bar-container a:hover{
@@ -28,6 +28,8 @@ p#selected-recommend-title p:hover{
 
 .nav-bar-left {
   display: flex;
+  width: 30%;
+  padding: 0;
   /* color:#656969 */
 }
 
@@ -57,9 +59,12 @@ p#selected-recommend-title p:hover{
 
 .nav-bar-center {
   display:flex;
+  width: 30%;
+  justify-content: space-around;
 }
 
 .nav-bar-center-logo{
+  display: flex;
   width: 180px;
   /* background: none; */
 
@@ -81,6 +86,7 @@ p#selected-recommend-title p:hover{
 
 .nav-bar-right {
   display: flex;
+  width: 30%;
 }
 
 .nav-bar-right button {

@@ -6,8 +6,7 @@
     margin-top: 5%;
     margin-left: 45%;
     margin-right: 45%;
-    border-style: solid;
-    border-radius: 20px;
+    border: solid 1px;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 20px;
@@ -18,9 +17,8 @@
     margin-top: 15px;
     padding: 5px;
     border-style: solid;
-    border-radius: 10px;
-    color: black;
-    background-color: #00EAED;
+    color: white;
+    background-color: #028858;
     font-weight: bold;
     font-size: 17px;
     font-family: "Open Sans";

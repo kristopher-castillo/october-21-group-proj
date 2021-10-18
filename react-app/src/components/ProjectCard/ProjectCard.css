@@ -31,6 +31,7 @@ ul {
 
 .project-card-info {
     grid-area: info;
+    
 }
 
 .project-card-title {

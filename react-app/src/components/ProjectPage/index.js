@@ -58,8 +58,9 @@ const ProjectPage = () => {
   function EditDeleteProject() {
     if (user && projects?.user_id === user?.id) {
       return (
-        <div>
+        <div className="edit-delete-container">
           <button
+            className="edit-button"
             type="button"
             onClick={() => {
               history.push(`/projects/${id}/edit`)
@@ -68,6 +69,7 @@ const ProjectPage = () => {
             Edit Project
           </button>
           <button
+            className="delete-button"
             type="button"
             onClick={() => {
               handleDeleteProject(id)
@@ -99,22 +101,24 @@ const ProjectPage = () => {
       }
       else {
         return (
-          <div>
+          <div className="pledge-container">
             <button
+              className="update-pledge-button"
               type="button"
               onClick={() => {
                 history.push(`/pledges/${userPledge?.id}/edit`);
               }}
             >
-              Update your Pledge
+              Update your pledge
             </button>
             <button
+              className="delete-pledge-button"
               type="button"
               onClick={() => {
                 handleDeletePledge(userPledge?.id)
               }}
             >
-              Delete your Pledge
+              Delete your pledge
             </button>
           </div>
         )
@@ -140,12 +144,12 @@ const ProjectPage = () => {
 			  <div>
 				  <p>pledged of ${projects?.goal} goal</p>
 				<Pledge />
+        <EditDeleteProject />
 			  </div>
 		  </div>
 		  <div className='description-area'>
 				<p>{projects?.description}</p>
 		  </div>
-
       </div>
       {/* <div>{projects?.id}</div>
       <div>{projects?.title}</div>
@@ -153,11 +157,6 @@ const ProjectPage = () => {
       <li key={projects?.id}>
         <img src={projects?.image_url} alt="" />
       </li> */}
-
-      <div>
-
-        <EditDeleteProject />
-      </div>
     </div>
   )
 
