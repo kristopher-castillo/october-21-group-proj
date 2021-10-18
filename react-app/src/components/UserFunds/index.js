@@ -13,8 +13,8 @@ function UserFunds() {
   const dispatch = useDispatch();
 
   const handleFundsIncrease = () => {
-    dispatch(transactionThunk(sessionUser.id, currentMoney + 5))
-    setCurrentMoney(currentMoney + 5)
+    dispatch(transactionThunk(sessionUser.id, currentMoney + 100))
+    setCurrentMoney(currentMoney + 100)
   }
 
   return (
