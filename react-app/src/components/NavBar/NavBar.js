@@ -32,7 +32,7 @@ const NavBar = () => {
     startProject = (
       <button className="start-project-button">
         <NavLink to='/projects/new' exact={true} activeClassName='active'>
-             Start a project logged in
+             Start a project
         </NavLink>
       </button>   
       );
@@ -49,7 +49,7 @@ const NavBar = () => {
     startProject = (
       <>
       <button className="start-project-button" onClick={() => setShowModal(true)}>
-        Start a project logged out
+        Start a project
       </button>
       {showModal && (<Modal onClose={() => setShowModal(false)}>
         <LoginForm />
@@ -64,11 +64,11 @@ const NavBar = () => {
     <nav>
       <div className="nav-bar-container">
         <div className="nav-bar-left">
-          <button className="discover-button">
+          {/* <button className="discover-button">
             <NavLink to='/discover' exact={true} activeClassName='active'>
              Discover
            </NavLink>
-          </button>
+          </button> */}
           {startProject}
       </div>
       <div className="nav-bar-center">
@@ -80,8 +80,8 @@ const NavBar = () => {
         </div>
       </div>
       <div className="nav-bar-right">
-      <SearchBar />
-      {sessionLinks}
+        <SearchBar />
+        {sessionLinks}
       </div>
       </div>
     </nav>

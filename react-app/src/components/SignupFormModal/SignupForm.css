@@ -8,7 +8,7 @@
 }
 
 .signup-form-container > h2 {
-    margin: 0px 0px 5px 0px;
+    margin: 15px 0px 5px 0px;
 }
 
 form.signup-form {
@@ -27,7 +27,7 @@ form.signup-form {
 .username-label{
     display: flex;
     flex-direction: column;    
-    margin: 5px 50px 5px 50px;
+    margin: 5px 0px 5px 50px;
 }
 
 .password-label{
@@ -43,14 +43,18 @@ form.signup-form {
     margin: 5px 50px 5px 50px;
 }
 
-button.submit-button{
-    width: 300px;
+.submit-button > button{
+    width: 200px;
     height: 40px;
     margin: 10px;
     /* border-radius: 10px; */
     border: none;
     background-color: #009E74;
     color: white;
+}
+
+h6 {
+    margin: 0px;
 }
 
 button.demo-button {

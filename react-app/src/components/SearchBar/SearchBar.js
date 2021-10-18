@@ -36,11 +36,11 @@ const SearchBar = (props) => {
             className="search-bar-input"
             />
         {/* <button type='submit' onClick={() => history.push(`/projects/${result?.id}`)}>submit</button> */}
-            <ul className="search-dropdown">
+                <ul className="search-dropdown">
                 {result?.map((project) => <li onClick={() =>
                     {setSearchTerm('')
                     history.push(`/projects/${project?.id}`)}} key={project.id} className={`results-${project.id}`}>{project?.title}</li>)}
-            </ul>
+             </ul>
         </div>
         </>
     )

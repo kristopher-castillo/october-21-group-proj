@@ -99,7 +99,7 @@ return (
           required={true}
         ></input>
       </div>
-      <button type="submit" className='submit-btn'>Submit Project</button>
+      <button type="submit" className='submit-btn'>Create project</button>
     </form>
   );
 };

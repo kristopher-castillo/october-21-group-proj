@@ -30,59 +30,63 @@ const handleSubmit = (e) => {
 
   return (
     <div className="signup-form-container">
-    <h2>Join Jumpstarter To Get Your Project Made</h2>
+      <h2>Bring your create project to life</h2>
     <form className = "signup-form" onSubmit={handleSubmit}>
-      <ul>
+      <div>
         {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
+          <div key={idx}>{error}</div>
         ))}
-      </ul>
+      </div>
       <div className="email-label">
-      <label>
+        <label>
         Email
+        </label>
         <input
           type="text"
+          placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-      </label>
       </div>
       <div className="username-label">
       <label>
         Username
+      </label>
         <input
           type="text"
+          placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
         />
-      </label>
       </div>
       <div className="password-label">
       <label>
         Password
+        </label>
         <input
           type="password"
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-      </label>
       </div>
       <div className="confirm-password-label">
       <label>
         Confirm Password
+      </label>
         <input
           type="password"
+          placeholder="Confirm Password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
         />
-      </label>
       </div>
-      <div>
-      <button type="submit" className="submit-button">Continue</button>
+      <div className="submit-button">
+      <button type="submit">Create account</button>
       </div>
     </form>
     <h6>We will send spam to your email for all eternity</h6>
