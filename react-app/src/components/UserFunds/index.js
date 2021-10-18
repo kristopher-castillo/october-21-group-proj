@@ -1,15 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
 import React, { useState } from "react";
 import User from "../UsersPage/User";
 import { transactionThunk } from "../../store/session";
 import "./UserFunds.css";
 
 function UserFunds() {
-  //WILL NEED TO CHANGE THE STATE TO THE USER'S PROFILE INSTEAD OF CURRENT USER
   const sessionUser = useSelector((state) => state.session.user);
   const [currentMoney, setCurrentMoney] = useState(sessionUser.money)
-  const { userId } = useParams();
   const dispatch = useDispatch();
 
   const handleFundsIncrease = () => {

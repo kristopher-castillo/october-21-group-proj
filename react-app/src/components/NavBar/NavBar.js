@@ -13,27 +13,11 @@ const NavBar = () => {
   const [showModal, setShowModal] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
 
-  // const startProjectButton = () => {
-  //   if (sessionUser) {
-  //     <NavLink to='/projects/new' exact={true} activeClassName='active'>
-  //     Start a project
-  //    </NavLink>
-  //   }
-
-    
-  //   else{
-  //     <LoginFormModal />
-  //   }
-
-  // }
   let sessionLinks;
   let startProject;
   if (sessionUser) {
     sessionLinks = (
       <>
-        {/* <button type="button" className="user-button">
-          <ProfileButton user={sessionUser} />
-        </button> */}
         <div className="user-container">
           <button type="button" className="user-button">
             <NavLink to={`/users/${sessionUser.id}`}>Profile Page</NavLink>
