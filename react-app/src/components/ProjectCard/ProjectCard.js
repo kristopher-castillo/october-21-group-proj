@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
-import { getUserProjectsThunk, getSpecificUserThunk } from '../../store/users';
-import React, { useState, useEffect } from 'react';
+import { getUserProjectsThunk } from '../../store/users';
+import React, { useEffect } from 'react';
 // import User from '../UsersPage/User'
 
 function ProjectCard() {
@@ -12,7 +12,7 @@ function ProjectCard() {
     useEffect(() => {
         dispatch(getUserProjectsThunk(userId))
 
-      }, [dispatch])
+      }, [dispatch, userId])
 
 
     return (

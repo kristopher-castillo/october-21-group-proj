@@ -7,38 +7,17 @@ import '../ProjectCard/ProjectCard.css'
 import ProjectCard from '../ProjectCard/ProjectCard';
 
 function UserProjects() {
-    //WILL NEED TO CHANGE THE STATE TO THE USER'S PROFILE INSTEAD OF CURRENT USER
     const sessionUser = useSelector(state => state.session.user)
     const { userId }  = useParams();
     const dispatch = useDispatch()
 
     useEffect(() => {
       dispatch(getUserProjectsThunk(userId))
-    }, [dispatch])
+    }, [dispatch, userId])
     return (
         <div>
             <User users={sessionUser}/>
-            
-
             <ProjectCard />
-            {/* <div className='profile-content-wrap'>
-                <ul className='profile-content-container'>
-                    <li>
-                        {user_projects?.projects.map(project => (
-                            <div className='project-card'>
-                                <div>
-                                    <img className='project-card-image' src={project.image_url} alt="" />
-                                </div>
-                                <div className='project-card-info'>
-                                    <h3 className='project-card-title'>{project.title}</h3>
-                                    <p className='project-card-des'>{project.description}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </li>
-                </ul>
-
-            </div> */}
         </div>
     )
 }

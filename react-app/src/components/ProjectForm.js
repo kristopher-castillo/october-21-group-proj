@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { getCategoriesThunk } from "../store/categories";
-import { addProjectThunk, getProjectThunk, updateProjectThunk } from "../store/project";
+import { addProjectThunk, getProjectThunk} from "../store/project";
 import './ProjectForm.css'
 
 const ProjectForm = () => {
-  const [errors, setErrors] = useState([]);
+  const [errors] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [goal, setGoal] = useState("");

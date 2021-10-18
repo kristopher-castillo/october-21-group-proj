@@ -9,7 +9,7 @@ const EditForm = () => {
   const project = useSelector(store => store.projects?.projects);
   const user = useSelector((state) => state.session.user);
   const categories = useSelector(store => store.categories?.categories)
-  const [errors, setErrors] = useState([]);
+  const [errors] = useState([]);
   const [title, setTitle] = useState(project?.title);
   const [description, setDescription] = useState(project?.description);
   const [goal, setGoal] = useState(project?.goal);

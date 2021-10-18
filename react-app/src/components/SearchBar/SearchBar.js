@@ -4,14 +4,9 @@ import { useHistory } from "react-router-dom";
 import { getProjectsSearchThunk } from '../../store/search';
 import './SearchBar.css'
 
-
-
 const SearchBar = (props) => {
-    // const history = useHistory();
     const dispatch = useDispatch();
-    const searchState = useSelector(state => state.session.user);
     const projects = useSelector(state => state.search?.projects);
-    const [searchText, setSearchText] = useState("")
     const [searchTerm, setSearchTerm] = useState('');
     const history = useHistory();
 

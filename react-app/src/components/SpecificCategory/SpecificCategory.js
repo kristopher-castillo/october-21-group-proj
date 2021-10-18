@@ -14,7 +14,7 @@ function SpecificCategory() {
     useEffect(() => {
         dispatch(getCategoryProjectsThunk(categoryId))
         document.getElementById('slider').scrollLeft = 0
-    }, [dispatch, categoryId, document])
+    }, [dispatch, categoryId])
 
 
     function leftClick(e) {

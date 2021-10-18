@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { deleteProjectThunk, getSpecificProjectThunk, projectAmountThunk, getProjectThunk } from "../../store/project";
+import { deleteProjectThunk, getSpecificProjectThunk, projectAmountThunk } from "../../store/project";
 import { getProjectPledgesThunk, deletePledgeThunk } from "../../store/pledge";
 import { transactionThunk } from "../../store/session";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import './ProjectPage.css'
+
 const ProjectPage = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [goal, setGoal] = useState("");
-  const [category, setCategory] = useState(null);
-  const [image, setImage] = useState("");
+  // const [title, setTitle] = useState("");
+  // const [description, setDescription] = useState("");
+  // const [goal, setGoal] = useState("");
+  // const [category, setCategory] = useState(null);
+  // const [image, setImage] = useState("");
   const user = useSelector((state) => state.session.user);
   const projects = useSelector((store) => store.projects?.projects);
   const pledges = useSelector((store) => store.pledges?.pledges?.pledges)
@@ -21,10 +22,6 @@ const ProjectPage = () => {
 
   const dispatch = useDispatch();
   const history = useHistory();
-
-  //   useEffect(() => {
-  //   dispatch(getProjectThunk())
-  // }, [dispatch])
 
   useEffect(() => {
     dispatch(getSpecificProjectThunk(id))
