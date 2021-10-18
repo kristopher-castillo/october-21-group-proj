@@ -38,7 +38,7 @@ function SpecificCategory() {
 
                 <div id='slider'>
                     {projects?.projects?.map((project) => (
-                        <Link to={`/projects/${project?.id}`}>
+                        <Link to={`/projects/${project?.id}`} key={project?.id}>
                             <img className='thumbnail' src={project.image_url} alt="" />
                         </Link>
                     ))}
