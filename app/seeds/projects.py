@@ -14,7 +14,7 @@ def seed_projects():
                             current_amount=2000,
                             categories_id=3,
                             user_id=1,
-                            image_url="https://ksr-ugc.imgix.net/assets/034/889/359/868288bc5f31471bbc831a07d8c5672d_original.png?ixlib=rb-4.0.2&w=680&fit=max&v=1631720864&auto=format&frame=1&lossless=true&s=ef81179c4441e16698fa44f8ffd04d7f")
+                            image_url="https://ksr-ugc.imgix.net/assets/034/897/773/f12b811db63a59f09293be7790fb607c_original.jpg?ixlib=rb-4.0.2&crop=faces&w=1024&h=576&fit=crop&v=1631776263&auto=format&frame=1&q=92&s=700de415a7bfb2c809ac78770deb225a")
 
     mythwind = Project(title='Mythwind',
                         description="Mythwind is a persistent-world, asymmetrical and cooperative boardgame where you become a pioneer in a whimsical fantasy world.",
@@ -67,7 +67,7 @@ def seed_projects():
                     current_amount=56821,
                     categories_id=3,
                     user_id=7,
-                    image_url='https://ksr-ugc.imgix.net/assets/034/983/632/552cafa6daad91f6967557d3f58f7667_original.jpg?ixlib=rb-4.0.2&w=680&fit=max&v=1632403773&auto=format&frame=1&q=92&s=d6081a62e0ee9b6876a38f17be3b2e38')
+                    image_url="https://ksr-ugc.imgix.net/assets/031/395/555/65b809cd742752c7d15f2af3fa45e5c8_original.jpg?ixlib=rb-4.0.2&crop=faces&w=1024&h=576&fit=crop&v=1605249636&auto=format&frame=1&q=92&s=165f3a223a609f96c9d7fad38643cffc")
     geheim = Project(title='Cipher Machine Toy',
                     description="The GeheimMachine is a 100 percent analogue, non-digital ciphering machine. A purely haptic mechanical device which you'll love to hold in your hand!",
                     goal=34799,
@@ -123,7 +123,7 @@ def seed_projects():
                     current_amount=3722,
                     categories_id=2,
                     user_id=15,
-                    image_url='https://ksr-ugc.imgix.net/assets/034/767/778/b7a5d0e019e4cfb426ae329189e7814e_original.png?ixlib=rb-4.0.2&w=680&fit=max&v=1630877140&auto=format&frame=1&lossless=true&s=6a8280e7a59907ddd5583210a2cd3672')
+                    image_url='https://ksr-ugc.imgix.net/assets/034/560/466/8ada51500c7afd636f9e41b055093dbc_original.jpg?ixlib=rb-4.0.2&crop=faces&w=1552&h=873&fit=crop&v=1629252766&auto=format&frame=1&q=92&s=c8a0834915e3fcb38decfb93871c43ab')
     hellwitch = Project(title="Brian Pulido's Hellwitch vs. Lady Death: Wargasm #1!",
                     description="The Battle Royale is here! 20+ FREE Bonus Items Unlocked! One of the most savage action-packed slugfests in comic book history!",
                     goal=15000,
