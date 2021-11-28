@@ -24,7 +24,7 @@
 
 }
 
-li[class^="results-"] {
+a[class^="results-"] {
     /* position: absolute; */
     background: white;
     border: 1px rgb(134, 131, 131) solid;
