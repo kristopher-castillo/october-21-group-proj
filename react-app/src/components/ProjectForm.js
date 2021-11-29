@@ -5,7 +5,7 @@ import { getCategoriesThunk } from "../store/categories";
 import { addProjectThunk, getProjectThunk} from "../store/project";
 import './ProjectForm.css'
 
-const ProjectForm = () => {
+const ProjectForm = ({closeModalHandler}) => {
   const [errors] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -16,6 +16,8 @@ const ProjectForm = () => {
   const categories = useSelector(store => store.categories.categories)
   const dispatch = useDispatch();
   const history = useHistory();
+
+  console.log(closeModalHandler)
 
 
   useEffect(() => {
@@ -45,6 +47,7 @@ const ProjectForm = () => {
       }
       const lastProject = await dispatch(addProjectThunk(newProject));
       history.push(`/projects/${lastProject?.id}`)
+      closeModalHandler()
     }
 
 return (
@@ -101,7 +104,7 @@ return (
             required={true}
           ></input>
         </div>
-        <button type="submit" className='submit-btn'>Create project</button>
+        <button type="submit" className='submit-btn' >Create project</button>
       </form>
   </div>
   );

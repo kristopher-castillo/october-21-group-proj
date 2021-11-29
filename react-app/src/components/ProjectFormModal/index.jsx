@@ -5,6 +5,8 @@ import ProjectForm from "../ProjectForm";
 function ProjectFormModal() {
     const [showModal, setShowModal] = useState(false);
 
+    const closeModal = () => setShowModal(false);
+
     return (
         <>
             <button onClick={() => setShowModal(true)}>
@@ -12,7 +14,7 @@ function ProjectFormModal() {
             </button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <ProjectForm />
+                    <ProjectForm closeModalHandler={closeModal}/>
                 </Modal>
             )}
         </>
