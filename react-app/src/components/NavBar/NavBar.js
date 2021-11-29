@@ -8,6 +8,7 @@ import LoginForm from '../LoginFormModal/LoginForm';
 import { Modal } from "../../context/Modal";
 import SearchBar from '../SearchBar/SearchBar';
 import './NavBar.css';
+import ProjectFormModal from '../ProjectFormModal';
 
 const NavBar = () => {
   const [showModal, setShowModal] = useState(false);
@@ -31,10 +32,11 @@ const NavBar = () => {
 
     startProject = (
       <button className="start-project-button">
-        <NavLink to='/projects/new' exact={true} activeClassName='active'>
+        <ProjectFormModal />
+        {/* <NavLink to='/projects/new' exact={true} activeClassName='active'>
              Start a project
-        </NavLink>
-      </button>   
+        </NavLink> */}
+      </button>
       );
   } else {
     sessionLinks = (
@@ -56,7 +58,7 @@ const NavBar = () => {
       </Modal>
       )}
       </>
-    
+
     );
   }
 
