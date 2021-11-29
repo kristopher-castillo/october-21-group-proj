@@ -1,16 +1,23 @@
+.project-form-container {
+    background-color: white;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 350px;
+    width: 350px;
+}
+
 .projectForm {
     display: flex;
     flex-direction: column;
-    text-align: center;
-    position: fixed;
-    margin-top: 5%;
-    margin-left: 45%;
-    margin-right: 45%;
-    border: solid 1px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
+    align-items:center;
+
+}
+.form-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 .submit-btn {
