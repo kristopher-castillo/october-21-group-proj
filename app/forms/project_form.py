@@ -9,6 +9,6 @@ class ProjectForm(FlaskForm):
     current_amount = IntegerField('Current Amount')
     categories_id = IntegerField('Category', validators=[DataRequired()])
     image_url = StringField('Image Url', validators=[DataRequired()])
-    # submit = SubmitField('Submit')
+
 
 

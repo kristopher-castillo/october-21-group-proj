@@ -24,9 +24,3 @@ def get_specific_category(id):
     return {
         'projects': [project.to_dict() for project in projects]
     }
-# @category_routes.route('/', methods=['POST'])
-# def create_categories():
-#     '''
-#     Create categories
-#     '''
-#     category = Category()

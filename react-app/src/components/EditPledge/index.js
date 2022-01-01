@@ -61,9 +61,7 @@ const EditPledge = () => {
       dispatch(projectAmountThunk(updatedProject, project?.id));
       setCurrentAmount((newPledgeAmount - pledge?.amount) + currentAmount);
       history.push(`/projects/${project?.id}`);
-    } else {
-      console.log("Not enough money, You broke");
-    }
+    } 
 
   };
 

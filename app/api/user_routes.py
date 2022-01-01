@@ -37,7 +37,7 @@ def get_user_projects(id):
 
 @user_routes.route('/<int:id>/backed')
 def get_user_backed(id):
-    #rreturns a list of pledge objects with the user id
+    #returns a list of pledge objects with the user id
     pledges = Pledge.query.filter(Pledge.user_id == id).all()
 
     project_ids = []

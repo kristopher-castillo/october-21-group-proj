@@ -56,7 +56,7 @@ def new_project():
 @login_required
 def update_project(id):
     project = Project.query.filter(Project.id == id).first()
-    # if current_user.id == project.user_id:
+
     form = ProjectForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     data = form.data
@@ -75,8 +75,7 @@ def update_project(id):
 @login_required
 def delete_project(id):
     deleted_project = Project.query.filter(Project.id == id).first()
-    # if current_user.id == project.user_id:
-    #     Project.query.filter(Project.id == id).delete()
+
     db.session.delete(deleted_project)
     db.session.commit()
     return {
